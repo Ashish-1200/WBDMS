@@ -1,0 +1,43 @@
+<div class="card formdetails" *ngIf="userDetails">
+  <div class="card-header">
+    <h4 class="card-title text-center">Incident Report</h4>
+  </div>
+  <div class="card-body d-flex flex-column">
+    <div class="row">
+      <div class="col-md-6">
+        <h5 class="card-subtitle mb-2 text-muted">User ID:</h5>
+        <p class="card-text">{{userDetails._id}}</p>
+        <h5 class="card-subtitle mb-2 text-muted">First Name:</h5>
+        <p class="card-text">{{userDetails.firstName}}</p>
+        <h5 class="card-subtitle mb-2 text-muted">Last Name:</h5>
+        <p class="card-text">{{userDetails.lastName}}</p>
+        <h5 class="card-subtitle mb-2 text-muted">Gender:</h5>
+        <p class="card-text">{{userDetails.gender}}</p>
+      </div>
+      <div class="col-md-6">
+        <h5 class="card-subtitle mb-2 text-muted">Age:</h5>
+        <p class="card-text">{{userDetails.age}}</p>
+        <h5 class="card-subtitle mb-2 text-muted">Address:</h5>
+        <p class="card-text">{{userDetails.address}}</p>
+        <h5 class="card-subtitle mb-2 text-muted">Date of Incident:</h5>
+        <p class="card-text">{{userDetails.dateOfIncident}}</p>
+        <h5 class="card-subtitle mb-2 text-muted">Location:</h5>
+        <p class="card-text">{{userDetails.location}}</p>
+      </div>
+    </div>
+    <div class="mt-4">
+      <h5 class="card-subtitle mb-2 text-muted">Description:</h5>
+      <p class="card-text">{{userDetails.description}}</p>
+      <h5 class="card-subtitle mb-2 text-muted">Date Uploaded:</h5>
+      <p class="card-text">{{userDetails.dateuploaded}}</p>
+      <hr>
+      <mat-card-subtitle> <span>Image : </span><img class="Image" src="http://localhost:3000/{{userDetails.productImage}}" > </mat-card-subtitle>
+    
+      
+
+
+      
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,44 @@
+<div class="container">
+  <h2>Update Form</h2>
+  <form [formGroup]="form" (ngSubmit)="UpdateData()">
+    <div class="form-group">
+      <label for="firstname">First Name</label>
+      <input type="text" class="form-control" id="firstName" placeholder="Enter first name" formControlName="firstName" required>
+    </div>
+    <div class="form-group">
+      <label for="lastname">Last Name</label>
+      <input type="text" class="form-control" id="lastName" placeholder="Enter last name" formControlName="lastName" required>
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <select class="form-control" id="gender" formControlName="gender" required>
+        <option value="" disabled selected>Select gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="text" class="form-control" id="age" placeholder="Enter age" formControlName="age" required>
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <textarea class="form-control" id="address" rows="3" placeholder="Enter address" formControlName="address" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="dateOfIncident">Date of Incident</label>
+      <input type="text" class="form-control" id="dateOfIncident" placeholder="Enter date of incident" formControlName="dateOfIncident" required>
+    </div>
+    <div class="form-group">
+      <label for="location">Location</label>
+      <input type="text" class="form-control" id="location" placeholder="Enter location" formControlName="location" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" id="description" rows="3" placeholder="Enter description" formControlName="description" required></textarea>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
