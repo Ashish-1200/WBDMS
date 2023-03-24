@@ -64,7 +64,11 @@ export class IncidentreportsComponent implements OnInit {
       
     });
     
-    
+    this.MenuDisplay(); // call the MenuDisplay function here
+
+  this.loginService.updatemenu.subscribe((res) => {
+    this.MenuDisplay();
+  });
 
   }
 

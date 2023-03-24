@@ -1,6 +1,7 @@
 <div class="card formdetails" *ngIf="userDetails">
   <div class="card-header">
     <h4 class="card-title text-center">Incident Report</h4>
+    <button class="btn btn-primary btn-sm ml-auto" routerLink="/incidentreports">Back</button>
   </div>
   <div class="card-body d-flex flex-column">
     <div class="row">
@@ -32,12 +33,6 @@
       <p class="card-text">{{userDetails.dateuploaded}}</p>
       <hr>
       <mat-card-subtitle> <span>Image : </span><img class="Image" src="http://localhost:3000/{{userDetails.productImage}}" > </mat-card-subtitle>
-    
-      
-
-
-      
     </div>
   </div>
 </div>
-
