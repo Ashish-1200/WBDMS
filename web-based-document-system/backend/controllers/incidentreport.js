@@ -88,19 +88,21 @@ exports.update_incident_report = function(req, res, next) {
     
     
 
-exports.incidentreport_delete_one = function(req, res, next) {
-  IncidentReport.deleteOne({ _id: req.params.incidentReportID })
-    .exec()
-    .then(result => {
-      console.log(result);
-      res.status(200).json({
-        message: 'Incident report deleted!'
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({
-        error: err
-      });
-    });
-};
+    exports.incidentreport_delete_one = function(req, res, next) {
+      console.log('Incident Report ID:', req.params.incidentReportID); // log the value here
+      IncidentReport.deleteMany({ _id: req.params.incidentReportID })
+        .exec()
+        .then(result => {
+          console.log(result);
+          res.status(200).json({
+            message: 'Incident report deleted!'
+          });
+        })
+        .catch(err => {
+          console.log(err);
+          res.status(500).json({
+            error: err
+          });
+        });
+    };
+    

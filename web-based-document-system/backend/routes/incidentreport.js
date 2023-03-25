@@ -9,17 +9,10 @@ const  application  = require('express');
 const path = require("path");
 
 const fs = require("fs");
+
 //const incidentreport = require('../models/incidentreports.m');
 
-// Set up multer storage for file uploads
-/* const storage = multer.diskStorage({
-   destination: (req, file, cb) => {
-    cb(null, './web-based-document-system/uploads');
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  }
-});*/
+
 
 const storage = multer.diskStorage({
   destination:(req,file,cb) =>{
@@ -38,21 +31,14 @@ const storage = multer.diskStorage({
 
 const fileFilter =(req,file,cb)=>{
   //reject a file
-  if(file.mimetype === 'productImage/jpg' || file.mimetype === 'productImage/png'| file.mimetype === 'productImage/.jpeg'){
+  if(file.mimetype === 'productImage/jpg' || file.mimetype === 'productImage/png'| file.mimetype === 'productImage/jpeg'){
     cb(null,true);
   }else
   { cb(null,false);}
 
 }; 
 
-/*const fileFilter=(req, file, cb)=>{
-  if(file.mimetype ==='image/jpeg' || file.mimetype ==='image/jpg' || file.mimetype ==='image/png' || file.mimetype === 'application/pdf'|| file.mimetype === 'application/msword'){
-      cb(null,true);
-  }else{
-      cb(null, false);
-  }
- } 
-*/
+
 
  //Set up multer middleware
 const upload = multer({
@@ -76,7 +62,7 @@ router.get('/list', IncidentReportController.incidentreport_list);              
 
 router.get("/:id", IncidentReportController.get_single_incident_report);
 router.put("/:update", IncidentReportController.update_incident_report);
-router.delete('/:id', checkAuth,IncidentReportController.incidentreport_delete_one);    // Delete reports
+router.delete('/:incidentReportID', IncidentReportController.incidentreport_delete_one);    // Delete reports
 router.post('/create',multer({storage:storage}).array('productImage'), IncidentReportController.create_incident_report);
 
 

@@ -19,14 +19,10 @@
     </ul>
   </div>
 </nav>
-
-
-
 <div class="container">
   <h2>Create Form</h2>
   <form [formGroup]="form" (ngSubmit)="SaveData()">
     <div class="form-group">
-
       <label for="firstName">First Name</label>
       <input type="text" class="form-control" id="firstName" placeholder="Enter first name" formControlName="firstName" required>
     </div>
@@ -34,7 +30,7 @@
       <label for="lastName">Last Name</label>
       <input type="text" class="form-control" id="lastName" placeholder="Enter last name" formControlName="lastName" required>
     </div>
-
+    
     <div class="form-group">
       <label for="gender">Gender</label>
       <select class="form-control" id="gender" formControlName="gender" required>
@@ -44,7 +40,7 @@
         <option value="Other">Other</option>
       </select>
     </div>
-
+    
     <div class="form-group">
       <label for="age">Age</label>
       <input type="number" class="form-control" id="age" placeholder="Enter age" formControlName="age" required>
@@ -57,7 +53,7 @@
       <label for="dateOfIncident">Date of Incident</label>
       <input type="text" class="form-control" id="dateOfIncident" placeholder="Enter date of incident (MM/DD/YYYY)" formControlName="dateOfIncident" required>
     </div>
-
+    
     <div class="form-group">
       <label for="location">Location</label>
       <input type="text" class="form-control" id="location" placeholder="Enter location" formControlName="location" required>
@@ -67,10 +63,16 @@
       <textarea class="form-control" id="description" rows="3" placeholder="Enter description" formControlName="description" required></textarea>
     </div>
     <div class="form-group">
-
+    
       <div class="form-group">
         <button class="btn btn-primary" type="button" (click)="filePicker.click()">Select Image</button>
         <input class="Image" type="file" name="productImage" #filePicker (change)="select($event)" />
       </div>
+      
+      <div class="image-preview" *ngIf="imageData">
+        <img class="img-fluid" [src]="imageData"  />
+      </div>
+    
 
-      <div class>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
