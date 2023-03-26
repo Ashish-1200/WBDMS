@@ -84,7 +84,7 @@ export class IncidentreportsComponent implements OnInit {
   MenuDisplay(){
     if(this.loginService.getToken()!='')
     this.currentRole=this.loginService.GetRolebyToken(this.loginService.getToken());
-    console.log('currentROle:', this.currentRole); // console log
+    console.log('currentRole:', this.currentRole); // console log
     this.remove = this.currentRole=='Administrator'; // allows only admin to access the delete button
 
   }

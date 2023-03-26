@@ -48,6 +48,12 @@ dateuploaded:{
         default: () => Date.now(),
 },
 
+commentbox: {
+    type: String,
+    required: true
+    },
+
+
 IncidentPicture:Buffer,
     productImage:{
       type:[String]

@@ -37,6 +37,7 @@ exports.create_incident_report = function(req, res, next) {
     dateOfIncident: req.body.dateOfIncident,
     location: req.body.location,
     description: req.body.description,
+    //commentbox:req.body.commentbox,
     productImage:req.files.map(productImage=>productImage.path)
   });
 
@@ -73,7 +74,9 @@ exports.update_incident_report = function(req, res, next) {
     dateOfIncident:req.body.dateOfIncident,
     location:req.body.location,
     description:req.body.description,
-   dateuploaded:req.body.dateuploaded
+   dateuploaded:req.body.dateuploaded,
+   commentbox:req.body.commentbox,
+
     }
     }
     )

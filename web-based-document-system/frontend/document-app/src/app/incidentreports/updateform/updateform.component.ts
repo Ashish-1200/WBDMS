@@ -24,6 +24,7 @@ export class UpdateformComponent implements OnInit{
     dateOfIncident: new FormControl('', Validators.required),
     location: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
+    commentbox: new FormControl('', Validators.required),
    
 
   });
@@ -41,8 +42,8 @@ export class UpdateformComponent implements OnInit{
         address: new FormControl(result['address']),
         dateOfIncident: new FormControl(result['dateOfIncident'],Validators.required),
         location:new FormControl(result['location'],Validators.required),
-        description:new FormControl(result['description'],Validators.required)
-
+        description:new FormControl(result['description'],Validators.required),
+        commentbox:new FormControl(result['commentbox'],Validators.required)
       });
 
     });

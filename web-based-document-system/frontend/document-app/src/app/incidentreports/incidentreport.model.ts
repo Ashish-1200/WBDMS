@@ -10,6 +10,7 @@ export interface incident {
     location: string;
     description:string;
     dateuploaded: string;
+    commentbox:string;
     
   IncidentPicture?:string;
   productImage:[];
