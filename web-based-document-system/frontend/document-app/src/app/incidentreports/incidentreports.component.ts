@@ -25,7 +25,7 @@ export class IncidentreportsComponent implements OnInit {
     
     '_id',
     'dateOfIncident',
-    'address',
+    'lastName',
     'description',
     'dateuploaded',
     'Options'

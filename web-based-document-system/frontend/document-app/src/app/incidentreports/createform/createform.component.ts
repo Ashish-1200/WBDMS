@@ -31,6 +31,7 @@ export class CreateformComponent implements OnInit {
     dateOfIncident: new FormControl('', Validators.required),
     location: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
+   // commentbox: new FormControl('', Validators.required),
     productImage: new FormControl(null as FileList | null, Validators.required)
 
 
@@ -74,7 +75,9 @@ export class CreateformComponent implements OnInit {
     formData.append('dateOfIncident', this.form.value.dateOfIncident || '');
     formData.append('location', this.form.value.location || '');
     formData.append('description', this.form.value.description || '');
+   // formData.append('commentbox', this.form.value.location || '');
     formData.append('productImage', this.images);
+    
 
     this.http.post<any>('http://localhost:3000/incidentreport/create', formData).subscribe((d) => {
       console.log(d);

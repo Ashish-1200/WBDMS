@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
-const incidentreportsSchema = new mongoose.Schema({
 
+const incidentreportsSchema = new mongoose.Schema({
+   
+    
 _id: mongoose.Schema.Types.ObjectId,
 
 
@@ -48,15 +50,36 @@ dateuploaded:{
         default: () => Date.now(),
 },
 
+
 commentbox: {
-    type: String,
-    required: true
-    },
+   type: String,
+    required: null
+   },
 
 
 IncidentPicture:Buffer,
     productImage:{
       type:[String]
-}});
+},
+
+version: {
+    type: Number,
+    default: 1
+  },
+
+  lastEditedBy: {
+    type: String,
+    required: false
+  },
+  
+
+
+
+
+
+
+
+  
+});
 
 module.exports = mongoose.model("incidentreports", incidentreportsSchema);

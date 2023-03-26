@@ -24,7 +24,7 @@ export class UpdateformComponent implements OnInit{
     dateOfIncident: new FormControl('', Validators.required),
     location: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
-    commentbox: new FormControl('', Validators.required),
+   commentbox: new FormControl('', Validators.required),
    
 
   });
