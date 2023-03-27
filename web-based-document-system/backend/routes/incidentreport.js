@@ -31,7 +31,7 @@ const storage = multer.diskStorage({
 
 const fileFilter =(req,file,cb)=>{
   //reject a file
-  if(file.mimetype === 'productImage/jpg' || file.mimetype === 'productImage/png' || file.mimetype === 'productImage/jpeg' || file.mimetype === 'application/pdf' || file.mimetype === 'application/msword' || file.mimetype === 'video/mp4'|| file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+  if(file.mimetype === 'image/jpg' || file.mimetype === 'image/png' || file.mimetype === 'image/jpeg' || file.mimetype === 'application/pdf' || file.mimetype === 'application/msword' || file.mimetype === 'video/mp4'|| file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
     cb(null,true);
   }else
   { cb(null,false);}
@@ -63,7 +63,7 @@ router.get('/list', IncidentReportController.incidentreport_list);              
 router.get("/:id", IncidentReportController.get_single_incident_report);
 router.put("/:update", IncidentReportController.update_incident_report);
 router.delete('/:incidentReportID', IncidentReportController.incidentreport_delete_one);    // Delete reports
-router.post('/create',multer({storage:storage}).array('productImage'), IncidentReportController.create_incident_report);
+router.post('/create',upload.array('productImage'), IncidentReportController.create_incident_report);
 
 
 module.exports = router;

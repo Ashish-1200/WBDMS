@@ -9,7 +9,7 @@
         <h5 class="card-subtitle mb-2 text-muted">User ID:</h5>
         <p class="card-text">{{userDetails._id}}</p>
         <h5 class="card-subtitle mb-2 text-muted">Department:</h5>
-        <p class="card-text">{{userDetails._id}}</p>
+        <p class="card-text">{{userDetails.department}}</p>
         <h5 class="card-subtitle mb-2 text-muted">First Name:</h5>
         <p class="card-text">{{userDetails.firstName}}</p>
         <h5 class="card-subtitle mb-2 text-muted">Last Name:</h5>
@@ -34,8 +34,27 @@
       <h5 class="card-subtitle mb-2 text-muted">Date Uploaded:</h5>
       <p class="card-text">{{userDetails.dateuploaded}}</p>
       <hr>
-      <mat-card-subtitle> <span>Media/Document : </span><img class="Image" src="http://localhost:3000/{{userDetails.productImage}}" > </mat-card-subtitle>
 
+      
+      <mat-card-subtitle>
+        <span>Media/Document :</span>
+        <ng-container *ngFor="let media of userDetails.productImage">
+          <ng-container *ngIf="media.endsWith('.jpg') || media.endsWith('.png') || media.endsWith('.gif') || media.endsWith('.jpeg')">
+            <img class="Image" src="http://localhost:3000/{{media}}">
+          </ng-container>
+          <ng-container *ngIf="media.endsWith('.mp4')">
+            <video controls>
+              <source src="http://localhost:3000/{{media}}" type="video/mp4">
+            </video>
+          </ng-container>
+          <ng-container *ngIf="media.endsWith('.pdf') || media.endsWith('.docx')">
+            <a href="http://localhost:3000/{{media}}" download>{{media}}</a>
+          </ng-container>
+        </ng-container>
+      </mat-card-subtitle>
+      
+       
+      
 
     
 
