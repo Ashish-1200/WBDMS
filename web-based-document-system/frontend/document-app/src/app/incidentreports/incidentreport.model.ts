@@ -1,6 +1,7 @@
 export interface incident {
 
     _id:string;
+    department:string;
     firstName: string;
     lastName:string;
     gender: string;
@@ -14,5 +15,9 @@ export interface incident {
     
   IncidentPicture?:string;
   productImage:[];
+
+version: number;
+lastEditedBy?: string;
+
   }
   
