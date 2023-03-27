@@ -109,3 +109,21 @@ exports.update_incident_report = function(req, res, next) {
         });
     };
     
+    function fetchIncidentReports() {
+      return fetch('/incidentreports')
+        .then(response => response.json())
+        .then(incidentReports => {
+          const promises = incidentReports.map(incidentReport => {
+            return fetch(`/incidentreports/${incidentReport._id}/versions`)
+              .then(response => response.json())
+              .then(versions => {
+                return {
+                  ...incidentReport,
+                  versions: versions
+                };
+              });
+          });
+          return Promise.all(promises);
+        });
+    }
+    

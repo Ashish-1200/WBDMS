@@ -34,7 +34,7 @@ default: () => Date.now(),
 },
 
 TotalIncome: {
-type: Number,
+type: String,
 required: true,
 },
 

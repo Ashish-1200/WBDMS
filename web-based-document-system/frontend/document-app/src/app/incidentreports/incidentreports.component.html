@@ -19,6 +19,12 @@
         <mat-cell *matCellDef="let element"> {{element._id}} </mat-cell>
       </ng-container>
 
+      <!-- Department Column -->
+      <ng-container matColumnDef="department">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Department</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.department}} </mat-cell>
+      </ng-container>
+
       <!-- Date of Incident Column -->
       <ng-container matColumnDef="dateOfIncident">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Date of Incident </mat-header-cell>

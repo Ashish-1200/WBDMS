@@ -5,6 +5,10 @@ const incidentreportsSchema = new mongoose.Schema({
     
 _id: mongoose.Schema.Types.ObjectId,
 
+department: {
+    type: String,
+    required: null
+    },
 
 firstName: {
 type: String,
@@ -81,5 +85,11 @@ version: {
 
   
 });
+
+
+incidentreportsSchema.pre('save', function(next) {
+    this.version++;
+    next();
+  });
 
 module.exports = mongoose.model("incidentreports", incidentreportsSchema);

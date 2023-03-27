@@ -5,24 +5,31 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-createform',
   templateUrl: './createform.component.html',
   styleUrls: ['./createform.component.css']
 })
 export class CreateformComponent implements OnInit {
+  
+ 
+  
 
   images:any;
   productImage=[];
   imageData:any;
   userId: any;
 
+
   constructor(private _snackBar: MatSnackBar, private createformService: CreateformService,
     private http: HttpClient,
-    private router: Router) { }
+    private router: Router, ) { }
+    
 
   form = new FormGroup({
     UserID: new FormControl(''),
+    department: new FormControl('', Validators.required),
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     gender: new FormControl('', Validators.required),
@@ -43,7 +50,7 @@ export class CreateformComponent implements OnInit {
     {
       const file = (event.target as HTMLInputElement).files;
       this.form.patchValue({ productImage: file});
-      const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"];
+      const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg","application/pdf","application/msword","video/mp4","application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
       {
         const reader = new FileReader();
         reader.onload = () => {
@@ -59,14 +66,22 @@ export class CreateformComponent implements OnInit {
   
   
        }
+
   
        this.userId =localStorage.getItem('_id')
        //let UserID=this.userId
+
+
+
+
+
+
      }
 
   SaveData() {
     const formData = new FormData();
-    formData.append('UserID', this.userId)
+    formData.append('UserID', this.userId);
+    formData.append('department', this.form.value.department|| '');
     formData.append('firstName', this.form.value.firstName || '');
     formData.append('lastName', this.form.value.lastName || '');
     formData.append('gender', this.form.value.gender || '');

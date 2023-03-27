@@ -31,7 +31,7 @@ const storage = multer.diskStorage({
 
 const fileFilter =(req,file,cb)=>{
   //reject a file
-  if(file.mimetype === 'productImage/jpg' || file.mimetype === 'productImage/png' || file.mimetype === 'productImage/jpeg' || file.mimetype === 'application/pdf' || file.mimetype === 'application/msword' || file.mimetype === 'video/mp4') {
+  if(file.mimetype === 'productImage/jpg' || file.mimetype === 'productImage/png' || file.mimetype === 'productImage/jpeg' || file.mimetype === 'application/pdf' || file.mimetype === 'application/msword' || file.mimetype === 'video/mp4'|| file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
     cb(null,true);
   }else
   { cb(null,false);}
