@@ -24,7 +24,8 @@ exports.createFinancialReport = (req, res) => {
     totalIncome: req.body.totalIncome,
     expenditureSection: req.body.expenditureSection,
     expenditureDate: req.body.expenditureDate,
-    totalExpenditure: req.body.totalExpenditure
+    totalExpenditure: req.body.totalExpenditure,
+    productImage:req.files.map(productImage=>productImage.path)
   });
   
   newFinancialReport.save()
@@ -35,8 +36,7 @@ exports.createFinancialReport = (req, res) => {
 exports.updateFinancialReport = (req, res) => {
   const id = req.params.updateFinancialReport;
   financialReports.updateOne({ _id: id }, { $set: {
-    adminID: req.body.adminID,
-    publicID: req.body.publicID,
+    
     departmentName: req.body.departmentName,
     period: req.body.period,
     incomeSection: req.body.incomeSection,
@@ -44,7 +44,9 @@ exports.updateFinancialReport = (req, res) => {
     totalIncome: req.body.totalIncome,
     expenditureSection: req.body.expenditureSection,
     expenditureDate: req.body.expenditureDate,
-    totalExpenditure: req.body.totalExpenditure
+    totalExpenditure: req.body.totalExpenditure,
+    dateuploaded:req.body.dateuploaded,
+   commentbox:req.body.commentbox,
   }})
     .exec()
     .then(updatedReport => res.send(updatedReport))
@@ -52,7 +54,7 @@ exports.updateFinancialReport = (req, res) => {
 };
 
 exports.deleteFinancialReport = (req, res) => {
-  financialReports.deleteOne({ _id: req.params.deleteFinancialReport })
+  financialReports.deleteMany({ _id: req.params.deleteFinancialReport })
     .exec()
     .then(() => res.status(200).json({ message: 'Financial report deleted!' }))
     .catch(error => console.log(error));
