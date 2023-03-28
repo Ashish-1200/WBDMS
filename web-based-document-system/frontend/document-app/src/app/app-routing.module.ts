@@ -19,6 +19,10 @@ import { EquipmentinventoryComponent } from './equipmentinventory/equipmentinven
 import { CreateformequipComponent } from './equipmentinventory/createformequip/createformequip.component';
 import { UpdateformequipComponent } from './equipmentinventory/updateformequip/updateformequip.component';
 import { ViewformequipComponent } from './equipmentinventory/viewformequip/viewformequip.component';
+import { EventComponent } from './event/event.component';
+import { CreateformeventComponent } from './event/createformevent/createformevent.component';
+import { UpdateformeventComponent } from './event/updateformevent/updateformevent.component';
+import { ViewformeventComponent } from './event/viewformevent/viewformevent.component';
 
 
 
@@ -34,6 +38,7 @@ const routes: Routes = [
  {path:"create",component:CreateuserComponent},
  {path:"users",component:UsersComponent,canActivate:[authentication]},
  {path: "incidentreports",component:IncidentreportsComponent,canActivate:[Incidentreportauth]},
+
  {path:"createform",component:CreateformComponent},
  {path:"updateform/:id",component:UpdateformComponent},
  {path:"viewform/:id",component:ViewformComponent},
@@ -43,6 +48,10 @@ const routes: Routes = [
  {path:"updateformequip/:id",component:UpdateformequipComponent},
  {path:"viewformequip/:id",component:ViewformequipComponent},
 
+ {path: "event",component:EventComponent},
+ {path:"createformevent",component:CreateformeventComponent},
+ {path:"updateformevent/:id",component:UpdateformeventComponent},
+ {path:"viewformevent/:id",component:ViewformeventComponent},
 ]
 
 

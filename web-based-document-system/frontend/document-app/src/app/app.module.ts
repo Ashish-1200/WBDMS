@@ -22,33 +22,38 @@ import { UsersComponent } from './users/users.component';
 import { UsersService } from './users/users.service';
 import { HomepageComponent } from './homepage/homepage.component';
 //import { MatTableDataSource } from '@angular/material/table';
+import { IncidentreportsComponent } from './incidentreports/incidentreports.component';
 import { EquipmentinventoryComponent } from './equipmentinventory/equipmentinventory.component';
-//import { EventComponent } from './event/event.component';
+import { EventComponent } from './event/event.component';
 //import { FinincialreportsComponent } from './finincialreports/finincialreports.component';
 //import { InsurancereportsComponent } from './insurancereports/insurancereports.component';
 //import { IntendedprojectsComponent } from './intendedprojects/intendedprojects.component';
 //import { PoliciesComponent } from './policies/policies.component';
-import { IncidentreportsComponent } from './incidentreports/incidentreports.component';
+
 import { UserupdateComponent } from './userupdate/userupdate.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { CreateformComponent } from './incidentreports/createform/createform.component';
-import { ViewformComponent } from './incidentreports/viewform/viewform.component';
-import { UpdateformComponent } from './incidentreports/updateform/updateform.component';
-//import { ActivatedRoute } from '@angular/router';
-import { incidentreportservice } from './incidentreports/incidentreport.service';
-
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
-import { CreateformequipComponent } from './equipmentinventory/createformequip/createformequip.component';
 
+import { CreateformComponent } from './incidentreports/createform/createform.component';
+import { ViewformComponent } from './incidentreports/viewform/viewform.component';
+import { UpdateformComponent } from './incidentreports/updateform/updateform.component';
+import { incidentreportservice } from './incidentreports/incidentreport.service';
+//import { ActivatedRoute } from '@angular/router';
+
+import { CreateformequipComponent } from './equipmentinventory/createformequip/createformequip.component';
 import { ViewformequipComponent } from './equipmentinventory/viewformequip/viewformequip.component';
 import { equipinventoryservice } from './equipmentinventory/equipmentinventory.service';
 import { UpdateformequipComponent } from './equipmentinventory/updateformequip/updateformequip.component';
+
+import { UpdateformeventComponent } from './event/updateformevent/updateformevent.component';
+import { CreateformeventComponent } from './event/createformevent/createformevent.component';
+import { eventservice } from './event/event.service';
+import { ViewformeventComponent } from './event/viewformevent/viewformevent.component';
 
 
 
@@ -62,9 +67,10 @@ import { UpdateformequipComponent } from './equipmentinventory/updateformequip/u
     SignupComponent,
     UsersComponent,
     HomepageComponent,
+
    IncidentreportsComponent,
     EquipmentinventoryComponent,
-    //EventComponent,
+    EventComponent,
     //FinincialreportsComponent,
     //InsurancereportsComponent,
     //IntendedprojectsComponent,
@@ -79,6 +85,10 @@ CreateformComponent,
     CreateformequipComponent,
    UpdateformequipComponent,
     ViewformequipComponent,
+
+    CreateformeventComponent,
+    UpdateformeventComponent,
+    ViewformeventComponent,
     
     
     
@@ -114,7 +124,7 @@ CreateformComponent,
 
   
   ],
-providers: [ LoginService, SignupService, UsersService, incidentreportservice, equipinventoryservice],
+providers: [ LoginService, SignupService, UsersService, incidentreportservice, equipinventoryservice, eventservice],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

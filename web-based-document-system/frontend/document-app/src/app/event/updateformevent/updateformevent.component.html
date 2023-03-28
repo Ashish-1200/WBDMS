@@ -1,0 +1,36 @@
+<div class="container">
+    <h2>Update Form</h2>
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h4 class="card-title text-center mb-0">Event Report</h4>
+      <button class="btn btn-primary btn-sm ml-auto rounded-pill" routerLink="/incidentreports" style="position: absolute; top: 15px; right: 15px;">Back</button>
+  </div>
+  
+    
+    <form [formGroup="form" (ngSubmit)="UpdateData()">
+      <div class="form-group">
+        <label for="eventName">Event Name</label>
+        <input type="text" class="form-control" id="eventName" placeholder="Enter event name" formControlName="eventName" required>
+      </div>
+      <div class="form-group">
+        <label for="eventDes">Event Description</label>
+        <input type="text" class="form-control" id="eventDes" placeholder="Enter description" formControlName="eventDes" required>
+      </div>
+     
+     
+      
+      <div class="form-group">
+        <label for="eventDate">Date of Event</label>
+        <input type="text" class="form-control" id="eventDate" placeholder="Enter date " formControlName="eventDate" required>
+      </div>
+     
+      <div class="form-group">
+        <label for="address">Comments</label>
+        <textarea class="form-control" id="commentbox" rows="3" placeholder="commentbox" formControlName="commentbox" required></textarea>
+      </div>
+      
+      
+      
+      
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
