@@ -16,8 +16,7 @@ exports.getSingleFinancialReport = (req, res) => {
 exports.createFinancialReport = (req, res) => {
   const newFinancialReport = new financialReports({
     _id: mongoose.Types.ObjectId(),
-    adminID: req.body.adminID,
-    publicID: req.body.publicID,
+    
     departmentName: req.body.departmentName,
     period: req.body.period,
     incomeSection: req.body.incomeSection,
