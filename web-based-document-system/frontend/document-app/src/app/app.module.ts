@@ -22,7 +22,7 @@ import { UsersComponent } from './users/users.component';
 import { UsersService } from './users/users.service';
 import { HomepageComponent } from './homepage/homepage.component';
 //import { MatTableDataSource } from '@angular/material/table';
-//import { EquipmentinventoryComponent } from './equipmentinventory/equipmentinventory.component';
+import { EquipmentinventoryComponent } from './equipmentinventory/equipmentinventory.component';
 //import { EventComponent } from './event/event.component';
 //import { FinincialreportsComponent } from './finincialreports/finincialreports.component';
 //import { InsurancereportsComponent } from './insurancereports/insurancereports.component';
@@ -44,6 +44,11 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { CreateformequipComponent } from './equipmentinventory/createformequip/createformequip.component';
+
+import { ViewformequipComponent } from './equipmentinventory/viewformequip/viewformequip.component';
+import { equipinventoryservice } from './equipmentinventory/equipmentinventory.service';
+import { UpdateformequipComponent } from './equipmentinventory/updateformequip/updateformequip.component';
 
 
 
@@ -58,7 +63,7 @@ import { MatInputModule } from '@angular/material/input';
     UsersComponent,
     HomepageComponent,
    IncidentreportsComponent,
-    //EquipmentinventoryComponent,
+    EquipmentinventoryComponent,
     //EventComponent,
     //FinincialreportsComponent,
     //InsurancereportsComponent,
@@ -66,9 +71,15 @@ import { MatInputModule } from '@angular/material/input';
     //PoliciesComponent,
     UserupdateComponent,
     MainpageComponent,
+    
 CreateformComponent,
     ViewformComponent,
-    UpdateformComponent
+    UpdateformComponent,
+
+    CreateformequipComponent,
+   UpdateformequipComponent,
+    ViewformequipComponent,
+    
     
     
     
@@ -103,7 +114,7 @@ CreateformComponent,
 
   
   ],
-providers: [ LoginService, SignupService, UsersService, incidentreportservice],
+providers: [ LoginService, SignupService, UsersService, incidentreportservice, equipinventoryservice],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

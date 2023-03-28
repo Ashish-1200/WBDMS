@@ -2,57 +2,50 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
 const EquipmentInventoryController = require('../controllers/Equipmentinventory')
-//const EquipmentInventory = require('../models/equipmentinventory.m')
+const EquipmentInventory = require('../models/equipmentinventory.m')
 const multer = require('multer')
 const checkAuth= require('../middleware/authcheck')
+const cors = require('cors');
+const  application  = require('express');
+const path = require("path");
+const fs = require("fs");
 
-// Multer middleware configuration
 const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, './uploads/')
+  destination:(req,file,cb) =>{
+    cb(null,'../uploads');
+  
   },
-  filename: function(req, file, cb) {
-    cb(null, file.originalname)
-  }
-})
+  filename:function(req,file,cb){
+    cb(null,file.originalname)
 
-// Check if uploaded file is a PDF
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype === 'application/pdf') {
-    cb(null, true);
-  } else {
-    cb(new Error('Invalid file type, only PDF files are allowed!'), false);
   }
-};
 
-// Set up multer middleware
+});
+
+
+
+
+const fileFilter =(req,file,cb)=>{
+  //reject a file
+  if(file.mimetype === 'image/jpg' || file.mimetype === 'image/png' || file.mimetype === 'image/jpeg' || file.mimetype === 'application/pdf' || file.mimetype === 'application/msword' || file.mimetype === 'video/mp4'|| file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+    cb(null,true);
+  }else
+  { cb(null,false);}
+
+}; 
+
+
+
+ //Set up multer middleware
 const upload = multer({
   storage: storage,
-  fileFilter: fileFilter,
+  
   limits: {
     fileSize: 1024 * 1024 * 5 // Limit file size to 5 MB
-  }
+  },
+  fileFilter: fileFilter
 });
 
-// Handle POST request to upload PDF document
-router.post('/upload', upload.single('pdfDocument'), (req, res, next) => {
-  // Check if file was uploaded successfully
-  if (!req.file) {
-    const error = new Error('No PDF file was provided!');
-    error.statusCode = 422;
-    throw error; }
-
-  
-
-  // Save file information to database
-  const pdfDocument = {
-    path: req.file.path,
-    title: req.body.title,
-    description: req.body.description
-  };
-  // save pdfDocument to the database
-  res.status(201).json({ message: 'PDF file was uploaded successfully!', pdfDocument: pdfDocument });
-});
 
 
 
@@ -63,7 +56,7 @@ router.get('/list', EquipmentInventoryController.equipmentInventory_list)
 router.get('/:id', EquipmentInventoryController.equipmentInventory_get_one)
 
 // Create a new equipment
-router.post('/create', EquipmentInventoryController.equipmentInventory_create)
+router.post('/create', upload.array('productImage'),EquipmentInventoryController.equipmentInventory_create)
 
 // Update an existing equipment
 router.put('/:updateUser', EquipmentInventoryController.equipmentInventory_update)

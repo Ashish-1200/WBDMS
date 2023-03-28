@@ -71,16 +71,8 @@ version: {
     default: 1
   },
 
-  lastEditedBy: {
-    type: String,
-    required: false
-  },
   
-
-
-
-
-
+  
 
 
   

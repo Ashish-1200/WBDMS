@@ -109,21 +109,25 @@ exports.update_incident_report = function(req, res, next) {
         });
     };
     
-    function fetchIncidentReports() {
-      return fetch('/incidentreports')
-        .then(response => response.json())
-        .then(incidentReports => {
-          const promises = incidentReports.map(incidentReport => {
-            return fetch(`/incidentreports/${incidentReport._id}/versions`)
-              .then(response => response.json())
-              .then(versions => {
-                return {
-                  ...incidentReport,
-                  versions: versions
-                };
-              });
-          });
-          return Promise.all(promises);
-        });
-    }
+    exports.updateform = async (req, res) => {
+      const id = req.params.id;
+      const version = req.body.version;
+      const newIncidentReport = new IncidentReport({
+        ...req.body,
+        _id: mongoose.Types.ObjectId(),
+        version: version + 1,
+        lastEditedBy: req.user.username, // assuming you have authentication middleware that sets the user object on the request
+      });
+      try {
+        const originalIncidentReport = await IncidentReport.findOne({ _id: id, version: version });
+        if (!originalIncidentReport) {
+          return res.status(404).send('Incident report not found');
+        }
+        await newIncidentReport.save();
+        res.send('Incident report updated');
+      } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal server error');
+      }
+    };
     

@@ -1,1 +1,94 @@
-<p>equipmentinventory works!</p>
+<mat-toolbar color="primary">
+    <span> Equipment Inventory</span>
+    <span class="spacer"></span>
+    <button mat-raised-button color="accent" routerLink="/createformequip">Create Form</button>
+    <button mat-raised-button color="warn" routerLink="/mainpage" class="logout">Logout</button>
+  </mat-toolbar>
+  
+  <mat-card class="mat-elevation-z8">
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+      </mat-form-field>
+      <mat-table [dataSource]="dataSource" matSort>
+  
+        <!-- Equipmentinventory  ID Column -->
+        <ng-container matColumnDef="_id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Equipmentinventory ID </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element._id}} </mat-cell>
+        </ng-container>
+  
+        <!-- Department Column -->
+        <ng-container matColumnDef="DepartmentName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> DepartmentName</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.DepartmentName}} </mat-cell>
+        </ng-container>
+        <!-- Department Column -->
+        <ng-container matColumnDef="Project">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Project</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Project}} </mat-cell>
+        </ng-container>
+  
+        <!-- Date  Column -->
+        <ng-container matColumnDef="DateOfProject">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Date of Project </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.DateOfProject | date}} </mat-cell>
+        </ng-container>
+  
+        <!-- EquipmentDescription -->
+        <ng-container matColumnDef="EquipmentDescription">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Equipment  </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.EquipmentDescription}} </mat-cell>
+        </ng-container>
+  
+        <!-- SerialNo Column -->
+        <ng-container matColumnDef="SerialNo">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> SerialNo </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.SerialNo}} </mat-cell>
+        </ng-container>
+
+        <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+      </ng-container>
+  
+        <!-- Date Uploaded Column -->
+        <ng-container matColumnDef="dateuploaded">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Date Uploaded </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.dateuploaded | date}} </mat-cell>
+        </ng-container>
+  
+        <!-- Options Column -->
+        <ng-container matColumnDef="Options">
+          <mat-header-cell *matHeaderCellDef> Options </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <a mat-icon-button [routerLink]="['/viewformequip', element._id]">
+              <mat-icon>visibility</mat-icon>
+            </a>
+            <a mat-icon-button [routerLink]="['/updateformequip', element._id]">
+              <mat-icon>edit</mat-icon>
+            </a>
+            <button *ngIf="remove" mat-icon-button (click)="delete(element._id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+  
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+  
+  <style>
+    .spacer {
+      flex: 1 1 auto;
+    }
+    
+    .logout {
+      margin-left: auto;
+    }
+  </style>

@@ -15,6 +15,11 @@ import { ViewformComponent } from './incidentreports/viewform/viewform.component
 import { Incidentreportauth } from './authentication/incidentreport.auth';
 import { authentication } from './authentication/authentication';
 
+import { EquipmentinventoryComponent } from './equipmentinventory/equipmentinventory.component';
+import { CreateformequipComponent } from './equipmentinventory/createformequip/createformequip.component';
+import { UpdateformequipComponent } from './equipmentinventory/updateformequip/updateformequip.component';
+import { ViewformequipComponent } from './equipmentinventory/viewformequip/viewformequip.component';
+
 
 
 //boom
@@ -32,6 +37,12 @@ const routes: Routes = [
  {path:"createform",component:CreateformComponent},
  {path:"updateform/:id",component:UpdateformComponent},
  {path:"viewform/:id",component:ViewformComponent},
+
+ {path: "equipmentinventory",component:EquipmentinventoryComponent},
+ {path:"createformequip",component:CreateformequipComponent},
+ {path:"updateformequip/:id",component:UpdateformequipComponent},
+ {path:"viewformequip/:id",component:ViewformequipComponent},
+
 ]
 
 

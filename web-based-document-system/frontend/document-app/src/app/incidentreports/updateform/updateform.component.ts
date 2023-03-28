@@ -15,7 +15,7 @@ export class UpdateformComponent implements OnInit{
   constructor(private activatedroute:ActivatedRoute, private updateservice:UpdateformService, private viewservice:ViewformService , private _snackBar: MatSnackBar) { }
 
   form = new FormGroup({
-    versionNumber: new FormControl(1),
+    //versionNumber: new FormControl(1),
     //lastEditedBy: new FormControl('',Validators.required),
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
@@ -31,10 +31,15 @@ export class UpdateformComponent implements OnInit{
 
   });
   message:boolean = false;
+
+  incidentData: any;
+
   ngOnInit(): void {
 
     this.viewservice.viewincidentForm(this.activatedroute.snapshot.params['id']) .subscribe((result:any)=>{
       console.log(result);
+
+      this.incidentData = result;
 
       this.form = new FormGroup({
         firstName: new FormControl(result [' firstName'],Validators.required),
@@ -47,7 +52,7 @@ export class UpdateformComponent implements OnInit{
         description:new FormControl(result['description'],Validators.required),
         commentbox:new FormControl(result['commentbox'],Validators.required),
         //lastEditedBy: new FormControl('current user', Validators.required),
-        versionNumber: new FormControl(1),
+        //versionNumber: new FormControl(1),
         
        
       });
@@ -63,30 +68,8 @@ export class UpdateformComponent implements OnInit{
 
   UpdateData() {
 
-    const data = this.form.value;
-  data.versionNumber += 1; // Increment version number
-  console.log(data);
-
-  const updatedFormData = {
-    // ...
-    lastEditedBy: this.form.value.lastEditedBy,
-  };
-this.updateservice.updateform(this.activatedroute.snapshot.params['id'], updatedFormData)
-    .subscribe((result) => {
-      console.log(result);
-      this._snackBar.open('Updated Successfully','',{
-        verticalPosition:'top',
-        panelClass:'edit'
-      })
-    })
-    this.updateservice.updateform(this.activatedroute.snapshot.params['id'], data)
-    .subscribe(result => {
-      console.log(result);
-      this._snackBar.open('Updated Successfully', '', {
-        verticalPosition: 'top',
-        panelClass: 'edit'
-      })
-    })
+    const updatedData = this.form.value;
+    updatedData.version = this.incidentData.version + 1;
 
     console.log(this.form.value);
     this.updateservice.updateform(this.activatedroute.snapshot.params['id'],this.form.value).subscribe((result)=>{

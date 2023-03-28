@@ -1,0 +1,63 @@
+<div class="card formdetails" *ngIf="userDetails">
+    <div class="card-header">
+      <h4 class="card-title text-center">Equipment Inventory </h4>
+      <button class="btn btn-primary btn-sm ml-auto" routerLink="/equipmentinventory">Back</button>
+    </div>
+    <div class="card-body d-flex flex-column">
+      <div class="row">
+        <div class="col-md-6">
+          <h5 class="card-subtitle mb-2 text-muted">User ID:</h5>
+          <p class="card-text">{{userDetails._id}}</p>
+          <h5 class="card-subtitle mb-2 text-muted">DepartmentName:</h5>
+          <p class="card-text">{{userDetails.DepartmentName}}</p>
+          <h5 class="card-subtitle mb-2 text-muted">Date Of Project:</h5>
+          <p class="card-text">{{userDetails.DateOfProject}}</p>
+          <h5 class="card-subtitle mb-2 text-muted">EquipmentDescription:</h5>
+          <p class="card-text">{{userDetails.EquipmentDescription}}</p>
+          <h5 class="card-subtitle mb-2 text-muted">SerialNo:</h5>
+          <p class="card-text">{{userDetails.SerialNo}}</p>
+        </div>
+        <div class="col-md-6">
+          <h5 class="card-subtitle mb-2 text-muted">Date acquired equipment:</h5>
+          <p class="card-text">{{userDetails.DateAcquired}}</p>
+          <h5 class="card-subtitle mb-2 text-muted">Cost Of Equipment:</h5>
+          <p class="card-text">{{userDetails.CostOfEquipment}}</p>
+        
+        </div>
+      </div>
+      <div class="mt-4">
+        <h5 class="card-subtitle mb-2 text-muted">Description:</h5>
+        <p class="card-text">{{userDetails.description}}</p>
+        <h5 class="card-subtitle mb-2 text-muted">Date Uploaded:</h5>
+        <p class="card-text">{{userDetails.dateuploaded}}</p>
+        <hr>
+  
+        
+        <mat-card-subtitle>
+          <span>Media/Document :</span>
+          <ng-container *ngFor="let media of userDetails.productImage">
+            <ng-container *ngIf="media.endsWith('.jpg') || media.endsWith('.png') || media.endsWith('.gif') || media.endsWith('.jpeg')">
+              <img class="Image" src="http://localhost:3000/{{media}}">
+            </ng-container>
+            <ng-container *ngIf="media.endsWith('.mp4')">
+              <video controls>
+                <source src="http://localhost:3000/{{media}}" type="video/mp4">
+              </video>
+            </ng-container>
+            <ng-container *ngIf="media.endsWith('.pdf') || media.endsWith('.docx')">
+              <a href="http://localhost:3000/{{media}}" download>{{media}}</a>
+            </ng-container>
+          </ng-container>
+        </mat-card-subtitle>
+        
+         
+        
+  
+      
+  
+        
+      </div>
+    </div>
+  </div>
+  
+        

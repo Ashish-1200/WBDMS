@@ -3,10 +3,6 @@ const equipmentinventorySchema = new mongoose.Schema({
 
 _id: mongoose.Schema.Types.ObjectId,
 
-adminID: {
-type: mongoose.Schema.Types.ObjectId,
-ref: "admins"
-},
 
 DepartmentName: {
 type: String,
@@ -19,7 +15,7 @@ required: true
 },
 
 DateOfProject: {
-type: Date,
+type: String,
 required: true
 },
 
@@ -29,19 +25,53 @@ required: true
 },
 
 SerialNo: {
-type: Number,
+type: String,
 required: true
 },
 
 DateAcquired: {
-type: Date,
+type: String,
 required: true
 },
 
 CostOfEquipment: {
-type: Number,
+type: String,
 required: true
-}
-});
+},
+
+description: {
+    type: String,
+    required: true
+    },
+
+
+    dateuploaded:{
+        type:Date,
+            default: () => Date.now(),
+    },
+    
+    
+    commentbox: {
+       type: String,
+        required: false
+       },
+    
+    
+    IncidentPicture:Buffer,
+        productImage:{
+          type:[String]
+                     },
+    
+    version: {
+        type: Number,
+        default: 1
+      },
+
+
+    });
+equipmentinventorySchema.pre('save', function(next) {
+    this.version++;
+    next();
+  });
 
 module.exports = mongoose.model("equipmentinventory", equipmentinventorySchema);

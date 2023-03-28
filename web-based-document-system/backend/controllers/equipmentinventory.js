@@ -19,27 +19,32 @@ res.send('Cannot find equipment information.');
 };
 
 exports.equipmentInventory_create = function(req, res, next) {
+    console.log(req.file);
 const equipment = new EquipmentInventory({
 _id: mongoose.Types.ObjectId(),
-AdminID: req.body.AdminID,
+
 DepartmentName: req.body.DepartmentName,
 Project: req.body.Project,
 ProjectDate: req.body.ProjectDate,
 EquipmentDescription: req.body.EquipmentDescription,
 SerialNo: req.body.SerialNo,
 DateAcquired: req.body.DateAcquired,
-Cost: req.body.Cost
+CostOfEquipment: req.body.CostOfEquipment,
+description: req.body.description,
+    //commentbox:req.body.commentbox,
+    productImage:req.files.map(productImage=>productImage.path)
 });
 
 equipment
 .save()
-.then(function(dbEquipment) {
-res.send(dbEquipment);
+.then(function(dbuser) {
+res.send(dbuser);
 })
 .catch(function(err) {
 res.send('Cannot create equipment entry.');
 });
 };
+
 
 exports.equipmentInventory_update = function(req, res, next) {
 const id = req.params.updateEquipment;
@@ -54,7 +59,7 @@ ProjectDate: req.body.ProjectDate,
 EquipmentDescription: req.body.EquipmentDescription,
 SerialNo: req.body.SerialNo,
 DateAcquired: req.body.DateAcquired,
-Cost: req.body.Cost
+CostOfEquipment: req.body.CostOfEquipment
 }
 }
 )
