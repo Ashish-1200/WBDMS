@@ -33,10 +33,15 @@ exports.createFinancialReport = (req, res) => {
     .catch(error => console.log(error));
 };
 
-exports.updateFinancialReport = (req, res) => {
-  const id = req.params.updateFinancialReport;
-  financialReports.updateOne({ _id: id }, { $set: {
-    
+
+
+
+exports.updateFinancialReport = function(req, res, next) {
+  const id = req.params.update;
+  financialReports.updateOne( { _id: id },
+  {
+  $set: {
+  
     departmentName: req.body.departmentName,
     period: req.body.period,
     incomeSection: req.body.incomeSection,
@@ -45,17 +50,43 @@ exports.updateFinancialReport = (req, res) => {
     expenditureSection: req.body.expenditureSection,
     expenditureDate: req.body.expenditureDate,
     totalExpenditure: req.body.totalExpenditure,
-    dateuploaded:req.body.dateuploaded,
+    //dateuploaded:req.body.dateuploaded,
    commentbox:req.body.commentbox,
-  }})
-    .exec()
-    .then(updatedReport => res.send(updatedReport))
-    .catch(error => console.log(error));
-};
+  }
+  }
+  )
+  .exec()
+  .then(function(dbEquipment) {
+  res.send(dbEquipment);
+  })
+  .catch(function(err) {
+  res.send('Cannot update equipment entry.');
+  });
+  };
+  
 
-exports.deleteFinancialReport = (req, res) => {
-  financialReports.deleteMany({ _id: req.params.deleteFinancialReport })
+
+
+
+
+
+
+
+
+exports.deleteFinancialReport = function(req, res, next) {
+  console.log('Financial Report ID:', req.params.FRReportID); // log the value here
+  IncidentReport.deleteMany({ _id: req.params.FRReportID })
     .exec()
-    .then(() => res.status(200).json({ message: 'Financial report deleted!' }))
-    .catch(error => console.log(error));
+    .then(result => {
+      console.log(result);
+      res.status(200).json({
+        message: 'Finincial report deleted!'
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
 };

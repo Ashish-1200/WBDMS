@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Financial Report Form</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/homepage">
+            <i class="fa fa-home"></i> Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">
+            <i class="fa fa-sign-out"></i> Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <h2>Create Form</h2>
+    <form [formGroup]="form" (ngSubmit)="SaveData()">
+      <div class="form-group">
+        <label for="departmentName">Department Name</label>
+        <input type="text" class="form-control" id="departmentName" placeholder="Enter departmentName" formControlName="departmentName" required>
+      </div>
+      <div class="form-group">
+        <label for="period">Period</label>
+        <input type="text" class="form-control" id="period" placeholder="Enter Period (YY-YY)" formControlName="period" required>
+      </div>
+      <div class="form-group">
+        <label for="incomeSection">Income Section</label>
+        <input type="text" class="form-control" id="incomeSection" placeholder="Enter incomeSection" formControlName="incomeSection" required>
+      </div>
+  
+  
+    
+      
+      <div class="form-group">
+        <label for="incomeDate">Income Date</label>
+        <input type="incomeDate" class="form-control" id="incomeDate" placeholder="Enter income Date(MM/DD/YYYY)" formControlName="incomeDate" required>
+      </div>
+      <div class="form-group">
+        <label for="totalIncome">Total Income</label>
+        <textarea class="form-control" id="totalIncome" rows="3" placeholder="Enter total Income" formControlName="totalIncome" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="expenditureSection">Expenditure</label>
+        <input type="text" class="form-control" id="expenditureSection" placeholder="Enter expenditureSection" formControlName="expenditureSection" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="expenditureDate">Expenditure Date</label>
+        <input type="text" class="form-control" id="expenditureDate" placeholder="Enter expenditureDate" formControlName="expenditureDate" required>
+      </div>
+      <div class="form-group">
+        <label for="totalExpenditure">Total Expenditure</label>
+        <textarea class="form-control" id="totalExpenditure" rows="3" placeholder="totalExpenditure" formControlName="totalExpenditure" required></textarea>
+      </div>
+      <div class="form-group">
+      
+        <div class="form-group">
+          <button class="btn btn-primary" type="button" (click)="filePicker.click()">Select</button>
+          <input class="Image" type="file" name="productImage" #filePicker (change)="select($event)" />
+        </div>
+        
+        
+      
+      
+    
+    <button type="submit" class="btn btn-primary">Submit</button>

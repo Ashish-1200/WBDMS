@@ -1,0 +1,54 @@
+<div class="container">
+    <h2>Update Form</h2>
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h4 class="card-title text-center mb-0">Financial Report</h4>
+      <button class="btn btn-primary btn-sm ml-auto rounded-pill" routerLink="/freports" style="position: absolute; top: 15px; right: 15px;">Back</button>
+  </div>
+  
+    
+    <form [formGroup]="form" (ngSubmit)="UpdateData()">
+      <div class="form-group">
+        <label for="departmentName">Department Name</label>
+        <input type="text" class="form-control" id="departmentName" placeholder="Enter Department Name " formControlName="departmentName" required>
+      </div>
+      <div class="form-group">
+        <label for="period">Period</label>
+        <input type="text" class="form-control" id="period" placeholder="Enter Period" formControlName="period" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="incomeSection">Income</label>
+        <input type="text" class="form-control" id="incomeSection" placeholder="Enter incomeSection" formControlName="incomeSection" required>
+      </div>
+      <div class="form-group">
+        <label for="incomeDate">Income Date</label>
+        <textarea class="form-control" id="incomeDate" rows="3" placeholder="Enter incomeDate" formControlName="incomeDate" required></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="totalIncome">Total Income</label>
+        <input type="text" class="form-control" id="totalIncome" placeholder="Enter Total Income" formControlName="totalIncome" required>
+      </div>
+      <div class="form-group">
+        <label for="expenditureSection">Expenditure Section</label>
+        <input type="text" class="form-control" id="expenditureSection" placeholder="Enter expenditureSection" formControlName="expenditureSection" required>
+      </div>
+      <div class="form-group">
+        <label for="expenditureDate">Expenditure Date</label>
+        <textarea class="form-control" id="expenditureDate" rows="3" placeholder="Enter expenditureDate" formControlName="expenditureDate" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="totalExpenditure">Total Expenditure</label>
+        <textarea class="form-control" id="totalExpenditure" rows="3" placeholder="Enter totalExpenditure" formControlName="totalExpenditure" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="commentbox">Comments</label>
+        <textarea class="form-control" id="commentbox" rows="3" placeholder="commentbox" formControlName="commentbox" required></textarea>
+      </div>
+      
+      
+      
+      
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>

@@ -54,6 +54,11 @@ import { UpdateformeventComponent } from './event/updateformevent/updateformeven
 import { CreateformeventComponent } from './event/createformevent/createformevent.component';
 import { eventservice } from './event/event.service';
 import { ViewformeventComponent } from './event/viewformevent/viewformevent.component';
+import { FreportsComponent } from './freports/freports.component';
+import { UpdatefreportsComponent } from './freports/updatefreports/updatefreports.component';
+import { CreatefreportsComponent } from './freports/createfreports/createfreports.component';
+import { ViewfreportsComponent } from './freports/viewfreports/viewfreports.component';
+import { freportservice } from './freports/freports.service';
 
 
 
@@ -71,7 +76,7 @@ import { ViewformeventComponent } from './event/viewformevent/viewformevent.comp
    IncidentreportsComponent,
     EquipmentinventoryComponent,
     EventComponent,
-    //FinincialreportsComponent,
+    FreportsComponent,
     //InsurancereportsComponent,
     //IntendedprojectsComponent,
     //PoliciesComponent,
@@ -89,6 +94,10 @@ CreateformComponent,
     CreateformeventComponent,
     UpdateformeventComponent,
     ViewformeventComponent,
+    
+    UpdatefreportsComponent,
+    CreatefreportsComponent,
+    ViewfreportsComponent,
     
     
     
@@ -124,7 +133,7 @@ CreateformComponent,
 
   
   ],
-providers: [ LoginService, SignupService, UsersService, incidentreportservice, equipinventoryservice, eventservice],
+providers: [ LoginService, SignupService, UsersService, incidentreportservice, equipinventoryservice, eventservice, freportservice],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -23,8 +23,13 @@ import { EventComponent } from './event/event.component';
 import { CreateformeventComponent } from './event/createformevent/createformevent.component';
 import { UpdateformeventComponent } from './event/updateformevent/updateformevent.component';
 import { ViewformeventComponent } from './event/viewformevent/viewformevent.component';
-import { Equipauth } from './authentication/equip.auth';
+//import { Equipauth } from './authentication/equip.auth';
 import { eventauth } from './authentication/event.auth';
+import { FreportsComponent } from './freports/freports.component';
+import { CreatefreportsComponent } from './freports/createfreports/createfreports.component';
+import { UpdatefreportService } from './freports/updatefreports/updatefreports.service';
+import { ViewfreportsComponent } from './freports/viewfreports/viewfreports.component';
+import { UpdatefreportsComponent } from './freports/updatefreports/updatefreports.component';
 
 
 
@@ -54,6 +59,15 @@ const routes: Routes = [
  {path:"createformevent",component:CreateformeventComponent},
  {path:"updateformevent/:id",component:UpdateformeventComponent},
  {path:"viewformevent/:id",component:ViewformeventComponent},
+
+ {path: "freports",component:FreportsComponent,},
+ {path:"createfreports",component:CreatefreportsComponent},
+ {path:"updatefreports/:id",component:UpdatefreportsComponent},
+ {path:"viewfreports/:id",component:ViewfreportsComponent},
+
+
+
+ 
 ]
 
 
