@@ -22,7 +22,7 @@ export class CreateformequipComponent implements OnInit {
     
 
   form = new FormGroup({
-    UserID: new FormControl(''),
+    userID: new FormControl(''),
     DepartmentName: new FormControl('', Validators.required),
     Project: new FormControl('', Validators.required),
     DateOfProject: new FormControl('', Validators.required),
@@ -73,7 +73,7 @@ export class CreateformequipComponent implements OnInit {
 
   SaveData() {
     const formData = new FormData();
-    formData.append('UserID', this.userId);
+    formData.append('userID', this.userId);
     formData.append('DepartmentName', this.form.value.DepartmentName|| '');
     formData.append('Project', this.form.value.Project|| '');
     formData.append('DateOfProject', this.form.value.DateOfProject || '');
@@ -97,7 +97,7 @@ export class CreateformequipComponent implements OnInit {
         panelClass: 'edit'
       })
 
-      this.router.navigateByUrl(`/viewform/${d._id}`);
+      this.router.navigateByUrl(`/viewformequip/${d._id}`);
     });
   }
 

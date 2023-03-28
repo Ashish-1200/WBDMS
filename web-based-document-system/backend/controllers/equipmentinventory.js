@@ -20,12 +20,12 @@ res.send('Cannot find equipment information.');
 
 exports.equipmentInventory_create = function(req, res, next) {
     console.log(req.file);
-const equipment = new EquipmentInventory({
+const equipmentinventory = new EquipmentInventory({
 _id: mongoose.Types.ObjectId(),
 
 DepartmentName: req.body.DepartmentName,
 Project: req.body.Project,
-ProjectDate: req.body.ProjectDate,
+DateOfProject: req.body.DateOfProject,
 EquipmentDescription: req.body.EquipmentDescription,
 SerialNo: req.body.SerialNo,
 DateAcquired: req.body.DateAcquired,
@@ -35,9 +35,7 @@ description: req.body.description,
     productImage:req.files.map(productImage=>productImage.path)
 });
 
-equipment
-.save()
-.then(function(dbuser) {
+equipmentinventory.save().then(function(dbuser) {
 res.send(dbuser);
 })
 .catch(function(err) {
@@ -47,19 +45,20 @@ res.send('Cannot create equipment entry.');
 
 
 exports.equipmentInventory_update = function(req, res, next) {
-const id = req.params.updateEquipment;
-EquipmentInventory.updateOne(
-{ _id: id },
+const id = req.params.update;
+EquipmentInventory.updateOne( { _id: id },
 {
 $set: {
-AdminID: req.body.AdminID,
+
 DepartmentName: req.body.DepartmentName,
 Project: req.body.Project,
-ProjectDate: req.body.ProjectDate,
+DateOfProject: req.body.DateOfProject,
 EquipmentDescription: req.body.EquipmentDescription,
 SerialNo: req.body.SerialNo,
 DateAcquired: req.body.DateAcquired,
-CostOfEquipment: req.body.CostOfEquipment
+CostOfEquipment: req.body.CostOfEquipment,
+description: req.body.description,
+commentbox:req.body.commentbox,
 }
 }
 )
@@ -72,23 +71,23 @@ res.send('Cannot update equipment entry.');
 });
 };
 
+
+
 exports.equipmentInventory_delete_one = function(req, res, next) {
-EquipmentInventory.deleteOne({ _id: req.params.equipmentID })
-.exec()
-.then(result => {
-console.log(result);
-res.status(200).json({
-message: 'Equipment entry deleted!'
-});
-})
-.catch(err => {
-console.log(err);
-res.status(500).json({
-error: err
-});
-});
-};
-
-
-
+    console.log('EquipmentinventoryID:', req.params.equipmentID ); // log the value here
+    EquipmentInventory.deleteMany({ _id: req.params.equipmentID  })
+      .exec()
+      .then(result => {
+        console.log(result);
+        res.status(200).json({
+          message: 'Equipment Inventory report deleted!'
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  };
 

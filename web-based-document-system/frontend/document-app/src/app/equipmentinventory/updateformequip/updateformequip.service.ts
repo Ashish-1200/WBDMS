@@ -7,7 +7,7 @@ import { HttpClient} from "@angular/common/http";
   export class UpdateformequipService {
   constructor(private http: HttpClient ){ }
 
-  updateform(id:any,data:any){
+  updateformequip(id:any,data:any){
     return this.http.put("http://localhost:3000/equipmentinventory/" +id ,data)
 
 

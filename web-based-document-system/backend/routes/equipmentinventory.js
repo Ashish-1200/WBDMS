@@ -59,9 +59,9 @@ router.get('/:id', EquipmentInventoryController.equipmentInventory_get_one)
 router.post('/create', upload.array('productImage'),EquipmentInventoryController.equipmentInventory_create)
 
 // Update an existing equipment
-router.put('/:updateUser', EquipmentInventoryController.equipmentInventory_update)
+router.put('/:update', EquipmentInventoryController.equipmentInventory_update)
 
 // Delete an equipment
-router.delete('/:id', checkAuth, EquipmentInventoryController.equipmentInventory_delete_one)
+router.delete('/:equipmentinventoryID', EquipmentInventoryController.equipmentInventory_delete_one)
 
 module.exports = router;

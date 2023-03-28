@@ -23,6 +23,8 @@ import { EventComponent } from './event/event.component';
 import { CreateformeventComponent } from './event/createformevent/createformevent.component';
 import { UpdateformeventComponent } from './event/updateformevent/updateformevent.component';
 import { ViewformeventComponent } from './event/viewformevent/viewformevent.component';
+import { Equipauth } from './authentication/equip.auth';
+import { eventauth } from './authentication/event.auth';
 
 
 
@@ -43,12 +45,12 @@ const routes: Routes = [
  {path:"updateform/:id",component:UpdateformComponent},
  {path:"viewform/:id",component:ViewformComponent},
 
- {path: "equipmentinventory",component:EquipmentinventoryComponent},
+ {path: "equipmentinventory",component:EquipmentinventoryComponent,},
  {path:"createformequip",component:CreateformequipComponent},
  {path:"updateformequip/:id",component:UpdateformequipComponent},
  {path:"viewformequip/:id",component:ViewformequipComponent},
 
- {path: "event",component:EventComponent},
+ {path: "event",component:EventComponent,canActivate:[eventauth]},
  {path:"createformevent",component:CreateformeventComponent},
  {path:"updateformevent/:id",component:UpdateformeventComponent},
  {path:"viewformevent/:id",component:ViewformeventComponent},

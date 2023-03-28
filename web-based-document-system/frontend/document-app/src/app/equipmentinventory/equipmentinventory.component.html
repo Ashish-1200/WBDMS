@@ -3,6 +3,7 @@
     <span class="spacer"></span>
     <button mat-raised-button color="accent" routerLink="/createformequip">Create Form</button>
     <button mat-raised-button color="warn" routerLink="/mainpage" class="logout">Logout</button>
+    <button mat-raised-button color="warn" routerLink="/homepage" class="logout">Back</button>
   </mat-toolbar>
   
   <mat-card class="mat-elevation-z8">
@@ -36,11 +37,7 @@
           <mat-cell *matCellDef="let element"> {{element.DateOfProject | date}} </mat-cell>
         </ng-container>
   
-        <!-- EquipmentDescription -->
-        <ng-container matColumnDef="EquipmentDescription">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Equipment  </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.EquipmentDescription}} </mat-cell>
-        </ng-container>
+        
   
         <!-- SerialNo Column -->
         <ng-container matColumnDef="SerialNo">
@@ -48,11 +45,6 @@
           <mat-cell *matCellDef="let element"> {{element.SerialNo}} </mat-cell>
         </ng-container>
 
-        <!-- Description Column -->
-      <ng-container matColumnDef="description">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
-      </ng-container>
   
         <!-- Date Uploaded Column -->
         <ng-container matColumnDef="dateuploaded">

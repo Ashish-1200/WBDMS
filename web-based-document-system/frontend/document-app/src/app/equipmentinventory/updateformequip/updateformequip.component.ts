@@ -12,7 +12,7 @@ import { UpdateformequipService } from './updateformequip.service';
 })
 export class UpdateformequipComponent implements OnInit {
 
-  constructor(private activatedroute:ActivatedRoute, private updateservice:UpdateformequipService, private viewservice:ViewformequipService , private _snackBar: MatSnackBar) { }
+  constructor(private activatedroute:ActivatedRoute, private updateequipservice:UpdateformequipService, private viewservice:ViewformequipService , private _snackBar: MatSnackBar) { }
 
   form = new FormGroup({
    
@@ -24,7 +24,7 @@ export class UpdateformequipComponent implements OnInit {
     DateAcquired: new FormControl('', Validators.required),
     CostOfEquipment: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
-   // commentbox: new FormControl('', Validators.required),
+    commentbox: new FormControl('', Validators.required),
    
 
   });
@@ -43,10 +43,10 @@ export class UpdateformequipComponent implements OnInit {
         DepartmentName: new FormControl(result [' DepartmentName'],Validators.required),
         Project: new FormControl(result['Project'],Validators.required),
         DateOfProject:new FormControl(result['DateOfProject'],Validators.required),
-        EquipmentDescription:new FormControl(result['EquipmentDescription'],Validators.required),
+        EquipmentDescription:new FormControl(result[' EquipmentDescription'],Validators.required),
         SerialNo: new FormControl(result['SerialNo']),
         DateAcquired: new FormControl(result['DateAcquired'],Validators.required),
-        CostOfEquipment:new FormControl(result['lCostOfEquipment'],Validators.required),
+        CostOfEquipment:new FormControl(result['CostOfEquipment'],Validators.required),
         description:new FormControl(result['description'],Validators.required),
         commentbox:new FormControl(result['commentbox'],Validators.required),
         //lastEditedBy: new FormControl('current user', Validators.required),
@@ -70,7 +70,7 @@ export class UpdateformequipComponent implements OnInit {
     updatedData.version = this.equipData.version + 1;
 
     console.log(this.form.value);
-    this.updateservice.updateform(this.activatedroute.snapshot.params['id'],this.form.value).subscribe((result)=>{
+    this.updateequipservice.updateformequip(this.activatedroute.snapshot.params['id'],this.form.value).subscribe((result)=>{
       console.log(result);
       this._snackBar.open('Updated Successfully','',{
         verticalPosition:'top',

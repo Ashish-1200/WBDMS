@@ -84,9 +84,9 @@ export class EquipmentinventoryComponent implements OnInit {
     }
   
   //change code
-      delete(incident_id: any) {
+      delete(equipment_id: any) {
         if (confirm('Are you sure you want to permanently delete this form?')) {
-        this.equipinventoryservice .deleteUserrep(incident_id).subscribe((result) => {
+        this.equipinventoryservice .deleteUserrep(equipment_id).subscribe((result) => {
         console.log(result);
         this.ngOnInit();
         this._snackBar.open('Deleted!', '', {

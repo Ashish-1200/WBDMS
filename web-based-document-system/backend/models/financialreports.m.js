@@ -3,17 +3,8 @@ const mongoose = require("mongoose");
 const financialreportsSchema = new mongoose.Schema({
 _id: mongoose.Schema.Types.ObjectId,
 
-adminID: {
-type: mongoose.Schema.Types.ObjectId,
-ref: "Admins",
-},
 
-publicID: {
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: "public"
-    },
-
-DepartmentName: {
+departmentName: {
 type: String,
 required: true,
 },
@@ -23,39 +14,62 @@ type: String,
 required: true,
 },
 
-IncomeSection: {
+incomeSection: {
 type: String,
 required: true,
 },
 
-IncomeDate: {
-type: Date,
-default: () => Date.now(),
-},
+incomeDate: {
+    type: String,
+    required: true,
+    },
 
-TotalIncome: {
+totalIncome: {
 type: String,
 required: true,
 },
 
-ExpenditureSection: {
+expenditureSection: {
 type: String,
 required: true,
 },
 
-ExpenditureDate: {
-type: Date,
-default: () => Date.now(),
-},
+expenditureDate: {
+    type: String,
+    required: true,
+    },
 
-TotalExpenditure: {
-type: Number,
+totalExpenditure: {
+type: String,
 required: true,
 },
+dateuploaded:{
+    type:Date,
+        default: () => Date.now(),
+},
 
-uploadDocument: {
-    type: [String]
-    }
+commentbox: {
+    type: String,
+     required: null
+    },
+ 
+ 
+ IncidentPicture:Buffer,
+     productImage:{
+       type:[String]
+ },
+ 
+ version: {
+     type: Number,
+     default: 1
+   },
+
 });
+
+
+financialreportsSchema.pre('save', function(next) {
+    this.version++;
+    next();
+  });
 
 module.exports = mongoose.model("financialreports", financialreportsSchema)
