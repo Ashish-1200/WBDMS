@@ -21,6 +21,7 @@ export class EventComponent  implements OnInit {
     'department',
     'eventName',
     'eventDes',
+    'eventDate',
     
     'dateuploaded',
     'Options'

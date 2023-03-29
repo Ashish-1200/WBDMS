@@ -92,7 +92,7 @@ export class CreateformeventComponent implements OnInit {
         panelClass: 'edit'
       })
 
-      this.router.navigateByUrl(`/viewform/${d._id}`);
+      this.router.navigateByUrl(`/viewformevent/${d._id}`);
     });
   }
 

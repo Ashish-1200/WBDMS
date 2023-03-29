@@ -5,7 +5,7 @@ _id: mongoose.Schema.Types.ObjectId,
 
 department: {
     type: String,
-    required: null
+    required: true
     },
 
 
@@ -32,7 +32,7 @@ commentbox: {
      required: null
     },
 
-IncidentPicture:Buffer,
+    IncidentPicture:Buffer,
     productImage:{
       type:[String]
 },
@@ -42,11 +42,9 @@ version: {
     default: 1
   },
 
-  lastEditedBy: {
-    type: String,
-    required: false
-  },
+  
 })
+
   eventSchema.pre('save', function(next) {
     this.version++;
     next();

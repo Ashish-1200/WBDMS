@@ -60,11 +60,11 @@ commentbox: {
     required: null
    },
 
-
-IncidentPicture:Buffer,
-    productImage:{
-      type:[String]
+   IncidentPicture:Buffer,
+   productImage:{
+     type:[String]
 },
+
 
 version: {
     type: Number,

@@ -55,7 +55,7 @@ const routes: Routes = [
  {path:"updateformequip/:id",component:UpdateformequipComponent},
  {path:"viewformequip/:id",component:ViewformequipComponent},
 
- {path: "event",component:EventComponent,canActivate:[eventauth]},
+ {path: "event",component:EventComponent},
  {path:"createformevent",component:CreateformeventComponent},
  {path:"updateformevent/:id",component:UpdateformeventComponent},
  {path:"viewformevent/:id",component:ViewformeventComponent},

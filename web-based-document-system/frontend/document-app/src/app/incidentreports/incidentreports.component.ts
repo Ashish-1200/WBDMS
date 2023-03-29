@@ -92,7 +92,7 @@ export class IncidentreportsComponent implements OnInit {
 
 //change code
     delete(incident_id: any) {
-      if (confirm('Are you sure you want to permanently delete this form?')) {
+      if (confirm('You are going tp delete this form?')) {
       this.incidentreportService.deleteUserrep(incident_id).subscribe((result) => {
       console.log(result);
       this.ngOnInit();

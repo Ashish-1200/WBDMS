@@ -11,26 +11,27 @@ res.send({ status: 200, count: eventList.length, eventList: eventList });
 });
 }
 
-exports.createEvent = (req, res, next) => {
-const newEvent = new EventModel({
-_id: mongoose.Types.ObjectId(),
-eventName: req.body.eventName,
-eventDes: req.body.eventDes,
-eventDate: req.body.eventDate
-});
 
-newEvent
-    .save()
-    .then(result => {
-        console.log(result);
-    })
-    .catch(error => console.log(error));
 
-res.status(200).json({
-    message: "Event created successfully.",
-    event: newEvent
-});
-}
+exports.createEvent = function(req, res) {
+    
+    const newEvent = new EventModel({
+
+        _id: mongoose.Types.ObjectId(),
+        eventName: req.body.eventName,
+        eventDes: req.body.eventDes,
+        eventDate: req.body.eventDate,
+        department: req.body.department,
+        productImage:req.files.map(productImage=>productImage.path)
+
+    });
+newEvent.save()
+.then(savedReport => res.send(savedReport))
+.catch(error => console.log(error));
+};
+
+
+
 
 exports.getEvent = function(req, res, next) {
 EventModel.findOne({ _id: req.params.id })
@@ -42,44 +43,52 @@ res.send("Event not found.");
 });
 }
 
+
+
 exports.deleteEvent = function(req, res, next) {
-EventModel.deleteOne({ _id: req.params.id })
-.exec()
-.then(result => {
-console.log(result);
-res.status(200).json({
-message: "Event deleted."
-});
-})
-.catch(error => {
-console.log(error);
-res.status(500).json({
-error: error
-});
-});
-}
+    console.log('Event Report ID:', req.params.eventID); // log the value here
+    EventModel.deleteMany({ _id: req.params.eventID })
+      .exec()
+      .then(result => {
+        console.log(result);
+        res.status(200).json({
+          message: 'Event report deleted!'
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  };
+
+
+
+
+
+
 
 exports.updateEvent = function(req, res, next) {
-    const id = req.params.updateIncidentReport;
-    IncidentReport.updateOne(
+    const id = req.params.update;
+    EventModel.updateOne(
     { _id: id },
     {
     $set: {
-        adminID:req.body.adminID,
-        volunteerID:req.body.volunteerID,
-        publicID:req.body.publicID,
+        
         eventName:req.body.eventName,
         eventDes:req.body.eventDes,
-        eventDate:req.body.eventDate
+        eventDate:req.body.eventDate,
+        commentbox:req.body.commentbox,
     }
     }
     )
     .exec()
-    .then(function(incidentReport) {
-    return res.send(incidentReport);
+    .then(function(EventModel) {
+    return res.send(EventModel);
     })
     .catch(function(err) {
-    return res.send('Cannot update incident report');
+    return res.send('Cannot update event report');
     });
     };
     

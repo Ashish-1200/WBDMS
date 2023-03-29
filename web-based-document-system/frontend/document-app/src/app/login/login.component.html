@@ -17,17 +17,17 @@
           <option value="MOW">MOW</option>
           <option value="USMO">USMO</option>
         </select>
-        <div class="invalid-feedback" *ngIf="userclassInput.invalid">Please enter correct UserType.</div>
+       
       </div>
       <div class="form-group">
         <label for="Username">Username</label>
         <input type="text" class="form-control" id="Username" name="Username" ngModel placeholder="Username" #usernameInput="ngModel" required>
-        <div class="invalid-feedback" *ngIf="usernameInput.invalid">Please enter correct Username.</div>
+       
       </div>
       <div class="form-group">
         <label for="Password">Password</label>
         <input type="password" class="form-control" id="Password" name="Password" ngModel placeholder="Password" #PasswordInput="ngModel" required>
-        <div class="invalid-feedback" *ngIf="PasswordInput.invalid">Please enter valid password!</div>
+        
       </div>
       <button type="submit" class="btn btn-primary">Login</button>
     </form>
