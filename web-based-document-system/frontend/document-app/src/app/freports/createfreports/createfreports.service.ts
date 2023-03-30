@@ -1,25 +1,19 @@
-
-
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpContext, HttpHeaders, HttpParams } from "@angular/common/http";
-import { Subject } from "rxjs";
+import { HttpClient } from "@angular/common/http";
 
-@Injectable({ providedIn: "root" })
-export class CreatefreportsService {   constructor(private http: HttpClient) {}
+@Injectable({
+  providedIn: "root"
+})
+export class CreatefreportsService {
+  constructor(private http: HttpClient) {}
 
-userId:any;
-formData:any;
+  mediainfo: any;
+  formData: any;
 
-  createform(formData: any,userId:any) {
-    console.log(formData);
-    console.log(userId);
-    return this.http.post<any>('http://localhost:3000/financialreport/create',formData,userId)
+  createform(formData: any, mediainfo: any) {
+    const url = "http://localhost:3000/financialreport/create";
+    const body = { formData, mediainfo };
 
-
-
+    return this.http.post<any>(url, body);
   }
-
-
-
-
 }

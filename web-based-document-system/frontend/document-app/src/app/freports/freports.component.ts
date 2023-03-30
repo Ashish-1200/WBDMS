@@ -1,98 +1,91 @@
-import { Component, OnInit } from '@angular/core';
-import { freportservice } from './freports.service';
-import { LoginService } from '../login/login.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { freportservice } from './freports.service';
+import { LoginService } from '../login/login.service';
 import { financial } from './freports.model';
 
 @Component({
-  selector: 'app-freports',
-  templateUrl: './freports.component.html',
-  styleUrls: ['./freports.component.css'],
-  providers: [freportservice],
+selector: 'app-freports',
+templateUrl: './freports.component.html',
+styleUrls: ['./freports.component.css'],
+providers: [freportservice],
 })
 export class FreportsComponent implements OnInit {
-  displayedColumns: string[] = [
-    
-    '_id',
-    'departmentName',
-    'totalIncome',
-    'totalExpenditure',
-    'dateuploaded',
-    'Options'];
+displayedColumns: string[] = [
+'_id',
+'departmentName',
+'totalIncome',
+'totalExpenditure',
+'dateuploaded',
+'Options'
+];
 
-    
-    dataSource = new MatTableDataSource<financial>();
-    remove = false;
-    role: any;
-    
-  public freports: any;
-  public errorMessage: string = '';
+dataSource = new MatTableDataSource<financial>();
+remove = false;
+role: string | undefined;
 
-    constructor(
-      private freportService: freportservice,
-      private loginService: LoginService,
-      private _snackBar: MatSnackBar
-    ) { }
-  
-    @ViewChild(MatPaginator) paginator !: MatPaginator ;
-  @ViewChild(MatSort) sort!: MatSort ;
-  
-  
-  
-  
-    ngOnInit(): void {
-  
-      this.freportService.getFreports().subscribe((data) => {
-        this.dataSource = new MatTableDataSource(data);
-        console.log(data);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-  
-      });
-      this.loginService.updatemenu.subscribe((res) => {
-        this.MenuDisplay(); 
-        
-      });
-      
-      this.MenuDisplay(); // call the MenuDisplay function here
-  
-    this.loginService.updatemenu.subscribe((res) => {
-      this.MenuDisplay();
-    });
-  
-    }
-  
-    applyFilter(eventreport: Event) {
-      const filterValue = (eventreport.target as HTMLInputElement).value;
-      this.dataSource.filter = filterValue.trim().toLowerCase();
-      if (this.dataSource.paginator) {
-        this.dataSource.paginator.firstPage();
-      }
-    }
-  
-  
-    MenuDisplay(){
-      if(this.loginService.getToken()!='')
-      this.role=this.loginService.GetRolebyToken(this.loginService.getToken());
-      console.log('role:', this.role); // console log
-      this.remove = this.role=='Administrator'; // allows only admin to access the delete button
-  
-    }
-  
-    deleteFreport(financial_id: any) {
-      if (confirm('Are you sure you want to permanently delete this form?')) {
-      this.freportService.deleteFreport(financial_id).subscribe((result) => {
-      console.log(result);
-      this.ngOnInit();
-      this._snackBar.open('Deleted!', '', {
-      verticalPosition: 'top',
-      panelClass: 'edit',
-      });
-      });
-      }
-      }
-      }
+constructor(
+private freportService: freportservice,
+private loginService: LoginService,
+private _snackBar: MatSnackBar
+) {}
+
+@ViewChild(MatPaginator) paginator!: MatPaginator;
+@ViewChild(MatSort) sort!: MatSort;
+
+ngOnInit(): void {
+this.getFreports();
+this.loginService.updatemenu.subscribe(() => this.MenuDisplay());
+this.MenuDisplay();
+}
+
+getFreports(): void {
+this.freportService.getFreports().subscribe((data) => {
+this.dataSource.data = data;
+this.dataSource.paginator = this.paginator;
+this.dataSource.sort = this.sort;
+});
+}
+
+applyFilter(event: Event): void {
+const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+this.dataSource.filter = filterValue;
+if (this.dataSource.paginator) {
+this.dataSource.paginator.firstPage();
+}
+}
+
+MenuDisplay(): void {
+if (this.loginService.getToken()) {
+this.role = this.loginService.GetRolebyToken(this.loginService.getToken());
+console.log('role:', this.role);
+this.remove = this.role === 'Administrator';
+}
+}
+
+deleteFreport(financial_id: any): void {
+if (!confirm('Are you sure you want to permanently delete this form?')) {
+return;
+}
+this.freportService.deleteFreport(financial_id).subscribe(
+() => {
+this.getFreports();
+this.showSnackBar('Deleted!', 'edit');
+},
+(error) => {
+console.error(error);
+this.showSnackBar('Error deleting form!', 'error');
+}
+);
+}
+
+showSnackBar(message: string, panelClass: string): void {
+this._snackBar.open(message, '', {
+verticalPosition: 'top',
+panelClass: panelClass,
+});
+}
+}

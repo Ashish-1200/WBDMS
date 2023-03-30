@@ -7,64 +7,28 @@ mongoose.set('strictQuery', false );
 const app = express();
 const multer = require('multer');
 
-//app.listen(3000,(error)=>console.log(error));
-
-
-
-//sets up the middleware to parse incoming request bodies in JSON format
+// sets up the middleware to parse incoming request bodies in JSON format
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-//Used to log requests
+// Used to log requests
 const morgan = require('morgan');
 app.use(morgan('dev'));
 
-//Cross-Origin Resource Sharing (CORS) middleware
-
+// Cross-Origin Resource Sharing (CORS) middleware
 app.use(cors());
 
-//Connection to database
+// Connection to database
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/docsystem')
-.then(() => console.log("Database is connected"))
-.catch((error) => console.log(error));
+  .then(() => console.log("Database is connected"))
+  .catch((error) => console.log(error));
 
-  //Configure multer to store files in the "uploads" directory
-  /*const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname);
-  },
-  });
-  const upload = multer({ storage }); */
+// serve the static files located in the "images" and "uploads" directories
+app.use('/images', express.static('images'));
+app.use('/uploads',express.static('uploads'));
 
-
-
-  //serve the static files located in the "images" and "uploads" directories
-   app.use('/images', express.static('images'));
-   app.use('/uploads',express.static('uploads'));
-
-
-//app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
-
-/* //Importing Schema models
-const users = require("./models/users.m");
-const admin = require("./models/admin.m");
-const equipmentinventory = require("./models/equipmentinventory.m");
-const event = require("./models/event.m");
-const financialreports = require("./models/financialreports.m");
-const incidentreports = require("./models/incidentreports.m");
-const insurancereports = require("./models/insurancereports.m");
-const intendedprojects = require("./models/intendedprojects.m");
-const policies = require("./models/policies.m");
-const public = require("./models/public.m");
-const volunteer = require("./models/volunteer.m"); */
-
-
-
-//Routes
+// Routes
 const wbusers = require('./Routes/users');
 const wbadmin = require('./Routes/admin');
 const wbequipmentinventory = require('./Routes/equipmentinventory');
@@ -77,6 +41,7 @@ const wbpolicies = require('./Routes/policies');
 const wbpublic = require('./Routes/public');
 const wbvolunteer = require('./Routes/volunteer');     
 
+// Mounts the routes
 app.use('/users', wbusers);
 app.use('/admin', wbadmin);
 app.use('/equipmentinventory', wbequipmentinventory);
@@ -89,16 +54,14 @@ app.use('/policies', wbpolicies);
 app.use('/public', wbpublic);
 app.use('/volunteer', wbvolunteer);
 
-
-//request is made to a route that does not exist
+// middleware that handles request to a route that does not exist
 app.use((req,res,next)=>{
   const error = new Error ('Not found');
   error.status=404;
   next(error);
 })
 
-//allows requests from any origin, sets the allowed headers, and specifies the allowed methods for HTTP requests
-// Cross Origin Request Security
+// middleware that handles CORS
 app.use((req,res,next) => {
   res.header("Access-Control-Allow-Origin", "*"); // gives access to all clients
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization"); // allow headers
@@ -109,30 +72,28 @@ app.use((req,res,next) => {
   next();
 });
 
-
+// middleware that logs requests
 app.use(morgan('dev'));
 
-
-
-  app.use((req, res, next) => {
-    const error = new Error('Not found');
-    error.status = 404;
-    next(error);
-  });
-  app.use((error,req,res,next) => {
-    res.status(error.status || 500);
-    res.json({
-        error: {
-            message: error.message
-        }
-    });
+// middleware that handles errors if a route is not found or if an error occurs
+app.use((req, res, next) => {
+  const error = new Error('Not found');
+  error.status = 404;
+  next(error);
 });
 
+app.use((error,req,res,next) => {
+  res.status(error.status || 500);
+  res.json({
+      error: {
+          message: error.message
+      }
+  });
+});
 
-
-   //Listens for request
+// Listens for requests
 app.listen(3000,function(){
   console.log('Server is connected! Listening for requests');
 });
 
-  module.exports = app;
+module.exports = app;

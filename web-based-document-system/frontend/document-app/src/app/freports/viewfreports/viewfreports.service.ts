@@ -1,17 +1,16 @@
 import { Injectable } from "@angular/core";
-import { HttpClient} from "@angular/common/http";
-import {Router} from '@angular/router';
-import { Observable } from "rxjs";
+import { HttpClient } from "@angular/common/http";
 
-@Injectable({ providedIn:"root"})
-export class  ViewfreportService {
-  constructor(private http: HttpClient ){ }
+@Injectable({
+  providedIn: "root"
+})
+export class ViewfreportService {
 
-  viewfreport(id:any)
- {
-  return this.http.get("http://localhost:3000/financialreport/" +id)
+  constructor(private http: HttpClient) { }
 
-  
-
-}
+  viewfreport(id: any) {
+    const url = `http://localhost:3000/financialreport/${id}`;
+    return this.http.get(url);
   }
+  
+}

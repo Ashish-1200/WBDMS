@@ -37,7 +37,7 @@
       
       <mat-card-subtitle>
         <span>Media/Document :</span>
-        <ng-container *ngFor="let media of userinfo.productImage">
+        <ng-container *ngFor="let media of userinfo.mediaFiles">
           <ng-container *ngIf="media.endsWith('.jpg') || media.endsWith('.png') || media.endsWith('.gif') || media.endsWith('.jpeg')">
             <img class="Image" src="http://localhost:3000/{{media}}">
           </ng-container>

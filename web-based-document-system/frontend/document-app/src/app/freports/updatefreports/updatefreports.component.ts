@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { ViewfreportService} from '../viewfreports/viewfreports.service'; 
+import { ViewfreportService } from '../viewfreports/viewfreports.service'; 
 import { UpdatefreportService } from './updatefreports.service';
 
 @Component({
@@ -12,85 +12,53 @@ import { UpdatefreportService } from './updatefreports.service';
 })
 export class UpdatefreportsComponent implements OnInit {
 
-  constructor(private activatedroute:ActivatedRoute, private updateservice:UpdatefreportService, private viewservice:ViewfreportService , private _snackBar: MatSnackBar) { }
+  form!: FormGroup;
+  message = false;
+  FRdata: any;
 
-  form = new FormGroup({
-    //versionNumber: new FormControl(1),
-    //lastEditedBy: new FormControl('',Validators.required),
-    
-    departmentName: new FormControl('', Validators.required),
-    period: new FormControl('', Validators.required),
-    incomeSection: new FormControl('', Validators.required),
-    incomeDate: new FormControl('', Validators.required),
-    totalIncome: new FormControl('', Validators.required),
-    expenditureSection: new FormControl('', Validators.required),
-    expenditureDate: new FormControl('', Validators.required),
-    totalExpenditure: new FormControl('', Validators.required),
-   commentbox: new FormControl('', Validators.required),
-   
-   
-
-  });
-  message:boolean = false;
-
-  incidentData: any;
+  constructor(
+    private activatedroute: ActivatedRoute,
+    private updateservice: UpdatefreportService,
+    private viewservice: ViewfreportService,
+    private snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
-
-    this.viewservice.viewfreport(this.activatedroute.snapshot.params['id']) .subscribe((result:any)=>{
+    const id = this.activatedroute.snapshot.params['id'];
+    this.viewservice.viewfreport(id).subscribe((result: any) => {
       console.log(result);
-
-      this.incidentData = result;
-
-      this.form = new FormGroup({
-        
-
-        departmentName: new FormControl(result [' departmentName'],Validators.required),
-        period: new FormControl(result['period'],Validators.required),
-        incomeSection:new FormControl(result['incomeSection'],Validators.required),
-        incomeDate:new FormControl(result['incomeDate'],Validators.required),
-        totalIncome: new FormControl(result['totalIncome']),
-        expenditureSection: new FormControl(result['expenditureSection'],Validators.required),
-        expenditureDate:new FormControl(result['expenditureDate'],Validators.required),
-        totalExpenditure:new FormControl(result['totalExpenditure'],Validators.required),
-        commentbox:new FormControl(result['commentbox'],Validators.required),
-        //lastEditedBy: new FormControl('current user', Validators.required),
-        //versionNumber: new FormControl(1),
-        
-       
-      });
-
-      
-
+      this.FRdata = result;
+      this.initForm(result);
     });
   }
 
+  private initForm(data: any): void {
+    this.form = new FormGroup({
+      departmentName: new FormControl(data.departmentName, Validators.required),
+      period: new FormControl(data.period, Validators.required),
+      incomeSection: new FormControl(data.incomeSection, Validators.required),
+      incomeDate: new FormControl(data.incomeDate, Validators.required),
+      totalIncome: new FormControl(data.totalIncome, Validators.required),
+      expenditureSection: new FormControl(data.expenditureSection, Validators.required),
+      expenditureDate: new FormControl(data.expenditureDate, Validators.required),
+      totalExpenditure: new FormControl(data.totalExpenditure, Validators.required),
+      commentbox: new FormControl(data.commentbox, Validators.required),
+    });
+  }
 
-
-
-
-  UpdateData() {
-
+  updateData(): void {
     const updatedData = this.form.value;
-    updatedData.version = this.incidentData.version + 1;
-
-    console.log(this.form.value);
-    this.updateservice.updateform(this.activatedroute.snapshot.params['id'],this.form.value).subscribe((result)=>{
+    updatedData.version = this.FRdata.version + 1;
+    console.log(updatedData);
+    this.updateservice.updateform(this.FRdata._id, updatedData).subscribe((result) => {
       console.log(result);
-      this._snackBar.open('Updated Successfully','',{
-        verticalPosition:'top',
-       // horizontalPosition:'center',
-        panelClass:'edit'
-      })
-
-    })
-
-
-
-  
+      this.snackBar.open('Updated Successfully', '', {
+        verticalPosition: 'top',
+        panelClass: 'edit'
+      });
+    });
   }
-  removeMessage() {
 
-  }
+ 
 
 }

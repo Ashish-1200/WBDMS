@@ -55,7 +55,7 @@ commentbox: {
  
  
  IncidentPicture:Buffer,
-     productImage:{
+     mediaFiles:{
        type:[String]
  },
  
