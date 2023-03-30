@@ -12,46 +12,47 @@ import { HttpClient } from '@angular/common/http';
 export class SignupComponent implements OnInit {
 
   isLoading = false;
-  hide = true;
-  constructor(public signupService:SignupService, private _snackBar: MatSnackBar) {}
-  
+  hidePassword = true;
 
+  constructor(public signupService: SignupService, private _snackBar: MatSnackBar) {}
 
-  form = new FormGroup({
-    Username: new FormControl('', Validators.required, this.signupService.validateUsernameNotTaken.bind(this.signupService)),
-    Firstname: new FormControl('', Validators.required),
-    Lastname: new FormControl('', Validators.required),
-    Email: new FormControl('', Validators.required, this.signupService.validateEmailNotTaken.bind(this.signupService)),
-    Password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-    UserType: new FormControl('', [Validators.required])
+  userForm = new FormGroup({
+    username: new FormControl('', Validators.required, this.signupService.checkUsernameAvailability.bind(this.signupService)),
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required, this.signupService.checkEmailAvailability.bind(this.signupService)),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    userType: new FormControl('', [Validators.required])
   });
 
-  
-  SaveData() {
-    if (this.form.invalid) return;
+  submitForm() {
+    if (this.userForm.invalid) {
+      return;
+    }
 
-    this.signupService.addUserForm(this.form.value)
-      .subscribe((result) => {
-        this.form.reset({});
-        console.log(result);
-      });
-
-      this._snackBar.open('Registration Successful','',{
-        verticalPosition:'top',
-       // horizontalPosition:'center',
-        panelClass:'edit'
+    this.isLoading = true;
+    this.signupService.addUserForm(this.userForm.value)
+      .subscribe(() => {
+        this.userForm.reset({});
+        this._snackBar.open('Registration Successful', '', {
+          verticalPosition: 'top',
+          panelClass: 'edit'
+        });
       })
-    }
-    
-    ngOnInit(): void {
-
-
-    }
+      .add(() => {
+        this.isLoading = false;
+      });
   }
-  
 
-  
+  ngOnInit(): void {
+    this.isLoading = true;
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000);
+  }
 
+  togglePasswordVisibility() {
+    this.hidePassword = !this.hidePassword;
+  }
 
-
-
+}
