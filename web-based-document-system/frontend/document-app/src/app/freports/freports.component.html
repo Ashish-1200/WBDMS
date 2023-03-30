@@ -56,7 +56,7 @@
             <a mat-icon-button [routerLink]="['/updatefreports', element._id]">
               <mat-icon>edit</mat-icon>
             </a>
-            <button *ngIf="remove" mat-icon-button (click)="delete(element._id)">
+            <button *ngIf="remove" mat-icon-button (click)="deleteFreport(element._id)">
               <mat-icon>delete</mat-icon>
             </button>
           </mat-cell>

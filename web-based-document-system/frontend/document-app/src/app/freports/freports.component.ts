@@ -22,13 +22,16 @@ export class FreportsComponent implements OnInit {
     'totalIncome',
     'totalExpenditure',
     'dateuploaded',
-    'Options'
+    'Options'];
 
-    ];
+    
     dataSource = new MatTableDataSource<financial>();
-    listIncidents: financial[] = [];
     remove = false;
-    currentRole: any;
+    role: any;
+    
+  public freports: any;
+  public errorMessage: string = '';
+
     constructor(
       private freportService: freportservice,
       private loginService: LoginService,
@@ -43,7 +46,7 @@ export class FreportsComponent implements OnInit {
   
     ngOnInit(): void {
   
-      this.freportService.listfinancialrep().subscribe((data) => {
+      this.freportService.getFreports().subscribe((data) => {
         this.dataSource = new MatTableDataSource(data);
         console.log(data);
         this.dataSource.paginator = this.paginator;
@@ -74,24 +77,20 @@ export class FreportsComponent implements OnInit {
   
     MenuDisplay(){
       if(this.loginService.getToken()!='')
-      this.currentRole=this.loginService.GetRolebyToken(this.loginService.getToken());
-      console.log('currentRole:', this.currentRole); // console log
-      this.remove = this.currentRole=='Administrator'; // allows only admin to access the delete button
+      this.role=this.loginService.GetRolebyToken(this.loginService.getToken());
+      console.log('role:', this.role); // console log
+      this.remove = this.role=='Administrator'; // allows only admin to access the delete button
   
     }
   
   //change code
-      delete(financial_id: any) {
-        if (confirm('Are you sure you want to permanently delete this form?')) {
-        this.freportService.deleteUserrep(financial_id).subscribe((result) => {
-        console.log(result);
-        this.ngOnInit();
-        this._snackBar.open('Deleted!', '', {
-        verticalPosition: 'top',
-        panelClass: 'edit',
-        });
-        });
-        }
-        }
-        }
+  deleteFreport(id: number) {
+    if(confirm("Are you sure you want to delete this report?")) {
+      this.freportService.deleteFreport(id).subscribe(
+        data => this.freports = data,
+        error => this.errorMessage = error
+      );
+    }
+  }
   
+}

@@ -2,22 +2,27 @@
 
   import { Injectable } from "@angular/core";
 import { HttpClient} from "@angular/common/http";
-
+import { Observable } from 'rxjs';
 import {financial} from './freports.model'
 
 
 @Injectable({ providedIn:"root"})
 export class  freportservice {
+  private baseUrl = 'http://localhost:3000/financialreport';
 
 
-  constructor(private http: HttpClient ){ }
+  constructor(private http: HttpClient) { }
 
-  listfinancialrep(){
-    return this.http.get <financial[]> ("http://localhost:3000/financialreport/list")
-
+  getFreports(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/list`);
   }
 
-  deleteUserrep(id:any){
-    return this.http.delete("http://localhost:3000/financialreport/" + id)
+  getFreportById(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${id}`);
+  }
+
+
+  deleteFreport(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 }
