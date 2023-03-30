@@ -83,14 +83,16 @@ export class FreportsComponent implements OnInit {
   
     }
   
-  //change code
-  deleteFreport(id: number) {
-    if(confirm("Are you sure you want to permanantly delete this?")) {
-      this.freportService.deleteFreport(id).subscribe(
-        data => this.freports = data,
-        error => this.errorMessage = error
-      );
-    }
-  }
-  
-}
+    deleteFreport(financial_id: any) {
+      if (confirm('Are you sure you want to permanently delete this form?')) {
+      this.freportService.deleteFreport(financial_id).subscribe((result) => {
+      console.log(result);
+      this.ngOnInit();
+      this._snackBar.open('Deleted!', '', {
+      verticalPosition: 'top',
+      panelClass: 'edit',
+      });
+      });
+      }
+      }
+      }

@@ -73,9 +73,12 @@ exports.updateFinancialReport = function(req, res, next) {
 
 
 
+
+    
+
 exports.deleteFinancialReport = function(req, res, next) {
-  console.log('Financial Report ID:', req.params.FRReportID); // log the value here
-  IncidentReport.deleteMany({ _id: req.params.FRReportID })
+  console.log('Incident Report ID:', req.params.FRReportID); // log the value here
+  financialReports.deleteMany({ _id: req.params.FRReportID })
     .exec()
     .then(result => {
       console.log(result);
