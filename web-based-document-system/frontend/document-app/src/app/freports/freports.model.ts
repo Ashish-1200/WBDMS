@@ -14,7 +14,7 @@ export interface financial {
     commentbox:string;
     
   IncidentPicture?:string;
-  productImage:[];
+  mediaFiles:[];
 
 version: number;
 lastEditedBy?: string;

@@ -85,7 +85,7 @@ export class FreportsComponent implements OnInit {
   
   //change code
   deleteFreport(id: number) {
-    if(confirm("Are you sure you want to delete this report?")) {
+    if(confirm("Are you sure you want to permanantly delete this?")) {
       this.freportService.deleteFreport(id).subscribe(
         data => this.freports = data,
         error => this.errorMessage = error

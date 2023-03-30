@@ -12,9 +12,9 @@ import { Router } from '@angular/router';
 })
 export class CreatefreportsComponent implements OnInit {
 
-  documents:any;
-  mediaFiles=[]; 
-  mediainfo:any; 
+  images:any;
+  productImage=[];
+  imageData:any;
   userId: any;
 
 
@@ -35,7 +35,7 @@ export class CreatefreportsComponent implements OnInit {
     totalExpenditure: new FormControl('', Validators.required),
    
    // commentbox: new FormControl('', Validators.required),
-    mediaFiles: new FormControl(null as FileList | null, Validators.required)
+    productImage: new FormControl(null as FileList | null, Validators.required)
 
 
   });
@@ -45,20 +45,20 @@ export class CreatefreportsComponent implements OnInit {
   select(event:any){
     {
       const file = (event.target as HTMLInputElement).files;
-      this.form.patchValue({ mediaFiles: file});
+      this.form.patchValue({ productImage: file});
       const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg","application/pdf","application/msword","video/mp4","application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
       {
         const reader = new FileReader();
         reader.onload = () => {
-          this.mediainfo = reader.result as string;
+          this.imageData = reader.result as string;
         };
         if(file){
         reader.readAsDataURL(file[0]);
         }
       }
-      const mediaFiles = event.target.files[0];
-      this.documents=mediaFiles;
-      console.log(mediaFiles)
+      const productImage = event.target.files[0];
+      this.images=productImage;
+      console.log(productImage)
   
   
        }
@@ -87,7 +87,7 @@ export class CreatefreportsComponent implements OnInit {
     formData.append('totalExpenditure', this.form.value.totalExpenditure || '');
     
    // formData.append('commentbox', this.form.value.location || '');
-    formData.append('mediaFiles', this.documents);
+    formData.append('productImage', this.images);
     
 
     this.http.post<any>('http://localhost:3000/financialreport/create', formData).subscribe((d) => {

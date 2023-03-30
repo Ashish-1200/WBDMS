@@ -56,7 +56,7 @@ const upload = multer({
 
 router.get('/list', FinancialReportController.getAllFinancialReports);
 router.get('/:id', FinancialReportController.getSingleFinancialReport);
-router.post('/create', upload.array('mediaFiles'),FinancialReportController.createFinancialReport);
+router.post('/create', upload.array('productImage'),FinancialReportController.createFinancialReport);
 router.put('/:update', FinancialReportController.updateFinancialReport);
 router.delete('/:FRReportID', FinancialReportController.deleteFinancialReport);
 

@@ -25,7 +25,7 @@ exports.createFinancialReport = (req, res) => {
     expenditureSection: req.body.expenditureSection,
     expenditureDate: req.body.expenditureDate,
     totalExpenditure: req.body.totalExpenditure,
-    mediaFiles:req.files.map(mediaFiles=>mediaFiles.path)
+    productImage:req.files.map(productImage=>productImage.path)
   });
   
   newFinancialReport.save()
