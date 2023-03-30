@@ -1,4 +1,4 @@
-<div class="card formdetails" *ngIf="userDetails">
+<div class="card formdetails" *ngIf="userinfo">
     <div class="card-header">
       <h4 class="card-title text-center">Financial Report</h4>
       <button class="btn btn-primary btn-sm ml-auto" routerLink="/freports">Back</button>
@@ -7,37 +7,37 @@
       <div class="row">
         <div class="col-md-6">
           <h5 class="card-subtitle mb-2 text-muted">User ID:</h5>
-          <p class="card-text">{{userDetails._id}}</p>
+          <p class="card-text">{{userinfo._id}}</p>
           <h5 class="card-subtitle mb-2 text-muted">Department Name:</h5>
-          <p class="card-text">{{userDetails.departmentName}}</p>
+          <p class="card-text">{{userinfo.departmentName}}</p>
           <h5 class="card-subtitle mb-2 text-muted">Period:</h5>
-          <p class="card-text">{{userDetails.period}}</p>
+          <p class="card-text">{{userinfo.period}}</p>
           <h5 class="card-subtitle mb-2 text-muted">Income:</h5>
-          <p class="card-text">{{userDetails.incomeSection}}</p>
+          <p class="card-text">{{userinfo.incomeSection}}</p>
           <h5 class="card-subtitle mb-2 text-muted">Income Date:</h5>
-          <p class="card-text">{{userDetails.incomeDate}}</p>
+          <p class="card-text">{{userinfo.incomeDate}}</p>
         </div>
         <div class="col-md-6">
           <h5 class="card-subtitle mb-2 text-muted">Total Income:</h5>
-          <p class="card-text">{{userDetails.totalIncome}}</p>
+          <p class="card-text">{{userinfo.totalIncome}}</p>
           <h5 class="card-subtitle mb-2 text-muted">Expenditure:</h5>
-          <p class="card-text">{{userDetails.expenditureSection}}</p>
+          <p class="card-text">{{userinfo.expenditureSection}}</p>
           <h5 class="card-subtitle mb-2 text-muted">Expenditure Date:</h5>
-          <p class="card-text">{{userDetails.expenditureDate}}</p>
+          <p class="card-text">{{userinfo.expenditureDate}}</p>
           <h5 class="card-subtitle mb-2 text-muted">Total Expenditure:</h5>
-          <p class="card-text">{{userDetails.totalExpenditure}}</p>
+          <p class="card-text">{{userinfo.totalExpenditure}}</p>
         </div>
       </div>
       <div class="mt-4">
         
         <h5 class="card-subtitle mb-2 text-muted">Date Uploaded:</h5>
-        <p class="card-text">{{userDetails.dateuploaded}}</p>
+        <p class="card-text">{{userinfo.dateuploaded}}</p>
         <hr>
   
         
         <mat-card-subtitle>
           <span>Media/Document :</span>
-          <ng-container *ngFor="let media of userDetails.productImage">
+          <ng-container *ngFor="let media of userinfo.productImage">
             <ng-container *ngIf="media.endsWith('.jpg') || media.endsWith('.png') || media.endsWith('.gif') || media.endsWith('.jpeg')">
               <img class="Image" src="http://localhost:3000/{{media}}">
             </ng-container>

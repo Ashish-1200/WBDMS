@@ -8,23 +8,20 @@ import { ViewfreportService } from './viewfreports.service';
 })
 export class ViewfreportsComponent implements OnInit {
 
-  userId:string = '';
-  
-  userDetails:any;
+  userIdStr:string = '';
+  public currentFreport: any;
+  userinfo:any;
 
-  constructor(private activatedroute:ActivatedRoute, private freportviewS:ViewfreportService) { }
+  constructor(private activatedRouteObj:ActivatedRoute, private freportServiceObj:ViewfreportService) { }
 
-  ngOnInit(): void {
-    this.activatedroute.params.subscribe(data =>{
-      this.userId = data['id']
-      console.log(data)
-    })
-    this.freportviewS. viewfreport(this.userId).subscribe(data =>{
-      this.userDetails = data;
-      console.log(data);
-    })
-  }
+ngOnInit(): void {
+this.activatedRouteObj.params.subscribe(paramsObj =>{
+this.userIdStr = paramsObj['id']
+console.log(paramsObj)
+})
 
-  
-  
+this.freportServiceObj.viewfreport(this.userIdStr).subscribe(responseData =>{
+  this.userinfo = responseData;
+  console.log(responseData);
+})}
 }
