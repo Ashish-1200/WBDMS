@@ -4,7 +4,7 @@ export interface insurance {
     departmentName:string;
     period: string;
     projectDescription:string;
-    projectDate: string;
+    
    insuranceDate: String;
     dateuploaded: string;
     commentbox:string;

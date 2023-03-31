@@ -23,13 +23,11 @@ _id: mongoose.Types.ObjectId(),
 departmentName: req.body.departmentName,
 period: req.body.period,
 projectDescription: req.body.projectDescription,
-projectDate: req.body.projectDate,
-insuranceDate: req.body.insuranceDate
+insuranceDate: req.body.insuranceDate,
+mediaFiles:req.files.map(mediaFiles=>mediaFiles.path)
 });
 
-newInsuranceReport
-.save()
-.then((savedInsuranceReport) => {
+newInsuranceReport.save().then((savedInsuranceReport) => {
 res.status(200).json(savedInsuranceReport);
 })
 .catch((error) => {
@@ -46,7 +44,7 @@ $set: {
 departmentName: req.body.departmentName,
 period: req.body.period,
 projectDescription: req.body.projectDescription,
-projectDate: req.body.projectDate,
+
 insuranceDate: req.body.insuranceDate,
 commentbox:req.body.commentbox,
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { CreatefreportsService } from './createfreports.service';
+
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -31,7 +31,7 @@ totalExpenditure: new FormControl('', Validators.required),
 mediaFiles: new FormControl(null, Validators.required)
 });
 
-constructor(private _snackBar: MatSnackBar, private createfreportsService: CreatefreportsService,
+constructor(private _snackBar: MatSnackBar, 
 private http: HttpClient, private router: Router) { }
 
 ngOnInit(): void { }

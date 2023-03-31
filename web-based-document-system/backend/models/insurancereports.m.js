@@ -21,14 +21,11 @@ type: String,
 required: true
 },
 
-projectDate: {
-type: Date,
-default: () => Date.now()
-},
+
 
 insuranceDate: {
-type: Date,
-default: () => Date.now()
+    type: String,
+    required: true
 },
 
 dateuploaded:{

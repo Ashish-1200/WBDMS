@@ -25,17 +25,20 @@ import { CreateformeventComponent } from './event/createformevent/createformeven
 import { UpdateformeventComponent } from './event/updateformevent/updateformevent.component';
 import { ViewformeventComponent } from './event/viewformevent/viewformevent.component';
 //import { Equipauth } from './authentication/equip.auth';
-import { eventauth } from './authentication/event.auth';
+//import { eventauth } from './authentication/event.auth';
 import { FreportsComponent } from './freports/freports.component';
 import { CreatefreportsComponent } from './freports/createfreports/createfreports.component';
-import { UpdatefreportService } from './freports/updatefreports/updatefreports.service';
+//import { UpdatefreportService } from './freports/updatefreports/updatefreports.service';
 import { ViewfreportsComponent } from './freports/viewfreports/viewfreports.component';
 import { UpdatefreportsComponent } from './freports/updatefreports/updatefreports.component';
-import { insurereportservice } from './insurancereports/insurancereports.service';
+import { InsurancereportComponent } from './insurancereports/insurancereport.component';
+import { CreateinsurereportsComponent } from './insurancereports/createinsurereports/createinsurereports.component';
+import { ViewinsurereportsComponent } from './insurancereports/viewinsurereports/viewinsurereports.component';
+import { UpdateinsurereportsComponent } from './insurancereports/updateinsurereports/updateinsurereports.component';
 
 
 
-//boom
+
 const routes: Routes = [
   { path: '', redirectTo: '/mainpage', pathMatch: 'full' },
  {path:'signup',component:SignupComponent},
@@ -66,6 +69,14 @@ const routes: Routes = [
  {path:"createfreports",component:CreatefreportsComponent},
  {path:"updatefreports/:id",component:UpdatefreportsComponent},
  {path:"viewfreports/:id",component:ViewfreportsComponent},
+
+ {path: "insurancereport",component:InsurancereportComponent,},
+ {path: "createinsurereports",component:CreateinsurereportsComponent,},
+ {path: "viewinsurereports/:id",component:ViewinsurereportsComponent,},
+ {path: "updateinsurereports/:id",component:UpdateinsurereportsComponent,},
+
+
+
 
  
 

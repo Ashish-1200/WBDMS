@@ -48,9 +48,9 @@ app.use('/equipmentinventory', wbequipmentinventory);
 app.use('/event', wbevent);
 app.use('/financialreport', wbfinancialreports);
 app.use('/incidentreport', wbincidentreports);
-app.use('/insurancereports', wbinsurancereports);
-app.use('/intendedprojects', wbintendedprojects);
-app.use('/policies', wbpolicies);
+app.use('/insurancereport', wbinsurancereports);
+app.use('/intendedproject', wbintendedprojects);
+app.use('/policie', wbpolicies);
 app.use('/public', wbpublic);
 app.use('/volunteer', wbvolunteer);
 

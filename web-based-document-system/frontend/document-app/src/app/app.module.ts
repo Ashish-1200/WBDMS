@@ -25,10 +25,10 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { IncidentreportsComponent } from './incidentreports/incidentreports.component';
 import { EquipmentinventoryComponent } from './equipmentinventory/equipmentinventory.component';
 import { EventComponent } from './event/event.component';
-//import { FinincialreportsComponent } from './finincialreports/finincialreports.component';
 
-//import { IntendedprojectsComponent } from './intendedprojects/intendedprojects.component';
-//import { PoliciesComponent } from './policies/policies.component';
+
+import { IntendedprojectsComponent } from './intendedprojects/intendedprojects.component';
+import { PoliciesComponent } from './policies/policies.component';
 
 //import { UserupdateComponent } from './userupdate/userupdate.component';
 
@@ -59,6 +59,12 @@ import { UpdatefreportsComponent } from './freports/updatefreports/updatefreport
 import { CreatefreportsComponent } from './freports/createfreports/createfreports.component';
 import { ViewfreportsComponent } from './freports/viewfreports/viewfreports.component';
 import { freportservice } from './freports/freports.service';
+import { insurereportservice } from './insurancereports/insurancereports.service';
+import { ViewinsurereportsComponent } from './insurancereports/viewinsurereports/viewinsurereports.component';
+import { CreateinsurereportsComponent } from './insurancereports/createinsurereports/createinsurereports.component';
+import { UpdateinsurereportsComponent } from './insurancereports/updateinsurereports/updateinsurereports.component';
+import { InsurancereportComponent } from './insurancereports/insurancereport.component';
+
 
 //import { CreateinsurereportsComponent } from './insurancereports/createinsurereports/createinsurereports.component';
 //import { UpdateinsurereportsComponent } from './insurancereports/updateinsurereports/updateinsurereports.component';
@@ -76,16 +82,17 @@ import { freportservice } from './freports/freports.service';
     SignupComponent,
     UsersComponent,
     HomepageComponent,
-
    IncidentreportsComponent,
     EquipmentinventoryComponent,
     EventComponent,
     FreportsComponent,
-    //IntendedprojectsComponent,
-    //PoliciesComponent,
-   // UserupdateComponent,
+    IntendedprojectsComponent,
+  InsurancereportComponent,
+  PoliciesComponent,
+   //UserupdateComponent,
     MainpageComponent,
-    
+
+
 CreateformComponent,
     ViewformComponent,
     UpdateformComponent,
@@ -102,10 +109,14 @@ CreateformComponent,
     CreatefreportsComponent,
     ViewfreportsComponent,
 
+    ViewinsurereportsComponent,
+    CreateinsurereportsComponent,
+    UpdateinsurereportsComponent,
+    
+    
+
   
-   // CreateinsurereportsComponent,
-   // UpdateinsurereportsComponent,
-   // ViewinsurereportsComponent,
+   
     
     
     
@@ -141,7 +152,7 @@ CreateformComponent,
 
   
   ],
-providers: [ LoginService, SignupService, UsersService, incidentreportservice, equipinventoryservice, eventservice, freportservice],
+providers: [ LoginService, SignupService, UsersService, incidentreportservice, equipinventoryservice, eventservice, freportservice, insurereportservice],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
