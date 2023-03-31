@@ -12,47 +12,42 @@ import { HttpClient } from '@angular/common/http';
 export class SignupComponent implements OnInit {
 
   isLoading = false;
-  hidePassword = true;
+  hide = true;
+  constructor(public signupService:SignupService, private _snackBar: MatSnackBar) {}
+  
 
-  constructor(public signupService: SignupService, private _snackBar: MatSnackBar) {}
 
-  userForm = new FormGroup({
-    username: new FormControl('', Validators.required, this.signupService.checkUsernameAvailability.bind(this.signupService)),
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required, this.signupService.checkEmailAvailability.bind(this.signupService)),
-    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-    userType: new FormControl('', [Validators.required])
+  form = new FormGroup({
+    Username: new FormControl('', Validators.required, this.signupService.CheckUsernameNotTaken.bind(this.signupService)),
+    Firstname: new FormControl('', Validators.required),
+    Lastname: new FormControl('', Validators.required),
+    Email: new FormControl('', Validators.required, this.signupService.CheckEmailNotTaken.bind(this.signupService)),
+    Password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    UserType: new FormControl('', [Validators.required])
   });
 
-  submitForm() {
-    if (this.userForm.invalid) {
-      return;
-    }
+  
+  SaveData() {
+    if (this.form.invalid) return;
 
-    this.isLoading = true;
-    this.signupService.addUserForm(this.userForm.value)
-      .subscribe(() => {
-        this.userForm.reset({});
-        this._snackBar.open('Registration Successful', '', {
-          verticalPosition: 'top',
-          panelClass: 'edit'
-        });
-      })
-      .add(() => {
-        this.isLoading = false;
+    this.signupService.addUserForm(this.form.value)
+      .subscribe((result) => {
+        this.form.reset({});
+        console.log(result);
       });
-  }
 
-  ngOnInit(): void {
-    this.isLoading = true;
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 2000);
-  }
+      
+      
+    }
+    
+    ngOnInit(): void {
 
-  togglePasswordVisibility() {
-    this.hidePassword = !this.hidePassword;
-  }
 
-}
+    }
+  }
+  
+
+  
+
+
+

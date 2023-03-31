@@ -30,7 +30,7 @@ import { EventComponent } from './event/event.component';
 //import { IntendedprojectsComponent } from './intendedprojects/intendedprojects.component';
 //import { PoliciesComponent } from './policies/policies.component';
 
-import { UserupdateComponent } from './userupdate/userupdate.component';
+//import { UserupdateComponent } from './userupdate/userupdate.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -80,7 +80,7 @@ import { freportservice } from './freports/freports.service';
     //InsurancereportsComponent,
     //IntendedprojectsComponent,
     //PoliciesComponent,
-    UserupdateComponent,
+   // UserupdateComponent,
     MainpageComponent,
     
 CreateformComponent,
