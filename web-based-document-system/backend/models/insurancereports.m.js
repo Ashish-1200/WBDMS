@@ -4,10 +4,7 @@ const insurancereportsSchema = new mongoose.Schema({
 
 _id: mongoose.Schema.Types.ObjectId,
 
-adminID: {
-type: mongoose.Schema.Types.ObjectId,
-ref: "Admins"
-},
+
 
 departmentName: {
 type: String,
@@ -34,12 +31,29 @@ type: Date,
 default: () => Date.now()
 },
 
+dateuploaded:{
+    type:Date,
+        default: () => Date.now(),
+},
 
-uploadDocument: {
-    type: [String]
-    }
+commentbox: {
+    type: String,
+     required: null
+    },
+ 
+ 
+ IncidentPicture:Buffer,
+     mediaFiles:{
+       type:[String]
+ },
+ 
+ version: {
+     type: Number,
+     default: 1
+   },
+
+   
 });
-
 
 
 module.exports = mongoose.model("insurancereports", insurancereportsSchema);

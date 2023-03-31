@@ -19,6 +19,7 @@ import { EquipmentinventoryComponent } from './equipmentinventory/equipmentinven
 import { CreateformequipComponent } from './equipmentinventory/createformequip/createformequip.component';
 import { UpdateformequipComponent } from './equipmentinventory/updateformequip/updateformequip.component';
 import { ViewformequipComponent } from './equipmentinventory/viewformequip/viewformequip.component';
+
 import { EventComponent } from './event/event.component';
 import { CreateformeventComponent } from './event/createformevent/createformevent.component';
 import { UpdateformeventComponent } from './event/updateformevent/updateformevent.component';
@@ -30,6 +31,7 @@ import { CreatefreportsComponent } from './freports/createfreports/createfreport
 import { UpdatefreportService } from './freports/updatefreports/updatefreports.service';
 import { ViewfreportsComponent } from './freports/viewfreports/viewfreports.component';
 import { UpdatefreportsComponent } from './freports/updatefreports/updatefreports.component';
+import { insurereportservice } from './insurancereports/insurancereports.service';
 
 
 
@@ -65,6 +67,7 @@ const routes: Routes = [
  {path:"updatefreports/:id",component:UpdatefreportsComponent},
  {path:"viewfreports/:id",component:ViewfreportsComponent},
 
+ 
 
 
  
