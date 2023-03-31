@@ -26,7 +26,7 @@ import { IncidentreportsComponent } from './incidentreports/incidentreports.comp
 import { EquipmentinventoryComponent } from './equipmentinventory/equipmentinventory.component';
 import { EventComponent } from './event/event.component';
 //import { FinincialreportsComponent } from './finincialreports/finincialreports.component';
-//import { InsurancereportsComponent } from './insurancereports/insurancereports.component';
+
 //import { IntendedprojectsComponent } from './intendedprojects/intendedprojects.component';
 //import { PoliciesComponent } from './policies/policies.component';
 
@@ -59,6 +59,12 @@ import { UpdatefreportsComponent } from './freports/updatefreports/updatefreport
 import { CreatefreportsComponent } from './freports/createfreports/createfreports.component';
 import { ViewfreportsComponent } from './freports/viewfreports/viewfreports.component';
 import { freportservice } from './freports/freports.service';
+import { IreportsComponent } from './ireports/ireports.component';
+import { IreportComponent } from './Ireport/ireport/ireport.component';
+
+//import { CreateinsurereportsComponent } from './insurancereports/createinsurereports/createinsurereports.component';
+//import { UpdateinsurereportsComponent } from './insurancereports/updateinsurereports/updateinsurereports.component';
+//import { ViewinsurereportsComponent } from './insurancereports/viewinsurereports/viewinsurereports.component';
 
 
 
@@ -98,6 +104,13 @@ CreateformComponent,
     UpdatefreportsComponent,
     CreatefreportsComponent,
     ViewfreportsComponent,
+    IreportsComponent,
+    IreportComponent,
+
+  
+   // CreateinsurereportsComponent,
+   // UpdateinsurereportsComponent,
+   // ViewinsurereportsComponent,
     
     
     
