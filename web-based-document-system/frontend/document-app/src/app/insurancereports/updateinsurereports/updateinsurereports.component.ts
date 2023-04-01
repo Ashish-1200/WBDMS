@@ -13,41 +13,44 @@ import { UpdateIreportService } from './updateir.service';
 export class UpdateinsurereportsComponent implements OnInit {
 
   form!: FormGroup;
-  message = false;
-  FRdata: any;
+  message: boolean = false;
+  Insurancedata: any;
 
   constructor(
     private activatedroute: ActivatedRoute,
     private updateservice: UpdateIreportService,
-    private viewservice:  ViewIRService,
+    private viewservice: ViewIRService,
     private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
+    this.form = new FormGroup({
+      departmentName: new FormControl('', Validators.required),
+      period: new FormControl('', Validators.required),
+      projectDescription: new FormControl('', Validators.required),
+      insuranceDate: new FormControl('', Validators.required),
+      commentbox: new FormControl('', Validators.required),
+    });
+
     const id = this.activatedroute.snapshot.params['id'];
     this.viewservice.viewIreport(id).subscribe((result: any) => {
       console.log(result);
-      this.FRdata = result;
-      this.initForm(result);
-    });
-  }
-
-  private initForm(data: any): void {
-    this.form = new FormGroup({
-      departmentName: new FormControl(data.departmentName, Validators.required),
-      period: new FormControl(data.period, Validators.required),
-      projectDescription: new FormControl(data.projectDescription, Validators.required),
-      insuranceDate: new FormControl(data.insuranceDate, Validators.required),
-    
-      commentbox: new FormControl(data.commentbox, Validators.required),
+      this.Insurancedata = result;
+      this.form.patchValue({
+        departmentName: result['departmentName'],
+        period: result['period'],
+        projectDescription: result['projectDescription'],
+        insuranceDate: result['insuranceDate'],
+        commentbox: result['commentbox'],
+      });
     });
   }
 
   updateData(): void {
     const updatedData = this.form.value;
-    updatedData.version = this.FRdata.version + 1;
+    updatedData.version = this.Insurancedata.version + 1;
     console.log(updatedData);
-    this.updateservice.updateform(this.FRdata._id, updatedData).subscribe((result) => {
+    this.updateservice.updateform(this.Insurancedata._id, updatedData).subscribe((result) => {
       console.log(result);
       this.snackBar.open('Updated Successfully', '', {
         verticalPosition: 'top',
@@ -55,7 +58,4 @@ export class UpdateinsurereportsComponent implements OnInit {
       });
     });
   }
-
- 
-
 }

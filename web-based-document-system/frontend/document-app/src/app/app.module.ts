@@ -64,6 +64,9 @@ import { ViewinsurereportsComponent } from './insurancereports/viewinsurereports
 import { CreateinsurereportsComponent } from './insurancereports/createinsurereports/createinsurereports.component';
 import { UpdateinsurereportsComponent } from './insurancereports/updateinsurereports/updateinsurereports.component';
 import { InsurancereportComponent } from './insurancereports/insurancereport.component';
+import { ViewpolicyComponent } from './policies/viewpolicy/viewpolicy.component';
+import { CreatepolicyComponent } from './policies/createpolicy/createpolicy.component';
+import { UpdatepolicyComponent } from './policies/updatepolicy/updatepolicy.component';
 
 
 //import { CreateinsurereportsComponent } from './insurancereports/createinsurereports/createinsurereports.component';
@@ -112,6 +115,10 @@ CreateformComponent,
     ViewinsurereportsComponent,
     CreateinsurereportsComponent,
     UpdateinsurereportsComponent,
+    
+    ViewpolicyComponent,
+    CreatepolicyComponent,
+    UpdatepolicyComponent,
     
     
 

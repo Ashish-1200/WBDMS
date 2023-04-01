@@ -158,7 +158,7 @@ exports.delete_user = function (req, res, next) {
         .then(result => {
             console.log(result);
             res.status(200).json({
-                message: "The User is deleted"
+                message: "The User deleted"
             })
         })
         .catch(err => {

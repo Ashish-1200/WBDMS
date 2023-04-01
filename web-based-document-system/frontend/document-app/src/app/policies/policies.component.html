@@ -1,1 +1,85 @@
-<p>policies works!</p>
+<mat-toolbar color="primary">
+    <span>Policy Reports</span>
+    <span class="spacer"></span>
+    <button mat-raised-button color="accent" routerLink="/createpolicy">Create Form</button>
+    <button mat-raised-button color="warn" routerLink="/mainpage" class="logout">Logout</button>
+    <button mat-raised-button color="warn" routerLink="/homepage" class="back">Back</button>
+  </mat-toolbar>
+  
+  <mat-card class="mat-elevation-z8">
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+      </mat-form-field>
+      <mat-table [dataSource]="dataSource" matSort>
+  
+        <!-- Policy ID Column -->
+        <ng-container matColumnDef="_id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Policy ID </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element._id}} </mat-cell>
+        </ng-container>
+  
+        <!-- Department Name Column -->
+        <ng-container matColumnDef="departmentName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Department Name</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.departmentName}} </mat-cell>
+        </ng-container>
+  
+    
+  
+        <!-- Purpose -->
+        <ng-container matColumnDef="Purpose">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Purpose </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Purpose}} </mat-cell>
+        </ng-container>
+  
+        <!-- Terms -->
+        <ng-container matColumnDef="Terms">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Terms</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Terms}} </mat-cell>
+        </ng-container>
+         <!-- Scope -->
+         <ng-container matColumnDef="Scope">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Scope</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Scope}} </mat-cell>
+          </ng-container>
+  
+        <!-- Date Uploaded Column -->
+        <ng-container matColumnDef="dateuploaded">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Date Uploaded </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.dateuploaded | date}} </mat-cell>
+        </ng-container>
+  
+        <!-- Options Column -->
+        <ng-container matColumnDef="Options">
+          <mat-header-cell *matHeaderCellDef> Options </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <a mat-icon-button [routerLink]="['/viewpolicy', element._id]">
+              <mat-icon>visibility</mat-icon>
+            </a>
+            <a mat-icon-button [routerLink]="['/updatepolicy', element._id]">
+              <mat-icon>edit</mat-icon>
+            </a>
+            <button *ngIf="remove" mat-icon-button (click)=" deletepolicyreport(element._id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+  
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+  
+  <style>
+    .spacer {
+      flex: 1 1 auto;
+    }
+    
+    .logout {
+      margin-left: auto;
+    }
+  </style>

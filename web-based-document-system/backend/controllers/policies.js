@@ -16,13 +16,14 @@ exports.getPolicy = (req, res) => {
 exports.createPolicy = (req, res) => {
   const newPolicy = new Policy({
     _id: mongoose.Types.ObjectId(),
-    adminId: req.body.adminId,
+   
     departmentName: req.body.departmentName,
     purpose: req.body.purpose,
     terms: req.body.terms,
     scope: req.body.scope,
     limitations: req.body.limitations,
-    period: req.body.period
+    period: req.body.period,
+    mediaFiles:req.files.map(mediaFiles=>mediaFiles.path)
   });
   
   newPolicy.save()
@@ -33,22 +34,35 @@ exports.createPolicy = (req, res) => {
 exports.updatePolicy = (req, res) => {
   const id = req.params.id;
   Policy.updateOne({ _id: id }, { $set: {
-    adminId: req.body.adminId,
+    
     departmentName: req.body.departmentName,
     purpose: req.body.purpose,
     terms: req.body.terms,
     scope: req.body.scope,
     limitations: req.body.limitations,
-    period: req.body.period
+    period: req.body.period,
+    commentbox:req.body.commentbox
   }})
     .exec()
     .then(updatedPolicy => res.send(updatedPolicy))
     .catch(error => console.log(error));
 };
 
-exports.deletePolicy = (req, res) => {
-  Policy.deleteOne({ _id: req.params.id })
+
+exports.deletePolicy = function(req, res, next) {
+  console.log('Policy ID:', req.params.PReportID); // log the value here
+  financialReports.deleteMany({ _id: req.params.PReportID })
     .exec()
-    .then(() => res.status(200).json({ message: 'Policy deleted!' }))
-    .catch(error => console.log(error));
-};
+    .then(result => {
+      console.log(result);
+      res.status(200).json({
+        message: 'Policy report deleted!'
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+  };

@@ -35,6 +35,10 @@ import { InsurancereportComponent } from './insurancereports/insurancereport.com
 import { CreateinsurereportsComponent } from './insurancereports/createinsurereports/createinsurereports.component';
 import { ViewinsurereportsComponent } from './insurancereports/viewinsurereports/viewinsurereports.component';
 import { UpdateinsurereportsComponent } from './insurancereports/updateinsurereports/updateinsurereports.component';
+import { PoliciesComponent } from './policies/policies.component';
+import { CreatepolicyComponent } from './policies/createpolicy/createpolicy.component';
+import { ViewpolicyComponent } from './policies/viewpolicy/viewpolicy.component';
+import { UpdatepolicyComponent } from './policies/updatepolicy/updatepolicy.component';
 
 
 
@@ -74,6 +78,12 @@ const routes: Routes = [
  {path: "createinsurereports",component:CreateinsurereportsComponent,},
  {path: "viewinsurereports/:id",component:ViewinsurereportsComponent,},
  {path: "updateinsurereports/:id",component:UpdateinsurereportsComponent,},
+
+ {path: "policies",component:PoliciesComponent,},
+ {path: "createpolicy",component:CreatepolicyComponent,},
+ {path: "viewpolicy",component:ViewpolicyComponent,},
+ {path: "updatepolicy",component:UpdatepolicyComponent,},
+
 
 
 

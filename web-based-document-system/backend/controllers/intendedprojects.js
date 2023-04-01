@@ -25,8 +25,7 @@ exports.getIntendedProject = (req, res, next) => {
 exports.createIntendedProject = (req, res, next) => {
   const newIntendedProject = new IntendedProject({
     _id: mongoose.Types.ObjectId(),
-    adminId: req.body.adminId,
-    publicId: req.body.publicId,
+    
     projectDescription: req.body.projectDescription,
     startDate: req.body.startDate,
     finishDate: req.body.finishDate,
@@ -49,13 +48,14 @@ exports.updateIntendedProject = (req, res, next) => {
     { _id: req.params.id },
     {
       $set: {
-        adminId: req.body.adminId,
-        publicId: req.body.publicId,
+        //adminId: req.body.adminId,
+      //  publicId: req.body.publicId,
         projectDescription: req.body.projectDescription,
         startDate: req.body.startDate,
         finishDate: req.body.finishDate,
         personnelRequired: req.body.personnelRequired,
         costRequired: req.body.costRequired,
+        commentbox:req.body.commentbox,
       },
     }
   )
@@ -64,17 +64,26 @@ exports.updateIntendedProject = (req, res, next) => {
       res.status(200).json(updatedIntendedProject);
     })
     .catch((error) => {
-      res.status(500).send({ message: 'Failed to update intended project.' });
+      res.status(500).send({ message: 'Didnt update intended project.' });
     });
 };
 
-exports.deleteIntendedProject = (req, res, next) => {
-  IntendedProject.deleteOne({ _id: req.params.id })
-    .exec()
-    .then(() => {
-      res.status(200).send({ message: 'Intended project deleted.' });
-    })
-    .catch((error) => {
-      res.status(500).send({ message: 'Failed to delete intended project.' });
-    });
+
+
+    exports.deleteIntendedProject = function(req, res, next) {
+      console.log('Intended projects ID:', req.params.IPReportID); // log the value here
+      financialReports.deleteMany({ _id: req.params.IPReportID })
+        .exec()
+        .then(result => {
+          console.log(result);
+          res.status(200).json({
+            message: 'Intended project report deleted!'
+          });
+        })
+        .catch(err => {
+          console.log(err);
+          res.status(500).json({
+            error: err
+          });
+        });
 };

@@ -2,10 +2,7 @@ const mongoose = require("mongoose");
 
 const IntendedProjectsSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  adminID: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "admins",
-  },
+ 
   ProjectTitle: {
     type: String,
     required: true,
@@ -30,9 +27,27 @@ const IntendedProjectsSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  uploadDocument: {
-    type: [String]
-    }
+  dateuploaded:{
+    type:Date,
+        default: () => Date.now(),
+},
+
+commentbox: {
+    type: String,
+     required: null
+    },
+ 
+ 
+ IncidentPicture:Buffer,
+     mediaFiles:{
+       type:[String]
+ },
+ 
+ version: {
+     type: Number,
+     default: 1
+   },
+
 });
 
 module.exports = mongoose.model("intendedprojects", IntendedProjectsSchema);
