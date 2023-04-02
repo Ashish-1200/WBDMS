@@ -53,9 +53,9 @@ router.get('/:id', IntendedProjectController.getIntendedProject);
 router.post('/create', upload.array('mediaFiles') , IntendedProjectController.createIntendedProject);
 
 // Update an intended project by ID
-router.put('/update', IntendedProjectController.updateIntendedProject);
+router.put('/:update', IntendedProjectController.updateIntendedProject);
 
 // Delete an intended project by ID
-router.delete('/IPReportID', IntendedProjectController.deleteIntendedProject);
+router.delete('/:IPReportID', IntendedProjectController.deleteIntendedProject);
 
 module.exports = router;

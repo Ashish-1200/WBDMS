@@ -33,6 +33,7 @@ exports.createIntendedProject = (req, res, next) => {
     ProjectStartDate: req.body. ProjectStartDate,
     ProjectEndDate: req.body. ProjectEndDate,
     ProjectStatus: req.body.ProjectStatus,
+
     expenditureDate:req.body.expenditureDate,
     totalExpenditure: req.body.totalExpenditure,
     mediaFiles:req.files.map(mediaFiles=>mediaFiles.path)
@@ -43,13 +44,14 @@ exports.createIntendedProject = (req, res, next) => {
   .catch(error => console.log(error));
 };
 
-exports.updateIntendedProject = (req, res, next) => {
-  IntendedProject.updateOne(
-    { _id: req.params.id },
-    {
-      $set: {
-        //adminId: req.body.adminId,
-      //  publicId: req.body.publicId,
+
+
+exports.updateIntendedProject = function(req, res, next) {
+  const id = req.params.update;
+  IntendedProject.updateOne( { _id: id },
+  {
+  $set: {
+  
       ProjectDescription: req.body.ProjectDescription,
       ProjectTitle: req.body.ProjectTitle,
       ProjectBudget: req.body.ProjectBudget,
@@ -58,24 +60,30 @@ exports.updateIntendedProject = (req, res, next) => {
       ProjectStatus: req.body.ProjectStatus,
       expenditureDate:req.body.expenditureDate,
       totalExpenditure: req.body.totalExpenditure,
-        commentbox:req.body.commentbox,
-      },
-    }
+      commentbox:req.body.commentbox,
+  }
+  }
   )
-    .exec()
-    .then((updatedIntendedProject) => {
-      res.status(200).json(updatedIntendedProject);
-    })
-    .catch((error) => {
-      res.status(500).send({ message: 'Didnt update intended project.' });
-    });
-};
+  .exec()
+  .then(function(dbIntended) {
+  res.send(dbIntended);
+  })
+  .catch(function(err) {
+  res.send('Cannot update Intended projects entry.');
+  });
+  };
+  
+
+
+
+
+
 
 
 
     exports.deleteIntendedProject = function(req, res, next) {
       console.log('Intended projects ID:', req.params.IPReportID); // log the value here
-      financialReports.deleteMany({ _id: req.params.IPReportID })
+      IntendedProject.deleteMany({ _id: req.params.IPReportID })
         .exec()
         .then(result => {
           console.log(result);

@@ -28,6 +28,7 @@ exports.create_incident_report = function(req, res, next) {
     _id: mongoose.Types.ObjectId(),
     UserID: req.body.UserID,
     volunteerID: req.body.volunteerID,
+    department: req.body.department,
     publicID: req.body.publicID,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -68,6 +69,7 @@ exports.update_incident_report = function(req, res, next) {
     $set: {
     firstName:req.body.firstName,
     lastName:req.body.lastName,
+    department: req.body.department,
     gender:req.body.gender,
     age:req.body.age,
     address:req.body.address,

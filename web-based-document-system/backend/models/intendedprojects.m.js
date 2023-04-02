@@ -27,6 +27,16 @@ const IntendedProjectsSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+
+  expenditureDate: {
+    type: String,
+    required: true,
+  },
+  totalExpenditure: {
+    type: String,
+    required: true,
+  },
+
   dateuploaded:{
     type:Date,
         default: () => Date.now(),
