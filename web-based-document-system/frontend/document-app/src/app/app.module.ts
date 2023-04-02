@@ -68,10 +68,12 @@ import { ViewpolicyComponent } from './policies/viewpolicy/viewpolicy.component'
 import { CreatepolicyComponent } from './policies/createpolicy/createpolicy.component';
 import { UpdatepolicyComponent } from './policies/updatepolicy/updatepolicy.component';
 
+import { intendservice } from './intendedprojects/intendproject.service';
+import { ViewipComponent } from './intendedprojects/viewip/viewip.component';
+import { CreateipComponent } from './intendedprojects/createip/createip.component';
+import { UpdateipComponent } from './intendedprojects/updateip/updateip.component';
 
-//import { CreateinsurereportsComponent } from './insurancereports/createinsurereports/createinsurereports.component';
-//import { UpdateinsurereportsComponent } from './insurancereports/updateinsurereports/updateinsurereports.component';
-//import { ViewinsurereportsComponent } from './insurancereports/viewinsurereports/viewinsurereports.component';
+
 
 
 
@@ -119,6 +121,12 @@ CreateformComponent,
     ViewpolicyComponent,
     CreatepolicyComponent,
     UpdatepolicyComponent,
+
+    ViewipComponent,
+    CreateipComponent,
+    UpdateipComponent
+  
+
     
     
 
@@ -159,7 +167,7 @@ CreateformComponent,
 
   
   ],
-providers: [ LoginService, SignupService, UsersService, incidentreportservice, equipinventoryservice, eventservice, freportservice, insurereportservice],
+providers: [ LoginService, SignupService, UsersService, incidentreportservice, equipinventoryservice, eventservice, freportservice, insurereportservice, intendservice],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

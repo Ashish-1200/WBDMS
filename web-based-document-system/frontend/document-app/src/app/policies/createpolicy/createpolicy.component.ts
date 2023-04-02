@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class CreatepolicyComponent implements OnInit {
 
-  documents: any;
+documents: any;
 mediaFiles: FileList | null = null;
 mediainfo: any;
 useridentity: any;

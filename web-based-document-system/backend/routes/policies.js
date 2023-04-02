@@ -47,7 +47,7 @@ const upload = multer({
 router.get('/list', PoliciesController.getAllPolicies);
 router.get('/:id', PoliciesController.getPolicy);
 router.post('/create', upload.array('mediaFiles'),  PoliciesController.createPolicy);
-router.patch('/:updater',  PoliciesController.updatePolicy);
+router.put('/:update',  PoliciesController.updatePolicy);
 router.delete('/:PReportID', PoliciesController.deletePolicy);
 
 module.exports = router;

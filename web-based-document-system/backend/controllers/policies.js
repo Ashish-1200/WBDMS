@@ -31,10 +31,13 @@ exports.createPolicy = (req, res) => {
     .catch(error => console.log(error));
 };
 
-exports.updatePolicy = (req, res) => {
-  const id = req.params.id;
-  Policy.updateOne({ _id: id }, { $set: {
-    
+
+exports.updatePolicy = function(req, res, next) {
+  const id = req.params.update;
+  Policy.updateOne( { _id: id },
+  {
+  $set: {
+  
     departmentName: req.body.departmentName,
     purpose: req.body.purpose,
     terms: req.body.terms,
@@ -42,16 +45,21 @@ exports.updatePolicy = (req, res) => {
     limitations: req.body.limitations,
     period: req.body.period,
     commentbox:req.body.commentbox
-  }})
-    .exec()
-    .then(updatedPolicy => res.send(updatedPolicy))
-    .catch(error => console.log(error));
-};
-
+  }
+  }
+  )
+  .exec()
+  .then(function(dbPolicy) {
+  res.send(dbPolicy);
+  })
+  .catch(function(err) {
+  res.send('Cannot update Policy entry.');
+  });
+  };
 
 exports.deletePolicy = function(req, res, next) {
   console.log('Policy ID:', req.params.PReportID); // log the value here
-  financialReports.deleteMany({ _id: req.params.PReportID })
+  Policy.deleteMany({ _id: req.params.PReportID })
     .exec()
     .then(result => {
       console.log(result);
