@@ -40,6 +40,11 @@ import { CreatepolicyComponent } from './policies/createpolicy/createpolicy.comp
 import { ViewpolicyComponent } from './policies/viewpolicy/viewpolicy.component';
 import { UpdatepolicyComponent } from './policies/updatepolicy/updatepolicy.component';
 
+import { IntendedprojectsComponent } from './intendedprojects/intendedprojects.component';
+import { CreateipComponent } from './intendedprojects/createip/createip.component';
+import { ViewipComponent } from './intendedprojects/viewip/viewip.component';
+import { UpdateipComponent } from './intendedprojects/updateip/updateip.component';
+
 
 
 
@@ -85,7 +90,10 @@ const routes: Routes = [
  {path: "updatepolicy/:id",component:UpdatepolicyComponent,},
 
 
-
+ {path: "intendedprojects",component:IntendedprojectsComponent,},
+ {path: "createip",component:CreateipComponent,},
+ {path: "viewip/:id",component:ViewipComponent,},
+ {path: "updateip/:id",component:UpdateipComponent,},
 
 
  

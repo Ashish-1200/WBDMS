@@ -16,11 +16,11 @@ const IntendedProjectsSchema = mongoose.Schema({
     required: true,
   },
   ProjectStartDate: {
-    type: Date,
+    type: String,
     required: true,
   },
   ProjectEndDate: {
-    type: Date,
+    type: String,
     required: true,
   },
   ProjectStatus: {
