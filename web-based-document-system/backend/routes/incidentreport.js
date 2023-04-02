@@ -63,7 +63,7 @@ router.get('/list', IncidentReportController.incidentreport_list);              
 router.get("/:id", IncidentReportController.get_single_incident_report);
 router.put("/:update", IncidentReportController.update_incident_report);
 router.delete('/:incidentReportID', IncidentReportController.incidentreport_delete_one);    // Delete reports
-router.post('/create',upload.array('productImage'), IncidentReportController.create_incident_report);
+router.post('/create',upload.array('mediaFiles'), IncidentReportController.create_incident_report);
 
 
 module.exports = router;

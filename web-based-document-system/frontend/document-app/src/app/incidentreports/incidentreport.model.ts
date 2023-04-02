@@ -13,8 +13,8 @@ export interface incident {
     dateuploaded: string;
     commentbox:string;
     
-  IncidentPicture?:string;
-  productImage:[];
+  
+  mediaFiles:[];
 
 version: number;
 lastEditedBy?: string;

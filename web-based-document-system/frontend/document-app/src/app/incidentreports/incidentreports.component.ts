@@ -1,28 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { incidentreportservice } from './incidentreport.service';
-import { LoginService } from '../login/login.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { incidentreportservice } from './incidentreport.service';
+import { LoginService } from '../login/login.service';
 import { incident } from './incidentreport.model';
-
-
 
 @Component({
   selector: 'app-incidentreports',
   templateUrl: './incidentreports.component.html',
   styleUrls: ['./incidentreports.component.css'],
   providers: [incidentreportservice],
-  
 })
 export class IncidentreportsComponent implements OnInit {
-
-
-
   displayedColumns: string[] = [
-    
     '_id',
     'dateOfIncident',
     'lastName',
@@ -30,97 +22,70 @@ export class IncidentreportsComponent implements OnInit {
     'department',
     'dateuploaded',
     'Options'
-
-    ];
-    dataSource = new MatTableDataSource<incident>();
-    listIncidents: incident[] = [];
-    remove = false;
-    currentRole: any;
-    
-
+  ];
+  dataSource = new MatTableDataSource<incident>();
+  remove = false;
+  role: string | undefined;
 
   constructor(
     private incidentreportService: incidentreportservice,
     private loginService: LoginService,
     private _snackBar: MatSnackBar
-  ) { }
+  ) {}
 
-  @ViewChild(MatPaginator) paginator !: MatPaginator ;
-@ViewChild(MatSort) sort!: MatSort ;
-
-
-
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit(): void {
-
-    this.incidentreportService.listIncidentsrep().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      console.log(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-
-    });
-    this.loginService.updatemenu.subscribe((res) => {
-      this.MenuDisplay(); 
-      
-    });
-    
-    this.MenuDisplay(); // call the MenuDisplay function here
-
-  this.loginService.updatemenu.subscribe((res) => {
+    this.getIncidentReports();
+    this.loginService.updatemenu.subscribe(() => this.MenuDisplay());
     this.MenuDisplay();
-  });
-
   }
 
-  applyFilter(eventreport: Event) {
-    const filterValue = (eventreport.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  getIncidentReports(): void {
+    this.incidentreportService.getIncidents().subscribe((data) => {
+    this.dataSource.data = data;
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    });
+    }
+
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.dataSource.filter = filterValue;
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
 
-
-  MenuDisplay(){
-    if(this.loginService.getToken()!='')
-    this.currentRole=this.loginService.GetRolebyToken(this.loginService.getToken());
-    console.log('currentRole:', this.currentRole); // console log
-    this.remove = this.currentRole=='Administrator'; // allows only admin to access the delete button
-
+  MenuDisplay(): void {
+    if (this.loginService.getToken()) {
+      this.role = this.loginService.GetRolebyToken(this.loginService.getToken());
+      console.log('role:', this.role);
+      this.remove = this.role === 'Administrator';
+    }
   }
 
-//change code
-    delete(incident_id: any) {
-      if (confirm('You are going tp delete this form?')) {
-      this.incidentreportService.deleteUserrep(incident_id).subscribe((result) => {
-      console.log(result);
-      this.ngOnInit();
-      this._snackBar.open('Deleted!', '', {
+  delete(incident_id: any): void {
+    if (!confirm('Are you sure you want to permanently delete this form?')) {
+      return;
+    }
+    this.incidentreportService.deleteIncidents(incident_id).subscribe(
+      () => {
+        this.getIncidentReports();
+        this.showSnackBar('Deleted!', 'edit');
+      },
+      (error) => {
+        console.error(error);
+        this.showSnackBar('Error deleting form!', 'error');
+      }
+    );
+  }
+
+  showSnackBar(message: string, panelClass: string): void {
+    this._snackBar.open(message, '', {
       verticalPosition: 'top',
-      panelClass: 'edit',
-      });
-      });
-      }
-      }
-      }
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      panelClass: panelClass,
+    });
+  }
+}

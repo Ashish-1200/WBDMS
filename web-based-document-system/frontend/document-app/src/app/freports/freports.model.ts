@@ -13,7 +13,7 @@ export interface financial {
     dateuploaded: string;
     commentbox:string;
     
-  IncidentPicture?:string;
+ 
   mediaFiles:[];
 
 version: number;

@@ -9,10 +9,8 @@ export class  ViewformService {
 
   viewincidentForm(id:any)
  {
-  return this.http.get("http://localhost:3000/incidentreport/" +id)
 
-  
-
-}
-  }
+  const url = `http://localhost:3000/incidentreport/${id}`;
+    return this.http.get(url);
+ }}
 

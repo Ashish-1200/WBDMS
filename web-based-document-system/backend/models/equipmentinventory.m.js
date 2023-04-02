@@ -46,22 +46,20 @@ description: {
 
 
     dateuploaded:{
-        type:Date,
-            default: () => Date.now(),
-    },
-    
-    
-    commentbox: {
-       type: String,
-        required: false
-       },
-    
-    
-    IncidentPicture:Buffer,
-        productImage:{
-          type:[String]
-                     },
-    
+      type:Date,
+          default: () => Date.now(),
+  },
+  
+  commentbox: {
+      type: String,
+       required: null
+      },
+   
+   
+   IncidentPicture:Buffer,
+       mediaFiles:{
+         type:[String]
+   },
     version: {
         type: Number,
         default: 1

@@ -9,7 +9,7 @@ import { ViewfreportService } from './viewfreports.service';
 export class ViewfreportsComponent implements OnInit {
 
   userIdStr:string = '';
-  public currentFreport: any;
+  //public currentFreport: any;
   userinfo:any;
 
   constructor(private activatedRouteObj:ActivatedRoute, private freportServiceObj:ViewfreportService) { }

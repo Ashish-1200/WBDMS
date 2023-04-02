@@ -1,21 +1,19 @@
 import { Injectable } from "@angular/core";
 import { HttpClient} from "@angular/common/http";
 
-import {incident} from './incidentreport.model'
+
 
 
 @Injectable({ providedIn:"root"})
 export class  incidentreportservice {
-
+  private baseUrl = 'http://localhost:3000/incidentreport';
 
   constructor(private http: HttpClient ){ }
 
-  listIncidentsrep(){
-    return this.http.get <incident[]> ("http://localhost:3000/incidentreport/list")
-
+  getIncidents(){
+    return this.http.get(`${this.baseUrl}/list`);
   }
 
-  deleteUserrep(id:any){
-    return this.http.delete("http://localhost:3000/incidentreport/" + id)
-  }
-}
+  deleteIncidents(id:any){
+    return this.http.delete(`${this.baseUrl}/${id}`);
+}}

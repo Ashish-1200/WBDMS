@@ -12,9 +12,17 @@ import { UpdateformService } from './updateform.service';
   styleUrls: ['./updateform.component.css']
 })
 export class UpdateformComponent implements OnInit{
+  form!: FormGroup;
+  message: boolean = false;
+  incidentData: any;
+
+
+
+
   constructor(private activatedroute:ActivatedRoute, private updateservice:UpdateformService, private viewservice:ViewformService , private _snackBar: MatSnackBar) { }
 
-  form = new FormGroup({
+  ngOnInit(): void {
+    this.form = new FormGroup({
     //versionNumber: new FormControl(1),
     //lastEditedBy: new FormControl('',Validators.required),
     firstName: new FormControl('', Validators.required),
@@ -27,30 +35,27 @@ export class UpdateformComponent implements OnInit{
     description: new FormControl('', Validators.required),
    commentbox: new FormControl('', Validators.required),
    
-   
-
   });
-  message:boolean = false;
 
-  incidentData: any;
 
-  ngOnInit(): void {
+  ;
+
 
     this.viewservice.viewincidentForm(this.activatedroute.snapshot.params['id']) .subscribe((result:any)=>{
       console.log(result);
 
       this.incidentData = result;
 
-      this.form = new FormGroup({
-        firstName: new FormControl(result [' firstName'],Validators.required),
-        lastName: new FormControl(result['lastName'],Validators.required),
-        gender:new FormControl(result['gender'],Validators.required),
-        age:new FormControl(result['age'],Validators.required),
-        address: new FormControl(result['address']),
-        dateOfIncident: new FormControl(result['dateOfIncident'],Validators.required),
-        location:new FormControl(result['location'],Validators.required),
-        description:new FormControl(result['description'],Validators.required),
-        commentbox:new FormControl(result['commentbox'],Validators.required),
+      this.form.patchValue({
+        firstName: result [' firstName'],
+        lastName: result['lastName'],
+        gender:result['gender'],
+        age:result['age'],
+        address: result['address'],
+        dateOfIncident: result['dateOfIncident'],
+        location:result['location'],
+        description:result['description'],
+        commentbox:result['commentbox'],
         //lastEditedBy: new FormControl('current user', Validators.required),
         //versionNumber: new FormControl(1),
         
@@ -76,7 +81,7 @@ export class UpdateformComponent implements OnInit{
       console.log(result);
       this._snackBar.open('Updated Successfully','',{
         verticalPosition:'top',
-       // horizontalPosition:'center',
+    
         panelClass:'edit'
       })
 
@@ -86,8 +91,4 @@ export class UpdateformComponent implements OnInit{
 
   
   }
-  removeMessage() {
-
-  }
-
-}
+   }

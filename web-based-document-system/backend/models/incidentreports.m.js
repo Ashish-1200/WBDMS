@@ -50,21 +50,20 @@ type: String,
 required: true
 },
 dateuploaded:{
-    type:Date,
-        default: () => Date.now(),
+  type:Date,
+      default: () => Date.now(),
 },
-
 
 commentbox: {
-   type: String,
-    required: null
-   },
+  type: String,
+   required: null
+  },
 
-   IncidentPicture:Buffer,
-   productImage:{
+
+IncidentPicture:Buffer,
+   mediaFiles:{
      type:[String]
 },
-
 
 version: {
     type: Number,
