@@ -13,7 +13,7 @@ export interface intended {
     dateuploaded: string;
     commentbox:string;
     
-  IncidentPicture?:string;
+  allMedia?:string;
   mediaFiles:[];
 
 version: number;

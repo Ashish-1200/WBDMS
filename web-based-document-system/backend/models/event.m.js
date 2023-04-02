@@ -32,8 +32,8 @@ commentbox: {
      required: null
     },
 
-    IncidentPicture:Buffer,
-    productImage:{
+    allMedia:Buffer,
+    mediaFIles:{
       type:[String]
 },
 

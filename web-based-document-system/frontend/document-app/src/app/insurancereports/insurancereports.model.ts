@@ -9,8 +9,8 @@ export interface insurance {
     dateuploaded: string;
     commentbox:string;
     
-  IncidentPicture?:string;
-  productImage:[];
+    allMedia?:string;
+ mediaFiles:[];
 
 version: number;
 lastEditedBy?: string;

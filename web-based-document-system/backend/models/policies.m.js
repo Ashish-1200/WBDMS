@@ -41,7 +41,7 @@ commentbox: {
     },
  
  
- IncidentPicture:Buffer,
+ allMedia:Buffer,
      mediaFiles:{
        type:[String]
  },

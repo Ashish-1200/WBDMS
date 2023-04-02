@@ -11,7 +11,7 @@ export interface policy {
     dateUploaded: string;
     commentbox:string;
     
-  IncidentPicture?:string;
+    allMedia?:string;
   mediaFiles:[];
 
 version: number;
