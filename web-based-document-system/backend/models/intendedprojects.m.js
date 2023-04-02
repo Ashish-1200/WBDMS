@@ -12,7 +12,7 @@ const IntendedProjectsSchema = mongoose.Schema({
     required: true,
   },
   ProjectBudget: {
-    type: Number,
+    type: String,
     required: true,
   },
   ProjectStartDate: {

@@ -1,1 +1,72 @@
-<p>createip works!</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Financial Report Form</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/homepage">
+            <i class="fa fa-home"></i> Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">
+            <i class="fa fa-sign-out"></i> Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <h2>Create Form</h2>
+    <form [formGroup]="form" (ngSubmit)="SaveData()">
+      <div class="form-group">
+        <label for=" ProjectTitle">Project Title</label>
+        <input type="text" class="form-control" id=" ProjectTitle" placeholder="Enter  Project Title" formControlName="ProjectTitle" required>
+      </div>
+      <div class="form-group">
+        <label for="ProjectDescription">Project Description</label>
+        <input type="text" class="form-control" id="ProjectDescription" placeholder="Enter ProjectDescription" formControlName="ProjectDescription" required>
+      </div>
+      <div class="form-group">
+        <label for="ProjectBudget">Project Budget</label>
+        <input type="text" class="form-control" id="ProjectBudget" placeholder="Enter ProjectBudget" formControlName="ProjectBudget" required>
+      </div>
+  
+    
+      
+      <div class="form-group">
+        <label for="ProjectStartDate">Project Start Date</label>
+        <input type="ProjectStartDate" class="form-control" id="ProjectStartDate" placeholder="Enter Project start Date(MM/DD/YYYY)" formControlName="ProjectStartDate" required>
+      </div>
+      <div class="form-group">
+        <label for=" ProjectEndDate"> Project EndDate</label>
+        <textarea class="form-control" id=" ProjectEndDate" rows="3" placeholder="Enter project end date (MM/DD/YYYY)" formControlName="ProjectEndDate" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for=" ProjectStatus"> Project Status</label>
+        <input type="text" class="form-control" id=" ProjectStatus" placeholder="ProjectStatus" formControlName="ProjectStatus" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="expenditureDate">Expenditure Date</label>
+        <input type="text" class="form-control" id="expenditureDate" placeholder="Enter expenditureDate" formControlName="expenditureDate" required>
+      </div>
+      <div class="form-group">
+        <label for="totalExpenditure">Total Expenditure</label>
+        <textarea class="form-control" id="totalExpenditure" rows="3" placeholder="totalExpenditure" formControlName="totalExpenditure" required></textarea>
+      </div>
+      <div class="form-group">
+      
+        <div class="form-group">
+          <button class="btn btn-primary" type="button" (click)="filePicker.click()">Select</button>
+          <input class="Image" type="file" name="mediaFiles" #filePicker (change)="select($event)" />
+        </div>
+        
+        
+      
+      
+    
+    <button type="submit" class="btn btn-primary">Submit</button>

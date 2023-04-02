@@ -3,7 +3,7 @@ export interface intended {
     _id:string;
     ProjectTitle:string;
     ProjectDescription: string;
-    ProjectBudget:Number;
+    ProjectBudget: string;
     ProjectStartDate: string;
     ProjectEndDate:string;
     ProjectStatus:string;

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const checkAuth= require('../middleware/authcheck')
+//const checkAuth= require('../middleware/authcheck')
 const IntendedProjectController = require('../controllers/intendedprojects');
 const multer = require('multer');
 //const Intendedprojects = require('../models/intendedprojects.m');

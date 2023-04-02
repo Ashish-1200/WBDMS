@@ -25,22 +25,22 @@ exports.getIntendedProject = (req, res, next) => {
 exports.createIntendedProject = (req, res, next) => {
   const newIntendedProject = new IntendedProject({
     _id: mongoose.Types.ObjectId(),
-    
-    projectDescription: req.body.projectDescription,
-    startDate: req.body.startDate,
-    finishDate: req.body.finishDate,
-    personnelRequired: req.body.personnelRequired,
-    costRequired: req.body.costRequired,
-  });
 
-  newIntendedProject
-    .save()
-    .then((savedIntendedProject) => {
-      res.status(200).json(savedIntendedProject);
-    })
-    .catch((error) => {
-      res.status(500).send({ message: 'Failed to create intended project.' });
-    });
+    
+    ProjectTitle: req.body.ProjectTitle,
+    ProjectDescription: req.body.ProjectDescription,
+    ProjectBudget: req.body.ProjectBudget,
+    ProjectStartDate: req.body. ProjectStartDate,
+    ProjectEndDate: req.body. ProjectEndDate,
+    ProjectStatus: req.body.ProjectStatus,
+    expenditureDate:req.body.expenditureDate,
+    totalExpenditure: req.body.totalExpenditure,
+    mediaFiles:req.files.map(mediaFiles=>mediaFiles.path)
+  });
+  
+  newIntendedProject.save()
+  .then(savedReport => res.send(savedReport))
+  .catch(error => console.log(error));
 };
 
 exports.updateIntendedProject = (req, res, next) => {
@@ -50,11 +50,14 @@ exports.updateIntendedProject = (req, res, next) => {
       $set: {
         //adminId: req.body.adminId,
       //  publicId: req.body.publicId,
-        projectDescription: req.body.projectDescription,
-        startDate: req.body.startDate,
-        finishDate: req.body.finishDate,
-        personnelRequired: req.body.personnelRequired,
-        costRequired: req.body.costRequired,
+      ProjectDescription: req.body.ProjectDescription,
+      ProjectTitle: req.body.ProjectTitle,
+      ProjectBudget: req.body.ProjectBudget,
+      ProjectStartDate: req.body. ProjectStartDate,
+      ProjectEndDate: req.body. ProjectEndDate,
+      ProjectStatus: req.body.ProjectStatus,
+      expenditureDate:req.body.expenditureDate,
+      totalExpenditure: req.body.totalExpenditure,
         commentbox:req.body.commentbox,
       },
     }
