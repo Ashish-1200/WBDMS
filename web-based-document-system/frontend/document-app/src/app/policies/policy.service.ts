@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn:"root"})
 export class  policyservice {
-  private baseUrl = 'http://localhost:3000/policyreport';
+  private baseUrl = 'http://localhost:3000/policies';
 
 
   constructor(private http: HttpClient) { }

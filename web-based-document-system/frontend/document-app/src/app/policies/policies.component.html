@@ -46,16 +46,16 @@
           </ng-container>
   
         <!-- Date Uploaded Column -->
-        <ng-container matColumnDef="dateuploaded">
+        <ng-container matColumnDef="dateUploaded">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Date Uploaded </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.dateuploaded | date}} </mat-cell>
+          <mat-cell *matCellDef="let element"> {{element.dateUploaded | date}} </mat-cell>
         </ng-container>
   
         <!-- Options Column -->
         <ng-container matColumnDef="Options">
           <mat-header-cell *matHeaderCellDef> Options </mat-header-cell>
           <mat-cell *matCellDef="let element">
-            <a mat-icon-button [routerLink]="['/viewpolicy', element._id]">
+            <a mat-icon-button [routerLink]="['/viewpolicy',element._id]">
               <mat-icon>visibility</mat-icon>
             </a>
             <a mat-icon-button [routerLink]="['/updatepolicy', element._id]">

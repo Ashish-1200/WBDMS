@@ -50,7 +50,7 @@ app.use('/financialreport', wbfinancialreports);
 app.use('/incidentreport', wbincidentreports);
 app.use('/insurancereport', wbinsurancereports);
 app.use('/intendedproject', wbintendedprojects);
-app.use('/policie', wbpolicies);
+app.use('/policies', wbpolicies);
 app.use('/public', wbpublic);
 app.use('/volunteer', wbvolunteer);
 

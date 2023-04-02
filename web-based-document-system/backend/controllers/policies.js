@@ -18,11 +18,11 @@ exports.createPolicy = (req, res) => {
     _id: mongoose.Types.ObjectId(),
    
     departmentName: req.body.departmentName,
-    purpose: req.body.purpose,
-    terms: req.body.terms,
-    scope: req.body.scope,
-    limitations: req.body.limitations,
-    period: req.body.period,
+    Purpose: req.body.Purpose,
+    Terms: req.body.Terms,
+    Scope: req.body.Scope,
+    Limitations: req.body.Limitations,
+    
     mediaFiles:req.files.map(mediaFiles=>mediaFiles.path)
   });
   

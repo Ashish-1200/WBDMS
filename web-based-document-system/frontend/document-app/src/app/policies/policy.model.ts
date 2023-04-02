@@ -1,14 +1,14 @@
 export interface policy {
 
     _id:string;
-    departmentname:string;
+    departmentName:string;
     Purpose: string;
     Terms:string;
     Scope: string;
     Limitations:string;
    
    
-    dateuploaded: string;
+    dateUploaded: string;
     commentbox:string;
     
   IncidentPicture?:string;
