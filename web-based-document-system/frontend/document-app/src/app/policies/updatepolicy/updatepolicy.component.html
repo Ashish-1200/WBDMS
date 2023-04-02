@@ -1,44 +1,44 @@
 <div class="container">
     <h2>Update Form</h2>
     <div class="card-header d-flex justify-content-between align-items-center">
-      <h4 class="card-title text-center mb-0">Financial Report</h4>
+      <h4 class="card-title text-center mb-0">Policy Report</h4>
       <button class="btn btn-primary btn-sm ml-auto rounded-pill" routerLink="/policies" style="position: absolute; top: 15px; right: 15px;">Back</button>
   </div>
   
     
-    <form [formGroup]="form" (ngSubmit)="updateData()">
-      <div class="form-group">
-        <label for="departmentName">Department Name</label>
-        <input type="text" class="form-control" id="departmentName" placeholder="Enter Department Name " formControlName="departmentName" required>
-      </div>
-      <div class="form-group">
-        <label for="Purpose">Purpose</label>
-        <input type="text" class="form-control" id="Purpose" placeholder="Enter Purpose" formControlName="Purpose" required>
-      </div>
-      
-   
-      
-      <div class="form-group">
-        <label for="Terms">Terms</label>
-        <input type="text" class="form-control" id="Terms" placeholder="Enter Terms" formControlName="Terms" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="Scope">Scope</label>
-        <input type="text" class="form-control" id="Scope" placeholder="Enter Scope" formControlName="Scope" required>
-      </div>
-      <div class="form-group">
-        <label for="Limitations">Limitations</label>
-        <input type="text" class="form-control" id="Limitations" placeholder="Enter Limitations" formControlName="Limitations" required>
-      </div>
-      <div class="form-group">
-        <label for="commentbox">Comments</label>
-        <textarea class="form-control" id="commentbox" rows="3" placeholder="commentbox" formControlName="commentbox" required></textarea>
-      </div>
-      
-      
-      
-      
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </div>
+  <h2>Update Policy</h2>
+
+  <form [formGroup]="form" (ngSubmit)="updateData()">
+    <div class="form-group">
+      <label for="departmentName">Department Name</label>
+      <input type="text" class="form-control" id="departmentName" formControlName="departmentName">
+    </div>
+  
+    <div class="form-group">
+      <label for="Purpose">Purpose</label>
+      <input type="text" class="form-control" id="Purpose" formControlName="Purpose">
+    </div>
+  
+    <div class="form-group">
+      <label for="Scope">Scope</label>
+      <input type="text" class="form-control" id="Scope" formControlName="Scope">
+    </div>
+  
+    <div class="form-group">
+      <label for="Terms">Terms</label>
+      <input type="text" class="form-control" id="Terms" formControlName="Terms">
+    </div>
+  
+    <div class="form-group">
+      <label for="Limitations">Limitations</label>
+      <input type="text" class="form-control" id="Limitations" formControlName="Limitations">
+    </div>
+  
+    <div class="form-group">
+      <label for="commentbox">Comment Box</label>
+      <input type="text" class="form-control" id="commentbox" formControlName="commentbox">
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Update Policy</button>
+  </form>
+  

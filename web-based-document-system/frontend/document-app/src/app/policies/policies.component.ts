@@ -19,7 +19,6 @@ export class PoliciesComponent implements OnInit{
     'Purpose',
     'Terms',
     'Scope',
-    'dateUploaded',
     'Options'
     ];
     

@@ -50,14 +50,14 @@ EquipmentInventory.updateOne( { _id: id },
 {
 $set: {
 
-DepartmentName: req.body.DepartmentName,
-Project: req.body.Project,
-DateOfProject: req.body.DateOfProject,
-EquipmentDescription: req.body.EquipmentDescription,
-SerialNo: req.body.SerialNo,
-DateAcquired: req.body.DateAcquired,
-CostOfEquipment: req.body.CostOfEquipment,
-description: req.body.description,
+  DepartmentName: req.body.DepartmentName,
+  Project: req.body.Project,
+  DateOfProject: req.body.DateOfProject,
+  EquipmentDescription: req.body.EquipmentDescription,
+  SerialNo: req.body.SerialNo,
+  DateAcquired: req.body.DateAcquired,
+  CostOfEquipment: req.body.CostOfEquipment,
+  description: req.body.description,
 commentbox:req.body.commentbox,
 }
 }

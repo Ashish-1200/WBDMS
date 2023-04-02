@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { ViewIPService} from '../viewip/viewip.service'; 
-import { UpdateIPService } from './updateip.service';
+import { UpdateipService } from './updateip.service';
 @Component({
   selector: 'app-updateip',
   templateUrl: './updateip.component.html',
@@ -17,7 +17,7 @@ export class UpdateipComponent implements OnInit {
 
   constructor(
     private activatedroute: ActivatedRoute,
-    private updateservice: UpdateIPService,
+    private updateservice: UpdateipService,
     private viewservice: ViewIPService,
     private _snackBar: MatSnackBar
   ) { }

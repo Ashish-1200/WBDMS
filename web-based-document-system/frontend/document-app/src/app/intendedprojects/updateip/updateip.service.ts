@@ -3,7 +3,7 @@ import { HttpClient} from "@angular/common/http";
 
 
 @Injectable({ providedIn:"root"})
-  export class UpdateIPService {
+  export class UpdateipService {
   constructor(private http: HttpClient ){ }
 
   updateform(id:any,data:any){

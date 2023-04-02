@@ -52,14 +52,14 @@ exports.updateIntendedProject = function(req, res, next) {
   {
   $set: {
   
-      ProjectDescription: req.body.ProjectDescription,
-      ProjectTitle: req.body.ProjectTitle,
-      ProjectBudget: req.body.ProjectBudget,
-      ProjectStartDate: req.body. ProjectStartDate,
-      ProjectEndDate: req.body. ProjectEndDate,
-      ProjectStatus: req.body.ProjectStatus,
-      expenditureDate:req.body.expenditureDate,
-      totalExpenditure: req.body.totalExpenditure,
+    ProjectTitle: req.body.ProjectTitle,
+    ProjectDescription: req.body.ProjectDescription,
+    ProjectBudget: req.body.ProjectBudget,
+    ProjectStartDate: req.body. ProjectStartDate,
+    ProjectEndDate: req.body. ProjectEndDate,
+    ProjectStatus: req.body.ProjectStatus,
+    expenditureDate:req.body.expenditureDate,
+    totalExpenditure: req.body.totalExpenditure,
       commentbox:req.body.commentbox,
   }
   }

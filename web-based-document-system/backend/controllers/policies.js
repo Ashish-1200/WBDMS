@@ -39,11 +39,11 @@ exports.updatePolicy = function(req, res, next) {
   $set: {
   
     departmentName: req.body.departmentName,
-    purpose: req.body.purpose,
-    terms: req.body.terms,
-    scope: req.body.scope,
-    limitations: req.body.limitations,
-    period: req.body.period,
+    Purpose: req.body.Purpose,
+    Terms: req.body.Terms,
+    Scope: req.body.Scope,
+    Limitations: req.body.Limitations,
+    
     commentbox:req.body.commentbox
   }
   }
