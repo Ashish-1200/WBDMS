@@ -81,8 +81,8 @@ const routes: Routes = [
 
  {path: "policies",component:PoliciesComponent,},
  {path: "createpolicy",component:CreatepolicyComponent,},
- {path: "viewpolicy",component:ViewpolicyComponent,},
- {path: "updatepolicy",component:UpdatepolicyComponent,},
+ {path: "viewpolicy/:id",component:ViewpolicyComponent,},
+ {path: "updatepolicy/:id",component:UpdatepolicyComponent,},
 
 
 
