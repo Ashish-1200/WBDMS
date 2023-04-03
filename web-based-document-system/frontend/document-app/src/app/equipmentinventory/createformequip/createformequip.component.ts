@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {EquipmentServiceCF } from './createformequip.service';
+//import {EquipmentService } from './createformequip.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -11,69 +11,63 @@ import { Router } from '@angular/router';
   styleUrls: ['./createformequip.component.css']
 })
 export class CreateformequipComponent implements OnInit {
-  images:any;
-  productImage=[];
-  imageData:any;
-  userId: any;
+  documents: any;
+mediaFiles: FileList | null = null;
+mediainfo: any;
+useridentity: any;
 
-   constructor(private _snackBar: MatSnackBar, private EquipmentServiceCF: EquipmentServiceCF,
+form = new FormGroup({
+  userID: new FormControl(''),
+  DepartmentName: new FormControl('', Validators.required),
+  Project: new FormControl('', Validators.required),
+  DateOfProject: new FormControl('', Validators.required),
+  EquipmentDescription: new FormControl('', Validators.required),
+  SerialNo: new FormControl('', Validators.required),
+  DateAcquired: new FormControl('', Validators.required),
+  CostOfEquipment: new FormControl('', Validators.required),
+  description: new FormControl('', Validators.required),
+ // commentbox: new FormControl('', Validators.required),
+  mediaFiles: new FormControl(null as FileList | null, Validators.required)
+});
+
+
+   constructor(private _snackBar: MatSnackBar,
     private http: HttpClient,
     private router: Router, ) { }
     
 
-  form = new FormGroup({
-    userID: new FormControl(''),
-    DepartmentName: new FormControl('', Validators.required),
-    Project: new FormControl('', Validators.required),
-    DateOfProject: new FormControl('', Validators.required),
-    EquipmentDescription: new FormControl('', Validators.required),
-    SerialNo: new FormControl('', Validators.required),
-    DateAcquired: new FormControl('', Validators.required),
-    CostOfEquipment: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
-   // commentbox: new FormControl('', Validators.required),
-    productImage: new FormControl(null as FileList | null, Validators.required)
-
-
-  });
-
   ngOnInit(): void { }
 
-  select(event:any){
-    {
-      const file = (event.target as HTMLInputElement).files;
-      this.form.patchValue({ productImage: file});
-      const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg","application/pdf","application/msword","video/mp4","application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
-      {
+  
+
+
+       select(event: Event) {
+        const inputElement = event.target as HTMLInputElement;
+        if (inputElement.files) {
+        const file = inputElement.files[0];
+        if (file && this.isAllowedMimeType(file.type)) {
+        this.documents = file;
         const reader = new FileReader();
         reader.onload = () => {
-          this.imageData = reader.result as string;
+        this.mediainfo = reader.result;
         };
-        if(file){
-        reader.readAsDataURL(file[0]);
+        reader.readAsDataURL(file);
+        } else {
+        this.resetForm();
+        this.showSnackBar('Invalid file type');
         }
-      }
-      const productImage = event.target.files[0];
-      this.images=productImage;
-      console.log(productImage)
-  
-  
-       }
-
-  
-       this.userId =localStorage.getItem('_id')
-       //let UserID=this.userId
-
-
-
-
-
-
-     }
+        }
+        }
+        private isAllowedMimeType(mimeType: string): boolean {
+          const allowedMimeTypes = ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf',
+          'application/msword', 'video/mp4', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+          return allowedMimeTypes.includes(mimeType);
+          }
+        
 
   SaveData() {
     const formData = new FormData();
-    formData.append('userID', this.userId);
+    formData.append('userID', this.mediainfo);
     formData.append('DepartmentName', this.form.value.DepartmentName|| '');
     formData.append('Project', this.form.value.Project|| '');
     formData.append('DateOfProject', this.form.value.DateOfProject || '');
@@ -84,23 +78,25 @@ export class CreateformequipComponent implements OnInit {
     
     formData.append('description', this.form.value.description || '');
    
-    formData.append('productImage', this.images);
+    formData.append('mediaFiles', this.documents);
     
 
-    this.http.post<any>('http://localhost:3000/equipmentinventory/create', formData).subscribe((d) => {
-      console.log(d);
+  
+      this.http.post<any>('http://localhost:3000/equipmentinventory/create', formData).subscribe((response) => {
+  this.resetForm();
+  this.showSnackBar('Uploaded Successfully');
+  this.router.navigateByUrl(`/viewfreports/${response._id}`);
+});
+}
 
-      this.form.reset();
+private resetForm(): void {
+this.form.reset();
+this.mediainfo = null;
+this.documents = null;
+}
 
-      this._snackBar.open('Uploaded Successfully', '', {
-        verticalPosition: 'top',
-        panelClass: 'edit'
-      })
-
-      this.router.navigateByUrl(`/viewformequip/${d._id}`);
-    });
-  }
-
- 
+private showSnackBar(message: string): void {
+this._snackBar.open(message, 'Uploaded Successfully', { verticalPosition: 'top', panelClass: 'edit' });
+}
 }
 

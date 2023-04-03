@@ -10,11 +10,12 @@ export class EquipmentServiceCF {   constructor(private http: HttpClient) {}
 userId:any;
 formData:any;
 
-  createform(formData: any,userId:any) {
+  createform(formData: any,id:any) {
     console.log(formData);
-    console.log(userId);
-    return this.http.post<any>('http://localhost:3000/equipmentinventory/create',formData,userId)
+    console.log(id);
 
+    const url = `http://localhost:3000/equipmentinventory/${id}`;
+    return this.http.get(url);
 
 
   }

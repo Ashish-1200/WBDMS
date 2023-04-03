@@ -27,6 +27,7 @@ export class UpdateformComponent implements OnInit{
     //lastEditedBy: new FormControl('',Validators.required),
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
+    department: new FormControl('', Validators.required),
     gender: new FormControl('', Validators.required),
     age: new FormControl('', Validators.required),
     address: new FormControl('', Validators.required),
@@ -56,6 +57,7 @@ export class UpdateformComponent implements OnInit{
         location:result['location'],
         description:result['description'],
         commentbox:result['commentbox'],
+      department:result['department'],
         //lastEditedBy: new FormControl('current user', Validators.required),
         //versionNumber: new FormControl(1),
         

@@ -8,23 +8,21 @@ import { ViewformequipService } from './viewformequip.service';
   styleUrls: ['./viewformequip.component.css']
 })
 export class ViewformequipComponent implements OnInit {
-  userId:string = '';
-  
-  userDetails:any;
+   userIdStr:string = '';
+  //public currentFreport: any;
+  userinfo:any;
   constructor(private activatedroute:ActivatedRoute, private equipviewS:ViewformequipService) { }
 
 
-  ngOnInit(): void {
-    this.activatedroute.params.subscribe(data =>{
-      this.userId = data['id']
-      console.log(data)
-    })
-    this.equipviewS.viewequipForm(this.userId).subscribe(data =>{
-      this.userDetails = data;
-      console.log(data);
-    })
-  }
 
-  
-  
-}
+  ngOnInit(): void {
+    this.activatedroute.params.subscribe(paramsObj =>{
+    this.userIdStr = paramsObj['id']
+    console.log(paramsObj)
+    })
+    
+    this.equipviewS.viewequipForm(this.userIdStr).subscribe(responseData =>{
+      this.userinfo = responseData;
+      console.log(responseData);
+    })}
+    }

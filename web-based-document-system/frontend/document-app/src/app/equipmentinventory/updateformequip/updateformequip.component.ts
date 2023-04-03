@@ -11,10 +11,13 @@ import { UpdateformequipService } from './updateformequip.service';
   styleUrls: ['./updateformequip.component.css']
 })
 export class UpdateformequipComponent implements OnInit {
-
+  message:boolean = false;
+  form!: FormGroup;
+  equipData: any;
   constructor(private activatedroute:ActivatedRoute, private updateequipservice:UpdateformequipService, private viewservice:ViewformequipService , private _snackBar: MatSnackBar) { }
+  ngOnInit(): void {
 
-  form = new FormGroup({
+  this.form = new FormGroup({
    
     DepartmentName: new FormControl(''),
     Project: new FormControl('', Validators.required),
@@ -28,64 +31,44 @@ export class UpdateformequipComponent implements OnInit {
    
 
   });
-  message:boolean = false;
+  
 
-  equipData: any;
 
-  ngOnInit(): void {
 
     this.viewservice.viewequipForm(this.activatedroute.snapshot.params['id']) .subscribe((result:any)=>{
       console.log(result);
 
       this.equipData = result;
 
-      this.form = new FormGroup({
-        DepartmentName: new FormControl(result [' DepartmentName'],Validators.required),
-        Project: new FormControl(result['Project'],Validators.required),
-        DateOfProject:new FormControl(result['DateOfProject'],Validators.required),
-        EquipmentDescription:new FormControl(result[' EquipmentDescription'],Validators.required),
-        SerialNo: new FormControl(result['SerialNo']),
-        DateAcquired: new FormControl(result['DateAcquired'],Validators.required),
-        CostOfEquipment:new FormControl(result['CostOfEquipment'],Validators.required),
-        description:new FormControl(result['description'],Validators.required),
-        commentbox:new FormControl(result['commentbox'],Validators.required),
+      this.form.patchValue({
+        DepartmentName: result [' DepartmentName'],
+        Project: result['Project'],
+        DateOfProject:result['DateOfProject'],
+        EquipmentDescription:result[' EquipmentDescription'],
+        SerialNo: result['SerialNo'],
+        DateAcquired: result['DateAcquired'],
+        CostOfEquipment:result['CostOfEquipment'],
+        description:result['description'],
+        commentbox:result['commentbox'],
         //lastEditedBy: new FormControl('current user', Validators.required),
         //versionNumber: new FormControl(1),
         
        
       });
-
-      
-
     });
   }
 
+UpdateData() {
+  const updatedData = this.form.value;
+  updatedData.version = this.equipData.version + 1;
 
-
-
-
-  UpdateData() {
-
-    const updatedData = this.form.value;
-    updatedData.version = this.equipData.version + 1;
-
-    console.log(this.form.value);
-    this.updateequipservice.updateformequip(this.activatedroute.snapshot.params['id'],this.form.value).subscribe((result)=>{
-      console.log(result);
-      this._snackBar.open('Updated Successfully','',{
-        verticalPosition:'top',
-       // horizontalPosition:'center',
-        panelClass:'edit'
-      })
-
-    })
-
-
-
-  
-  }
-  removeMessage() {
-
-  }
-
+  console.log(this.form.value);
+  this.updateequipservice.updateformequip(this.activatedroute.snapshot.params['id'], this.form.value).subscribe((result) => {
+    console.log(result);
+    this._snackBar.open('Updated Successfully', '', {
+      verticalPosition: 'top',
+      panelClass: 'edit',
+    });
+  });
+}
 }

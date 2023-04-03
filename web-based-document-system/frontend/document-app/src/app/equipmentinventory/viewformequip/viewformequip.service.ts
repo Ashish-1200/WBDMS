@@ -9,8 +9,8 @@ export class  ViewformequipService {
 
   viewequipForm(id:any)
  {
-  return this.http.get("http://localhost:3000/equipmentinventory/" +id)
-
+  const url = `http://localhost:3000/equipmentinventory/${id}`;
+    return this.http.get(url);
   
 
 }

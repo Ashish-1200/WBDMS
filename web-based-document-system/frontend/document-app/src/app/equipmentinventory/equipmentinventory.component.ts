@@ -28,9 +28,9 @@ export class EquipmentinventoryComponent implements OnInit {
 
     ];
     dataSource = new MatTableDataSource<equipmodel>();
-    listequip: equipmodel[] = [];
     remove = false;
-    currentRole: any;
+    role: string | undefined;
+    
 
     constructor(
       private equipinventoryservice : equipinventoryservice ,
@@ -42,67 +42,65 @@ export class EquipmentinventoryComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort ;
   
   
-  
-  
-    ngOnInit(): void {
-  
-      this.equipinventoryservice .listequiprep().subscribe((data) => {
-        this.dataSource = new MatTableDataSource(data);
-        console.log(data);
+
+      ngOnInit(): void {
+        this.getequip();
+        this.loginService.updatemenu.subscribe(() => this.MenuDisplay());
+        this.MenuDisplay();
+        }
+        
+        getequip(): void {
+        this.equipinventoryservice.getequip().subscribe((data) => {
+        this.dataSource.data = data;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        });
+        }
   
-      });
-      this.loginService.updatemenu.subscribe((res) => {
-        this.MenuDisplay(); 
-        
-      });
-      
-      this.MenuDisplay(); // call the MenuDisplay function here
+    
   
-    this.loginService.updatemenu.subscribe((res) => {
-      this.MenuDisplay();
-    });
-  
-    }
-  
-    applyFilter(eventreport: Event) {
-      const filterValue = (eventreport.target as HTMLInputElement).value;
-      this.dataSource.filter = filterValue.trim().toLowerCase();
+    
+    applyFilter(event: Event): void {
+      const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+      this.dataSource.filter = filterValue;
       if (this.dataSource.paginator) {
-        this.dataSource.paginator.firstPage();
+      this.dataSource.paginator.firstPage();
       }
-    }
+      }
   
   
     MenuDisplay(){
       if(this.loginService.getToken()!='')
-      this.currentRole=this.loginService.GetRolebyToken(this.loginService.getToken());
-      console.log('currentRole:', this.currentRole); // console log
-      this.remove = this.currentRole=='Administrator'; // allows only admin to access the delete button
+      this.role=this.loginService.GetRolebyToken(this.loginService.getToken());
+      console.log('role:', this.role); // console log
+      this.remove = this.role=='Administrator'; // allows only admin to access the delete button
   
     }
   
-  //change code
-      delete(equipment_id: any) {
-        if (confirm('Are you sure you want to permanently delete this form?')) {
-        this.equipinventoryservice .deleteUserrep(equipment_id).subscribe((result) => {
-        console.log(result);
-        this.ngOnInit();
-        this._snackBar.open('Deleted!', '', {
-        verticalPosition: 'top',
-        panelClass: 'edit',
-        });
-        });
-        }
-        }
-        }
   
+    deleteequip(equip_id: any): void {
+      if (!confirm('Are you sure you want to permanently delete this form?')) {
+      return;
+      }
+      this.equipinventoryservice.deleteequip(equip_id).subscribe(
+      () => {
+      this.getequip();
+      this.showSnackBar('Deleted!', 'edit');
+      },
+      (error) => {
+      console.error(error);
+      this.showSnackBar('Error deleting form!', 'error');
+      }
+      );
+      }
       
-  
-  
-  
-  
+      showSnackBar(message: string, panelClass: string): void {
+      this._snackBar.open(message, '', {
+      verticalPosition: 'top',
+      panelClass: panelClass,
+      });
+      }
+      } 
   
   
   

@@ -70,7 +70,7 @@ form = new FormGroup({
 
   SaveData() {
     const formData = new FormData();
-    formData.append('UserID', this.useridentity);
+    formData.append('UserID', this.mediainfo);
     formData.append('department', this.form.value.department|| '');
     formData.append('firstName', this.form.value.firstName || '');
     formData.append('lastName', this.form.value.lastName || '');

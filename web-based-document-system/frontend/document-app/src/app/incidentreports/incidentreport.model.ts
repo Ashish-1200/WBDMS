@@ -14,7 +14,7 @@ export interface incident {
     commentbox:string;
     
     allMedia?:string;
-  mediaFiles:[];
+    mediaFiles:[];
 
 version: number;
 lastEditedBy?: string;

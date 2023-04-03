@@ -1,4 +1,4 @@
-<div class="card formdetails" *ngIf="userDetails">
+<div class="card formdetails" *ngIf="userinfo">
     <div class="card-header">
       <h4 class="card-title text-center">Equipment Inventory </h4>
       <button class="btn btn-primary btn-sm ml-auto" routerLink="/equipmentinventory">Back</button>
@@ -7,39 +7,39 @@
       <div class="row">
         <div class="col-md-6">
           <h5 class="card-subtitle mb-2 text-muted">User ID:</h5>
-          <p class="card-text">{{userDetails._id}}</p>
+          <p class="card-text">{{userinfo._id}}</p>
           <h5 class="card-subtitle mb-2 text-muted">DepartmentName:</h5>
-          <p class="card-text">{{userDetails.DepartmentName}}</p>
+          <p class="card-text">{{userinfo.DepartmentName}}</p>
           <h5 class="card-subtitle mb-2 text-muted">Project:</h5>
-          <p class="card-text">{{userDetails.Project}}</p>
+          <p class="card-text">{{userinfo.Project}}</p>
           <h5 class="card-subtitle mb-2 text-muted">Date Of Project:</h5>
-          <p class="card-text">{{userDetails.DateOfProject}}</p>
+          <p class="card-text">{{userinfo.DateOfProject}}</p>
           <h5 class="card-subtitle mb-2 text-muted">EquipmentDescription:</h5>
-          <p class="card-text">{{userDetails.EquipmentDescription}}</p>
+          <p class="card-text">{{userinfo.EquipmentDescription}}</p>
           <h5 class="card-subtitle mb-2 text-muted">SerialNo:</h5>
-          <p class="card-text">{{userDetails.SerialNo}}</p>
+          <p class="card-text">{{userinfo.SerialNo}}</p>
         </div>
         <div class="col-md-6">
           <h5 class="card-subtitle mb-2 text-muted">Date acquired equipment:</h5>
-          <p class="card-text">{{userDetails.DateAcquired}}</p>
+          <p class="card-text">{{userinfo.DateAcquired}}</p>
           <h5 class="card-subtitle mb-2 text-muted">Cost Of Equipment:</h5>
-          <p class="card-text">{{userDetails.CostOfEquipment}}</p>
+          <p class="card-text">{{userinfo.CostOfEquipment}}</p>
           <h5 class="card-subtitle mb-2 text-muted">Issues:</h5>
-          <p class="card-text">{{userDetails.description}}</p>
+          <p class="card-text">{{userinfo.description}}</p>
         
         </div>
       </div>
       <div class="mt-4">
         <h5 class="card-subtitle mb-2 text-muted">Description:</h5>
-        <p class="card-text">{{userDetails.description}}</p>
+        <p class="card-text">{{userinfo.description}}</p>
         <h5 class="card-subtitle mb-2 text-muted">Date Uploaded:</h5>
-        <p class="card-text">{{userDetails.dateuploaded}}</p>
+        <p class="card-text">{{userinfo.dateuploaded}}</p>
         <hr>
   
         
         <mat-card-subtitle>
           <span>Media/Document :</span>
-          <ng-container *ngFor="let media of userDetails.productImage">
+          <ng-container *ngFor="let media of userinfo.mediaFiles">
             <ng-container *ngIf="media.endsWith('.jpg') || media.endsWith('.png') || media.endsWith('.gif') || media.endsWith('.jpeg')">
               <img class="Image" src="http://localhost:3000/{{media}}">
             </ng-container>

@@ -6,16 +6,17 @@ import {equipmodel} from './equipmentinventory.model'
 
 @Injectable({ providedIn:"root"})
 export class  equipinventoryservice {
+  private baseUrl = 'http://localhost:3000/equipmentinventory';
 
 
   constructor(private http: HttpClient ){ }
 
-  listequiprep(){
-    return this.http.get <equipmodel[]> ("http://localhost:3000/equipmentinventory/list")
+  getequip(){
+    return this.http.get <equipmodel[]> (`${this.baseUrl}/list`);
 
   }
 
-  deleteUserrep(id:any){
-    return this.http.delete("http://localhost:3000/equipmentinventory/" + id)
+  deleteequip(id:any){
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 }
