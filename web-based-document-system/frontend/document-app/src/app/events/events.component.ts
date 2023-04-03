@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { eventservice } from './events.service';
 import { LoginService } from '../login/login.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { eventm } from './events.model';
+import { eventsm } from './events.model';
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.css']
+  styleUrls: ['./events.component.css'],
+  providers: [eventservice],
 })
 export class EventsComponent  implements OnInit {
 
@@ -22,14 +22,12 @@ export class EventsComponent  implements OnInit {
     'eventName',
     'eventDes',
     'eventDate',
-    
-    'dateuploaded',
     'Options'
     ];
     
-    dataSource = new MatTableDataSource<eventm>();
-    remove = false;
-    role: string | undefined;
+    dataSource = new MatTableDataSource<eventsm>();
+remove = false;
+role: string | undefined;
 
     constructor(
       private eventService: eventservice,
@@ -55,19 +53,19 @@ export class EventsComponent  implements OnInit {
       });
       }
   
-    applyFilter(eventreport: Event) {
-      const filterValue = (eventreport.target as HTMLInputElement).value;
-      this.dataSource.filter = filterValue.trim().toLowerCase();
-      if (this.dataSource.paginator) {
+      applyFilter(event: Event): void {
+        const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+        this.dataSource.filter = filterValue;
+        if (this.dataSource.paginator) {
         this.dataSource.paginator.firstPage();
-      }
-    }
+        }
+        }
   
   
     MenuDisplay(){
       if(this.loginService.getToken()!='')
       this.role=this.loginService.GetRolebyToken(this.loginService.getToken());
-      console.log('currentRole:', this.role); // console log
+      console.log('role:', this.role); // console log
       this.remove = this.role=='Administrator'; // allows only admin to access the delete button
   
     }

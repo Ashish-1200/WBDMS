@@ -33,7 +33,7 @@ commentbox: {
     },
 
     allMedia:Buffer,
-    mediaFIles:{
+    mediaFiles:{
       type:[String]
 },
 

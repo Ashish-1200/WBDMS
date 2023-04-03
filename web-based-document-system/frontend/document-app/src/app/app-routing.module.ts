@@ -49,6 +49,8 @@ import { VieweventComponent } from './events/viewevent/viewevent.component';
 
 
 
+
+
 const routes: Routes = [
   { path: '', redirectTo: '/mainpage', pathMatch: 'full' },
  {path:'signup',component:SignupComponent},
@@ -70,7 +72,7 @@ const routes: Routes = [
  {path:"updateformequip/:id",component:UpdateformequipComponent},
  {path:"viewformequip/:id",component:ViewformequipComponent},
 
- {path: "event",component:EventsComponent},
+ {path: "events",component:EventsComponent},
  {path:"createevent",component:CreateeventComponent},
  {path:"updateevent/:id",component:UpdateeventComponent},
  {path:"viewevent/:id",component:VieweventComponent},
@@ -96,6 +98,10 @@ const routes: Routes = [
  {path: "viewip/:id",component:ViewipComponent,},
  {path: "updateip/:id",component:UpdateipComponent,},
 
+ 
+
+ 
+
 
  
 
@@ -110,6 +116,3 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-/*static forRoot(): any[] | import("@angular/core").Type<any> | import("@angular/core").ModuleWithProviders<{}> {
-  throw new Error('Method not implemented.');
-} */

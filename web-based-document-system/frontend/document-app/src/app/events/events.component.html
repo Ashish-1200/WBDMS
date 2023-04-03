@@ -1,84 +1,80 @@
 <mat-toolbar color="primary">
-    <span>Event Reports</span>
-    <span class="spacer"></span>
-    <button mat-raised-button color="accent" routerLink="/createevent">Create Form</button>
-    <button mat-raised-button color="warn" routerLink="/mainpage" class="logout">Logout</button>
-    <button mat-raised-button color="warn" routerLink="/homepage" class="logout">Back</button>
-  </mat-toolbar>
+  <span>Event Reports</span>
+  <span class="spacer"></span>
+  <button mat-raised-button color="accent" routerLink="/createevent">Create Form</button>
+  <button mat-raised-button color="warn" routerLink="/mainpage" class="logout">Logout</button>
+  <button mat-raised-button color="warn" routerLink="/homepage" class="back">Back</button>
+</mat-toolbar>
+
+<mat-card class="mat-elevation-z8">
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+    </mat-form-field>
+    <mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Events ID Column -->
+      <ng-container matColumnDef="_id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Event ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element._id}} </mat-cell>
+      </ng-container>
+
+      <!-- Department Name Column -->
+      <ng-container matColumnDef="department">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Department Name</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.department}} </mat-cell>
+      </ng-container>
+
   
-  <mat-card class="mat-elevation-z8">
-    <mat-card-content>
-      <mat-form-field>
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
-      </mat-form-field>
-      <mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Event Name Column -->
+      <ng-container matColumnDef="eventName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Event Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.eventName}} </mat-cell>
+      </ng-container>
+
+      <!-- Event Date -->
+      <ng-container matColumnDef="eventDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Event Date</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.eventDate}} </mat-cell>
+      </ng-container>
+
+      <!-- Event Description -->
+      <ng-container matColumnDef="eventDes">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Event Description</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.eventDes}} </mat-cell>
+      </ng-container>
+
+      <!-- Options Column -->
+      <ng-container matColumnDef="Options">
+        <mat-header-cell *matHeaderCellDef> Options </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <a mat-icon-button [routerLink]="['/viewevent', element._id]">
+            <mat-icon>visibility</mat-icon>
+          </a>
+          <a mat-icon-button [routerLink]="['/updateevent', element._id]">
+            <mat-icon>edit</mat-icon>
+          </a>
+          <button *ngIf="remove" mat-icon-button (click)="deleteevent(element._id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+  </mat-card-content>
+</mat-card>
+
+<style>
+  .spacer {
+    flex: 1 1 auto;
+  }
   
-        <!-- Incident ID Column -->
-        <ng-container matColumnDef="_id">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Incident ID </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element._id}} </mat-cell>
-        </ng-container>
-        <!-- NameColumn -->
-        <ng-container matColumnDef="eventName">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Event Name </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.eventName}} </mat-cell>
-        </ng-container>
-  
-        <!-- Department Column -->
-        <ng-container matColumnDef="department">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Department</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.department}} </mat-cell>
-        </ng-container>
-  
-        <!-- Date Column -->
-        <ng-container matColumnDef="eventDate">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Event Date </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.deventDate | date}} </mat-cell>
-        </ng-container>
-  
-        <!-- Des Column -->
-        <ng-container matColumnDef="eventDes">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Event Description </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.eventDes}} </mat-cell>
-        </ng-container>
-  
-  
-        <!-- Date Uploaded Column -->
-        <ng-container matColumnDef="dateuploaded">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Date Uploaded </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.dateuploaded | date}} </mat-cell>
-        </ng-container>
-  
-        <!-- Options Column -->
-        <ng-container matColumnDef="Options">
-          <mat-header-cell *matHeaderCellDef> Options </mat-header-cell>
-          <mat-cell *matCellDef="let element">
-            <a mat-icon-button [routerLink]="['/viewevent', element._id]">
-              <mat-icon>visibility</mat-icon>
-            </a>
-            <a mat-icon-button [routerLink]="['/updateevent', element._id]">
-              <mat-icon>edit</mat-icon>
-            </a>
-            <button *ngIf="remove" mat-icon-button (click)="deleteevent(element._id)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </mat-cell>
-        </ng-container>
-  
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons></mat-paginator>
-    </mat-card-content>
-  </mat-card>
-  
-  <style>
-    .spacer {
-      flex: 1 1 auto;
-    }
-    
-    .logout {
-      margin-left: auto;
-    }
-  </style>
+  .logout {
+    margin-left: auto;
+  }
+</style>

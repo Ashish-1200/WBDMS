@@ -86,6 +86,8 @@ import { VieweventComponent } from './events/viewevent/viewevent.component';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -133,7 +135,8 @@ CreateformComponent,
     EventsComponent,
    CreateeventComponent,
     UpdateeventComponent,
-    VieweventComponent
+    VieweventComponent,
+   
   
    
   

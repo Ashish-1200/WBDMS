@@ -1,47 +1,42 @@
 const mongoose = require ('mongoose')
 const EventModel = require('../models/event.m')
 
-exports.getEventList = function(req, res, next) {
-EventModel.find(function(error, eventList) {
-if(error) {
-res.send(error);
-} else {
-res.send({ status: 200, count: eventList.length, eventList: eventList });
-}
-});
-}
+exports.getEventList = (req, res) => {
+  EventModel.find({})
+    .then(docs => res.status(200).json(docs))
+    .catch(error => console.log(error));
+};
 
 
+  exports.getEvent = (req, res) => {
+    EventModel.findOne({ _id: req.params.id })
+      .then(doc => res.send(doc))
+      .catch(error => console.log(error));
+  };
 
-exports.createEvent = function(req, res) {
+
+exports.createEvent = (req, res) => {
+  const newEventReport = new EventModel({
+    _id: mongoose.Types.ObjectId(),
     
-    const newEvent = new EventModel({
-
-        _id: mongoose.Types.ObjectId(),
         eventName: req.body.eventName,
         eventDes: req.body.eventDes,
         eventDate: req.body.eventDate,
         department: req.body.department,
         mediaFiles:req.files.map(mediaFiles=>mediaFiles.path)
-
-    });
-newEvent.save()
-.then(savedReport => res.send(savedReport))
-.catch(error => console.log(error));
+  });
+  
+  newEventReport.save()
+    .then(savedReport => res.send(savedReport))
+    .catch(error => console.log(error));
 };
 
 
 
 
-exports.getEvent = function(req, res, next) {
-EventModel.findOne({ _id: req.params.id })
-.then(function(foundEvent) {
-res.send(foundEvent);
-})
-.catch(function(error) {
-res.send("Event not found.");
-});
-}
+
+
+
 
 
 
@@ -71,11 +66,10 @@ exports.deleteEvent = function(req, res, next) {
 
 exports.updateEvent = function(req, res, next) {
     const id = req.params.update;
-    EventModel.updateOne(
-    { _id: id },
+    EventModel.updateOne(  { _id: id },
     {
     $set: {
-        
+        department:req.body.department,
         eventName:req.body.eventName,
         eventDes:req.body.eventDes,
         eventDate:req.body.eventDate,
@@ -84,8 +78,8 @@ exports.updateEvent = function(req, res, next) {
     }
     )
     .exec()
-    .then(function(EventModel) {
-    return res.send(EventModel);
+    .then(function(dbEvent) {
+    return res.send(dbEvent);
     })
     .catch(function(err) {
     return res.send('Cannot update event report');

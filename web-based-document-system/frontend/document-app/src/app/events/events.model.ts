@@ -1,4 +1,4 @@
-export interface eventm {
+export interface eventsm {
 
     _id:string;
     department:string;
