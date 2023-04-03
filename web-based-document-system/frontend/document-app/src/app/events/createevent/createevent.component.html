@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Event Form</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/homepage">
+            <i class="fa fa-home"></i> Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">
+            <i class="fa fa-sign-out"></i> Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <h2>Create Form</h2>
+    <form [formGroup]="form" (ngSubmit)="SaveData()">
+      <div class="form-group">
+        <label for="eventName">Event Name</label>
+        <input type="text" class="form-control" id="eventName" placeholder="Enter Event name" formControlName="eventName" required>
+      </div>
+      <div class="form-group">
+        <label for="eventDes">Event Description</label>
+        <input type="text" class="form-control" id="eventDes" placeholder="Enter description" formControlName="eventDes" required>
+      </div>
+      <div class="form-group">
+        <label for="eventDate">Date of event</label>
+        <input type="text" class="form-control" id="eventDate" placeholder="Enter date  (MM/DD/YYYY)" formControlName="eventDate" required>
+      </div>
+      <div class="form-group">
+        <label for="department">Department</label>
+        <input type="text" class="form-control" id="department" placeholder="Enter department" formControlName="department" required>
+      </div>
+  
+  
+    
+      <div class="form-group">
+        <div class="form-group">
+          <button class="btn btn-primary" type="button" (click)="filePicker.click()">Select</button>
+          <input class="Image" type="file" name="productImage" #filePicker (change)="select($event)" />
+        </div>
+        
+        
+      
+      
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+

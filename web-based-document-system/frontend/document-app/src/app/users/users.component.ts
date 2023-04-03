@@ -20,7 +20,7 @@ export class UsersComponent implements OnInit, AfterViewInit{
   
   Reports:any;
   remove=false;
-  currentrole:any;
+  role:any;
 
   constructor(private usersservice:UsersService,private loginservice:LoginService, private _snackBar:MatSnackBar) { }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -51,9 +51,9 @@ export class UsersComponent implements OnInit, AfterViewInit{
 
   MenuDisplay(){
     if(this.loginservice.getToken()!='')
-    this.currentrole=this.loginservice.GetRolebyToken(this.loginservice.getToken());
+    this.role=this.loginservice.GetRolebyToken(this.loginservice.getToken());
 
-    this.remove = this.currentrole=='Adminstrator'; // allows only admin to access the delete button
+    this.remove = this.role=='Adminstrator'; // allows only admin to access the delete button
 
   }
   ngAfterViewInit() {

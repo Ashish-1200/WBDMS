@@ -22,7 +22,7 @@ exports.createEvent = function(req, res) {
         eventDes: req.body.eventDes,
         eventDate: req.body.eventDate,
         department: req.body.department,
-        productImage:req.files.map(productImage=>productImage.path)
+        mediaFiles:req.files.map(mediaFiles=>mediaFiles.path)
 
     });
 newEvent.save()

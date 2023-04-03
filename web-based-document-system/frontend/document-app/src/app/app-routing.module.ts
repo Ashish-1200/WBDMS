@@ -20,10 +20,7 @@ import { CreateformequipComponent } from './equipmentinventory/createformequip/c
 import { UpdateformequipComponent } from './equipmentinventory/updateformequip/updateformequip.component';
 import { ViewformequipComponent } from './equipmentinventory/viewformequip/viewformequip.component';
 
-import { EventComponent } from './event/event.component';
-import { CreateformeventComponent } from './event/createformevent/createformevent.component';
-import { UpdateformeventComponent } from './event/updateformevent/updateformevent.component';
-import { ViewformeventComponent } from './event/viewformevent/viewformevent.component';
+
 //import { Equipauth } from './authentication/equip.auth';
 //import { eventauth } from './authentication/event.auth';
 import { FreportsComponent } from './freports/freports.component';
@@ -44,6 +41,10 @@ import { IntendedprojectsComponent } from './intendedprojects/intendedprojects.c
 import { CreateipComponent } from './intendedprojects/createip/createip.component';
 import { ViewipComponent } from './intendedprojects/viewip/viewip.component';
 import { UpdateipComponent } from './intendedprojects/updateip/updateip.component';
+import { EventsComponent } from './events/events.component';
+import { CreateeventComponent } from './events/createevent/createevent.component';
+import { UpdateeventComponent } from './events/updateevent/updateevent.component';
+import { VieweventComponent } from './events/viewevent/viewevent.component';
 
 
 
@@ -69,10 +70,10 @@ const routes: Routes = [
  {path:"updateformequip/:id",component:UpdateformequipComponent},
  {path:"viewformequip/:id",component:ViewformequipComponent},
 
- {path: "event",component:EventComponent},
- {path:"createformevent",component:CreateformeventComponent},
- {path:"updateformevent/:id",component:UpdateformeventComponent},
- {path:"viewformevent/:id",component:ViewformeventComponent},
+ {path: "event",component:EventsComponent},
+ {path:"createevent",component:CreateeventComponent},
+ {path:"updateevent/:id",component:UpdateeventComponent},
+ {path:"viewevent/:id",component:VieweventComponent},
 
  {path: "freports",component:FreportsComponent,},
  {path:"createfreports",component:CreatefreportsComponent},

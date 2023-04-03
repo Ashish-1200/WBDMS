@@ -7,6 +7,7 @@ import { policyservice } from './policy.service';
 import { LoginService } from '../login/login.service';
 import { policy } from './policy.model';
 
+
 @Component({
   selector: 'app-policies',
   templateUrl: './policies.component.html',

@@ -24,7 +24,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 //import { MatTableDataSource } from '@angular/material/table';
 import { IncidentreportsComponent } from './incidentreports/incidentreports.component';
 import { EquipmentinventoryComponent } from './equipmentinventory/equipmentinventory.component';
-import { EventComponent } from './event/event.component';
+
 
 
 import { IntendedprojectsComponent } from './intendedprojects/intendedprojects.component';
@@ -50,10 +50,10 @@ import { ViewformequipComponent } from './equipmentinventory/viewformequip/viewf
 import { equipinventoryservice } from './equipmentinventory/equipmentinventory.service';
 import { UpdateformequipComponent } from './equipmentinventory/updateformequip/updateformequip.component';
 
-import { UpdateformeventComponent } from './event/updateformevent/updateformevent.component';
-import { CreateformeventComponent } from './event/createformevent/createformevent.component';
-import { eventservice } from './event/event.service';
-import { ViewformeventComponent } from './event/viewformevent/viewformevent.component';
+
+
+
+
 import { FreportsComponent } from './freports/freports.component';
 import { UpdatefreportsComponent } from './freports/updatefreports/updatefreports.component';
 import { CreatefreportsComponent } from './freports/createfreports/createfreports.component';
@@ -74,6 +74,13 @@ import { CreateipComponent } from './intendedprojects/createip/createip.componen
 import { UpdateipComponent } from './intendedprojects/updateip/updateip.component';
 
 
+import { CreateeventComponent } from './events/createevent/createevent.component';
+import { UpdateeventComponent } from './events/updateevent/updateevent.component';
+
+import { eventservice } from './events/events.service';
+import { EventsComponent } from './events/events.component';
+import { VieweventComponent } from './events/viewevent/viewevent.component';
+
 
 
 
@@ -89,7 +96,7 @@ import { UpdateipComponent } from './intendedprojects/updateip/updateip.componen
     HomepageComponent,
    IncidentreportsComponent,
     EquipmentinventoryComponent,
-    EventComponent,
+   
     FreportsComponent,
     IntendedprojectsComponent,
   InsurancereportComponent,
@@ -106,9 +113,6 @@ CreateformComponent,
    UpdateformequipComponent,
     ViewformequipComponent,
 
-    CreateformeventComponent,
-    UpdateformeventComponent,
-    ViewformeventComponent,
     
     UpdatefreportsComponent,
     CreatefreportsComponent,
@@ -124,7 +128,13 @@ CreateformComponent,
 
     ViewipComponent,
     CreateipComponent,
-    UpdateipComponent
+    UpdateipComponent,
+    
+    EventsComponent,
+   CreateeventComponent,
+    UpdateeventComponent,
+    VieweventComponent
+  
    
   
 
@@ -168,7 +178,7 @@ CreateformComponent,
 
   
   ],
-providers: [ LoginService, SignupService, UsersService, incidentreportservice, equipinventoryservice, eventservice, freportservice, insurereportservice, intendservice],
+providers: [ LoginService, SignupService, UsersService, incidentreportservice, equipinventoryservice, freportservice, insurereportservice, intendservice, eventservice],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

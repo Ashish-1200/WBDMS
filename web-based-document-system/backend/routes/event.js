@@ -60,7 +60,7 @@ const upload = multer({
 router.get('/list', EventController.getEventList);
 
 //Creating  a new document within the collection
-router.post('/create',upload.array('productImage'), EventController.createEvent);
+router.post('/create',upload.array('mediaFiles'), EventController.createEvent);
 
 //Get event file
 router.get('/:id', EventController.getEvent);
@@ -68,7 +68,7 @@ router.get('/:id', EventController.getEvent);
 //Delete event
 router.delete('/:eventID', EventController.deleteEvent);
 
-router.put('/:updateUser',  EventController.updateEvent);
+router.put('/:update',  EventController.updateEvent);
 
 module.exports = router;
 

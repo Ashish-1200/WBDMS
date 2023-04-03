@@ -1,0 +1,42 @@
+<div class="card formdetails" *ngIf="userinfo">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h4 class="card-title text-center">Event Report</h4>
+    <button class="btn btn-primary btn-sm" routerLink="/events">Back</button>
+  </div>
+  <div class="card-body d-flex flex-column">
+    <div class="row">
+      <div class="col-md-6">
+        <h5 class="card-subtitle mb-2 text-muted">User ID:</h5>
+        <p class="card-text">{{userinfo._id}}</p>
+        <h5 class="card-subtitle mb-2 text-muted">Event Name:</h5>
+        <p class="card-text">{{userinfo.eventName}}</p>
+        <h5 class="card-subtitle mb-2 text-muted">Event Description:</h5>
+        <p class="card-text">{{userinfo.eventDes}}</p>
+        <h5 class="card-subtitle mb-2 text-muted">Event Date:</h5>
+        <p class="card-text">{{userinfo.eventDate}}</p>
+      </div>
+      <div class="col-md-6">
+        <h5 class="card-subtitle mb-2 text-muted">Date Uploaded:</h5>
+        <p class="card-text">{{userinfo.dateuploaded}}</p>
+        <hr>
+
+        <div class="card-subtitle">
+          <span>Media/Document :</span>
+          <ng-container *ngFor="let media of userinfo.mediaFiles">
+            <ng-container *ngIf="media.endsWith('.jpg') || media.endsWith('.png') || media.endsWith('.gif') || media.endsWith('.jpeg')">
+              <img class="img-fluid" src="http://localhost:3000/{{media}}">
+            </ng-container>
+            <ng-container *ngIf="media.endsWith('.mp4')">
+              <video controls class="w-100">
+                <source src="http://localhost:3000/{{media}}" type="video/mp4">
+              </video>
+            </ng-container>
+            <ng-container *ngIf="media.endsWith('.pdf') || media.endsWith('.docx')">
+              <a href="http://localhost:3000/{{media}}" download>{{media}}</a>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
