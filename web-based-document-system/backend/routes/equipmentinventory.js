@@ -56,7 +56,7 @@ router.get('/list', EquipmentInventoryController.equipmentInventory_list)
 router.get('/:id', EquipmentInventoryController.equipmentInventory_get_one)
 
 // Create a new equipment
-router.post('/create', upload.array('productImage'),EquipmentInventoryController.equipmentInventory_create)
+router.post('/create', upload.array('mediaFiles'),EquipmentInventoryController.equipmentInventory_create)
 
 // Update an existing equipment
 router.put('/:update', EquipmentInventoryController.equipmentInventory_update)

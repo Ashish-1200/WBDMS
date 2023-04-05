@@ -24,8 +24,7 @@ mongoose.connect('mongodb://localhost:27017/docsystem')
   .then(() => console.log("Database is connected"))
   .catch((error) => console.log(error));
 
-// serve the static files located in the "images" and "uploads" directories
-app.use('/images', express.static('images'));
+// serve the static files located in the "uploads" directories
 app.use('/uploads',express.static('uploads'));
 
 // Routes
@@ -54,12 +53,7 @@ app.use('/policies', wbpolicies);
 app.use('/public', wbpublic);
 app.use('/volunteer', wbvolunteer);
 
-// middleware that handles request to a route that does not exist
-app.use((req,res,next)=>{
-  const error = new Error ('Not found');
-  error.status=404;
-  next(error);
-})
+
 
 // middleware that handles CORS
 app.use((req,res,next) => {
@@ -72,8 +66,7 @@ app.use((req,res,next) => {
   next();
 });
 
-// middleware that logs requests
-app.use(morgan('dev'));
+
 
 // middleware that handles errors if a route is not found or if an error occurs
 app.use((req, res, next) => {

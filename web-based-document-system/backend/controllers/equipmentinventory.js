@@ -32,7 +32,7 @@ DateAcquired: req.body.DateAcquired,
 CostOfEquipment: req.body.CostOfEquipment,
 description: req.body.description,
     //commentbox:req.body.commentbox,
-    productImage:req.files.map(productImage=>productImage.path)
+    mediaFiles:req.files.map(mediaFiles=>mediaFiles.path)
 });
 
 equipmentinventory.save().then(function(dbuser) {

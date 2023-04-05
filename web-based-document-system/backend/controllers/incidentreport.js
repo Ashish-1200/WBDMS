@@ -26,7 +26,7 @@ exports.create_incident_report = function(req, res, next) {
   console.log(req.file);
   const incidentReport = new IncidentReport({
     _id: mongoose.Types.ObjectId(),
-    UserID: req.body.UserID,
+    
     //volunteerID: req.body.volunteerID,
     department: req.body.department,
     //publicID: req.body.publicID,

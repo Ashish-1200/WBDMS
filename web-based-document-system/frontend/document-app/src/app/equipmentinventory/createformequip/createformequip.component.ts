@@ -85,7 +85,7 @@ form = new FormGroup({
       this.http.post<any>('http://localhost:3000/equipmentinventory/create', formData).subscribe((response) => {
   this.resetForm();
   this.showSnackBar('Uploaded Successfully');
-  this.router.navigateByUrl(`/viewfreports/${response._id}`);
+  this.router.navigateByUrl(`/viewformequip/${response._id}`);
 });
 }
 

@@ -22,7 +22,7 @@ mediainfo: any;
 useridentity: any;
 
 form = new FormGroup({
-  UserID: new FormControl(''),
+  
   department: new FormControl('', Validators.required),
   firstName: new FormControl('', Validators.required),
   lastName: new FormControl('', Validators.required),
@@ -70,7 +70,7 @@ form = new FormGroup({
 
   SaveData() {
     const formData = new FormData();
-    formData.append('UserID', this.mediainfo);
+    
     formData.append('department', this.form.value.department|| '');
     formData.append('firstName', this.form.value.firstName || '');
     formData.append('lastName', this.form.value.lastName || '');
@@ -86,7 +86,7 @@ form = new FormGroup({
     this.http.post<any>('http://localhost:3000/incidentreport/create', formData).subscribe((response) => {
       this.resetForm();
       this.showSnackBar('Uploaded Successfully');
-      this.router.navigateByUrl(`/viewfreports/${response._id}`);
+      this.router.navigateByUrl(`/viewform/${response._id}`);
     });
     
     }

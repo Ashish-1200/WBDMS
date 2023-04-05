@@ -15,23 +15,27 @@ exports.getEventList = (req, res) => {
   };
 
 
-exports.createEvent = (req, res) => {
-  const newEventReport = new EventModel({
-    _id: mongoose.Types.ObjectId(),
-    
+
+
+exports.createEvent = function(req, res, next) {
+    console.log(req.file);
+const newEventReport = new EventModel({
+            _id: mongoose.Types.ObjectId(),
+
         eventName: req.body.eventName,
         eventDes: req.body.eventDes,
         eventDate: req.body.eventDate,
         department: req.body.department,
-        mediaFiles:req.files.map(mediaFiles=>mediaFiles.path)
-  });
-  
-  newEventReport.save()
-    .then(savedReport => res.send(savedReport))
-    .catch(error => console.log(error));
+    mediaFiles:req.files.map(mediaFiles=>mediaFiles.path)
+});
+
+newEventReport.save().then(function(dbuser) {
+res.send(dbuser);
+})
+.catch(function(err) {
+res.send('Cannot create event.');
+});
 };
-
-
 
 
 

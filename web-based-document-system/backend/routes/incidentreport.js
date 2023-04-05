@@ -1,16 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const checkAuth= require('../middleware/authcheck');
+//const checkAuth= require('../middleware/authcheck');
 const IncidentReportController = require('../controllers/Incidentreport');
-const IncidentReport = require('../models/incidentreports.m');
-const cors = require('cors');
-const  application  = require('express');
-const path = require("path");
-
-const fs = require("fs");
-
-//const incidentreport = require('../models/incidentreports.m');
+//const IncidentReport = require('../models/incidentreports.m');
 
 
 
